@@ -1,6 +1,6 @@
 # GEDE-Books
 Great Educational, Diverse, and Entertaining Books <br>
-*(How to pronounce: ‘Gedebuk’ as in jatoh)*
+*(How to pronounce: ‘Gedebuk’ as in suara jika kita jatuh)*
 <br>
 <br>
 
