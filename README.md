@@ -22,3 +22,38 @@ Sebagai respons terhadap kondisi tersebut, kami memperkenalkan "GEDE-Books", apl
 GEDE-Books menghadirkan fitur-fitur menarik yang memudahkan pengguna untuk menjelajahi dunia literasi. Pengguna dapat dengan mudah melihat buku-buku terbaru yang tersedia, mem-filter buku berdasarkan kategori yang diinginkan, dan bahkan menambahkan buku ke dalam wishlist mereka untuk dibeli nanti. Tidak hanya itu, aplikasi ini juga menyediakan fitur pembelian buku secara online yang aman dan nyaman. Setelah membaca buku yang dibeli, pengguna dapat memberikan review mereka, sehingga membantu calon pembaca lain untuk menentukan pilihan.
 
 Kami percaya bahwa dengan menghadirkan GEDE-Books, kami tidak hanya memberikan solusi untuk kebutuhan belanja buku yang lebih modern, tetapi juga berkontribusi dalam meningkatkan literasi di Indonesia. Melalui aplikasi ini, harapan untuk meningkatkan literasi di Indonesia bukan lagi sekedar mimpi, melainkan sebuah langkah nyata yang dapat diwujudkan bersama-sama.
+
+<br>
+
+## [Daftar Modul]
+Selain modul inti pengimplementasian buku, berikut adalah daftar modul lain yang diimplementasikan:
+- Wishlist Buku
+- Review Buku
+- Sort & Filter Kategori Buku
+- Tampilan Jumlah Buku
+<br>
+
+## [Sumber Dataset]
+Sumber dataset katalog buku yang digunakan adalah:
+[Dataset Buku](https://drive.google.com/file/d/17jiAwHx_68zUrolbTl75IoLRFK_JLYrx/view)
+
+<br>
+
+## [Role Pengguna]
+### Guest
+- Melihat daftar buku
+- Mengakses fitur sort dan filter kategori buku
+- Mengatur tampilan jumlah buku
+
+### User
+- Melihat daftar buku
+- Memasukkan buku ke wishlist
+- Menambahkan review buku
+- Mengakses fitur sort dan filter kategori buku
+- Mengatur tampilan jumlah buku
+
+### Admin
+- Mengatur stok buku
+- Menambahkan atau menghapus buku dari daftar buku
+- Mengedit informasi buku
+- Mengelola review buku
