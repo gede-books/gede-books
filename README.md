@@ -48,7 +48,8 @@ Sumber dataset katalog buku yang digunakan adalah:
 ### User
 - Melihat daftar buku
 - Memasukkan buku ke wishlist
-- Menambahkan review buku
+- Membeli buku
+- Menambahkan review buku yang sudah dibeli
 - Mengakses fitur sort dan filter kategori buku
 - Mengatur tampilan jumlah buku
 
