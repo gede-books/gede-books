@@ -1,8 +1,77 @@
-<h1>Dummy Header GEDE-Books</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Search</title>
+  </head>
+  <body>
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="Search" />
+      <button class="search-btn">Search</button>
+    </div>
 
-<h5>Judul: </h5>
-<p>{{ title }}<p>
-<h5>Bahasa: </h5>
-<p>{{ language }}<p>
-<h5>Penulis: </h5>
-<p>{{ firstName }} {{ lastName }}<p>
+    <select id="filter-select">
+      <option value="all">All</option>
+      <option value="title">Title</option>
+      <option value="author">Author</option>
+    </select>
+
+    <ul class="book-list"></ul>
+
+    <script>
+      // Assume books.json has the following structure:
+      // {"pk": 98, "model": "book.book", "fields": {"bookCode": 156, "title": "..."}}
+      fetch("books.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const books = data.map((book) => book.fields); // Access the "fields" property
+
+          const bookList = document.querySelector(".book-list");
+
+          function renderBooks(filteredBooks) {
+            bookList.innerHTML = "";
+
+            filteredBooks.forEach((book) => {
+              const li = document.createElement("li");
+              li.textContent = `${book.title} by ${book.fields.firstName} ${book.fields.lastName}`;
+              bookList.appendChild(li);
+            });
+          }
+
+          const searchInput = document.querySelector(".search-input");
+          const searchBtn = document.querySelector(".search-btn");
+          const filterSelect = document.getElementById("filter-select");
+
+          searchBtn.addEventListener("click", () => {
+            const category = filterSelect.value;
+            const searchTerm = searchInput.value.toLowerCase();
+
+            let filteredBooks = [];
+
+            if (category === "all") {
+              filteredBooks = books.filter(
+                (book) =>
+                  book.fields.title.toLowerCase().includes(searchTerm) ||
+                  (book.fields.firstName + " " + book.fields.lastName)
+                    .toLowerCase()
+                    .includes(searchTerm)
+              );
+            } else if (category === "title") {
+              filteredBooks = books.filter((book) =>
+                book.fields.title.toLowerCase().includes(searchTerm)
+              );
+            } else if (category === "author") {
+              filteredBooks = books.filter((book) =>
+                (book.fields.firstName + " " + book.fields.lastName)
+                  .toLowerCase()
+                  .includes(searchTerm)
+              );
+            }
+
+            renderBooks(filteredBooks);
+          });
+        });
+    </script>
+  </body>
+</html>
