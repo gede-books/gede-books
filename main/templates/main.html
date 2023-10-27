@@ -15,4 +15,19 @@
             Logout
         </button>
     </a>
+    <a href="{% url 'main:add_to_cart' %}">
+        <button>
+            Add
+        </button>
+    </a>
+    <a href="{% url 'main:remove_from_cart' %}">
+        <button>
+            Remove
+        </button>
+    </a>
+    <a href="{% url 'main:cart_view' %}">
+        <button>
+            Cart
+        </button>
+    </a>
 {% endblock content %}
