@@ -22,7 +22,7 @@
     <script>
       // Assume books.json has the following structure:
       // {"pk": 98, "model": "book.book", "fields": {"bookCode": 156, "title": "..."}}
-      fetch("books.json")
+      fetch("get-item/")
         .then((response) => response.json())
         .then((data) => {
           const books = data.map((book) => book.fields); // Access the "fields" property
@@ -34,7 +34,7 @@
 
             filteredBooks.forEach((book) => {
               const li = document.createElement("li");
-              li.textContent = `${book.title} by ${book.fields.firstName} ${book.fields.lastName}`;
+              li.textContent = `${book.fields.title} by ${book.fields.firstName} ${book.fields.lastName}`;
               bookList.appendChild(li);
             });
           }
