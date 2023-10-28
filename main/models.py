@@ -14,7 +14,7 @@ class Product(models.Model):
     category = models.TextField(null=True, blank=True)
     stock = models.IntegerField(default=25)
     price = models.IntegerField(default=75000)
-    rating = models.IntegerField(default=0)
+    rating = models.FloatField(default=0.0)
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

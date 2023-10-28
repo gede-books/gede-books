@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
@@ -42,10 +43,34 @@
         transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Gaya tombol Logout saat dihover */
     .btn-logout:hover {
-        background-color: red; /* Warna merah saat dihover */
-        color: white; /* Teks tetap putih saat dihover */
+        background-color: red;
+        color: white;
+    }
+
+    .btn-keranjang {
+        background-color: #343a40;
+        color: white;
+        border: 1px solid #343a40;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-keranjang:hover {
+        background-color: #1f00bb;
+        border: 1px solid #000000;
+    }
+
+    .btn-wishlist {
+        background-color: white;
+        color: #343a40;
+        border: 1px solid #343a40;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-wishlist:hover {
+        background-color: rgb(255, 36, 62);
+        color: white;
+        border: 1px solid red;
     }
 
     .star {
@@ -54,6 +79,27 @@
 
     .rating-text {
         margin-left: 5px;
+    }
+
+    .product-details {
+        display: flex;
+        flex-direction: row;
+        margin-top: 50px;
+    }
+
+    .product-details img {
+        margin-right: 30px;
+        height: 250px;
+    }
+
+    .product-details-content {
+        flex: 1;
+    }
+
+    .price {
+        font-size: 36px;
+        font-weight: bold;
+        color: #343a40;
     }
 </style>
 
@@ -75,7 +121,7 @@
         <ul class="navbar-nav">
             <div class="ms-auto d-flex align-items-center">
                 <span style="margin-right: 15px;">
-                    Welcome, <strong>{{ name }}</strong>!</br>
+                    Hi, <strong>{{ name }}</strong>!</br>
                 </span>
                 <a href="{% url 'main:logout' %}">
                   <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
@@ -105,34 +151,37 @@
     </div>
 </nav>
 
-<div class="container mt-5">
-    <div class="row">
-      {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <a href="{% url 'main:product_details' product.id %}" style="text-decoration: none; color: inherit;">
-                <div class="card h-100" style="border: 1px solid lightgray; border-radius: 8px;">
-                    <div class="card-img-container" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                        {% if product.image_url %}
-                            <img class="card-img-top" src="{{ product.image_url }}" alt="{{ product.title }}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                        {% endif %}
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{ product.title }}</p>
-                        <h5 class="card-text">Rp. {{ product.price }},-</h5>
-                        <p class="card-text">
-                            <span style="font-size: 13px; color: #444;">
-                                {{ product.category }}
-                            </span>
-                        </p>
-                        <p class="card-text"><span style="color: gold;">&#9733;</span> {{ product.rating }}</p>  <!-- Mengubah warna bintang menjadi emas -->
-                    </div>
-                </div>
-            </a>
-        </div>
-        {% if forloop.counter|divisibleby:4 %}
-        </div><div class="row">
+<div class="container">
+    <div class="product-details">
+        <!-- Product Image -->
+        {% if product.image_url %}
+            <img src="{{ product.image_url }}" alt="{{ product.title }}">
         {% endif %}
-      {% endfor %}        
+
+        <div class="product-details-content">
+            <h2>{{ product.title }}</h2>
+            <p class="price">Rp. {{ product.price }},-</p>
+            <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+            <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
+        </div>
+    </div>
+
+    <!-- Product Details -->
+    <div class="mt-4">
+        <h5>Bahasa: </h5>
+        <p>{{ product.language }}</p>
+    
+        <h5>Penulis: </h5>
+        <p>{{ product.firstName }} {{ product.lastName }}</p>
+    
+        <h5>Tahun: </h5>
+        <p>{{ product.year }}</p>
+    
+        <h5>Topik: </h5>
+        <p>{{ product.subjects }}</p>
+    
+        <h5>Kategori: </h5>
+        <p>{{ product.category }}</p>
     </div>
 </div>
 
