@@ -2,32 +2,25 @@
 
 {% block content %}
     <h1>Dummy Header GEDE-Books</h1>
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
 
-    <h5>Judul: </h5>
-    <p>{{ title }}<p>
-    <h5>Bahasa: </h5>
-    <p>{{ language }}<p>
-    <h5>Penulis: </h5>
-    <p>{{ firstName }} {{ lastName }}<p>
+    {% for product in products %}
+        <h5>Judul: </h5>
+        <p>{{ product.title }}<p>
+        {% if product.image_url %}
+            <img src="{{ product.image_url }}" height="200">
+        {% endif %}
+        <h5>Bahasa: </h5>
+        <p>{{ product.language }}<p>
+        <h5>Penulis: </h5>
+        <p>{{ product.firstName }} {{ product.lastName }}<p>
+        <h5>Tahun: </h5>
+        <p>{{ product.year }}<p>
+        <h5>Topik: </h5>
+        <p>{{ product.subjects }}<p>
+        <h5>Kategori: </h5>
+        <p>{{ product.category }}<p>
+        <hr>
+    {% endfor %}
 
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
-    <a href="{% url 'main:add_to_cart' %}">
-        <button>
-            Add
-        </button>
-    </a>
-    <a href="{% url 'main:remove_from_cart' %}">
-        <button>
-            Remove
-        </button>
-    </a>
-    <a href="{% url 'main:cart_view' %}">
-        <button>
-            Cart
-        </button>
-    </a>
 {% endblock content %}
