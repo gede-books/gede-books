@@ -1,21 +1,58 @@
 from django.shortcuts import render
-from main.models import Product, Order, OrderItem
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages  
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+from main.models import Product, Order, OrderItem
+from book.models import Book
 
-# Create your views here.
+import csv
+
+
 @login_required(login_url='/login')
 def show_main(request):
-    products = Product.objects.all()
+    # Ambil semua buku
+    books = Book.objects.all()
+
+    # Buat objek Product untuk setiap buku
+    products = []
+    for book in books:
+        product = Product(
+            bookCode=book.bookCode,
+            title=book.title,
+            language=book.language,
+            firstName=book.firstName,
+            lastName=book.lastName,
+            year=book.year,
+            subjects=book.subjects,
+            category=book.category,
+            stock=25,
+            price=75000,
+        )
+        products.append(product)
+
+    # Baca file CSV dan buat kamus untuk URL gambar
+    image_map = {}
+    with open('main/bookImages.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            try:
+                image_map[int(row['bookCode'])] = row['image']
+            except KeyError as e:
+                print(f"KeyError: {e}. Row: {row}")
+
+    # Tambahkan URL gambar ke setiap produk jika ada di kamus
+    for product in products:
+        if product.bookCode in image_map:
+            product.image_url = image_map[product.bookCode]
+        else:
+            product.image_url = None
+
+    # Tambahkan produk ke konteks
     context = {
-        'title': 'Anoooooomgh',
-        'language': 'Zimbabwe',
-        'firstName': 'Rakha',
-        'lastName': 'Abid'
+        'products': products
     }
 
     return render(request, "main.html", context)

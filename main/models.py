@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Create your models here.
+
 class Product(models.Model):
+    bookCode = models.IntegerField(null=True, blank=True)
     title = models.TextField(null=True, blank=True)
     language = models.TextField(null=True, blank=True)
     firstName = models.TextField(null=True, blank=True)
@@ -9,8 +12,9 @@ class Product(models.Model):
     year = models.TextField(null=True, blank=True)
     subjects = models.TextField(null=True, blank=True)
     category = models.TextField(null=True, blank=True)
-    stock = models.IntegerField(default=0)
-    price = models.FloatField(default=0)
+    stock = models.IntegerField(default=25)
+    price = models.IntegerField(default=75000)
+    rating = models.IntegerField(default=0)
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
