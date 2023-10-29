@@ -23,7 +23,6 @@
         font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 15px;
         font-style: italic;
-        font-weight:normal;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -86,6 +85,7 @@
         </ul>
     </div>
 </nav>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <ul class="navbar-nav mr-auto">
@@ -106,62 +106,38 @@
     </div>
 </nav>
 
-<div class="col-12">
-    <!-- Main Content -->
-    <div class="row">
-        <div class="col-12 mt-3 text-center text-uppercase">
-            <h2>Shopping Cart</h2>
-        </div>
+<div class="container mt-5">
+    <div class="row" id="cards-container">       
     </div>
-
-    <main class="row">
-        <div class="col-12 bg-white py-3 mb-3">
-            <div class="row">
-                <div class="col-lg-6 col-md-8 col-sm-10 mx-auto table-responsive">
-                    <form class="row">
-                        <div class="col-12">
-                            <table class="table table-striped table-hover table-sm">
-                                <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Amount</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                {% for order in orders %}
-                                    <tbody>
-                                        <td>
-                                            {% if order.product.image_url %}
-                                                <img class="card-img-top" src="{{ order.product.image_url }}" alt="{{ order.product.title }}" style="height: 50px; width: 50px; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                                            {% endif %}
-                                            {{ order.product.title }}
-                                        </td>
-                                        <td>Rp. {{ order.product.price }},-</td>
-                                        <td>{{ order.quantity }}</td>
-                                        <td>Rp. {{ order.total_price }},-</td>
-                                    </tbody>
-                                {% endfor %}
-                                <tfoot>
-                                <tr>
-                                    <th colspan="3" class="text-right">Total</th>
-                                    <th>Rp. {{ total }},-</th>
-                                    <th></th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <div class="col-12 text-right">
-                            <button class="btn btn-outline-secondary me-3" type="submit">Update</button>
-                            <a href="{% url 'main:checkout_cart'%}" class="btn btn-outline-success">Checkout</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </main>
-    <!-- Main Content -->
 </div>
+
+<script>
+    fetch('/purchased_books_ajax/')
+        .then(response => response.json())
+        .then(data => {
+            const cardsContainer = document.getElementById('cards-container');
+            data.order_items.forEach((orderedItem, index) => {
+                const card = `
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="card h-100" style="border: 1px solid lightgray; border-radius: 8px;">
+                            <div class="card-img-container" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                <img class="card-img-top" src="${orderedItem.image_url}" alt="${orderedItem.title}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title">${orderedItem.title}</p>
+                                <h5 class="card-text">Rp. ${orderedItem.price},-</h5>
+                                <p class="card-text">
+                                    <span style="font-size: 13px; color: #444;">${orderedItem.category}</span>
+                                </p>
+                                <a href="{% url 'main:tinggalkan_review' 9999 %}" class="btn btn-info" >Tinggalkan Review</a>
+                            </div>
+                        </div>
+                    </div>
+                `.replace('9999', orderedItem.id);
+                cardsContainer.innerHTML += card;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+
 {% endblock content %}
