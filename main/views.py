@@ -11,6 +11,7 @@ from django.http import JsonResponse
 
 from main.models import Product, Order, OrderItem
 from book.models import Book
+from main.forms import CheckoutForm
 
 import datetime
 import csv
@@ -160,7 +161,7 @@ def remove_from_cart(request, product_id):
 
 @login_required
 def cart_view(request):
-    order = Order.objects.get(user=request.user, ordered=False)
+    order, created = Order.objects.get_or_create(user=request.user, ordered=False)
     context = {
         'name': request.user.username,
         'order': order
@@ -183,3 +184,40 @@ def show_xml_by_id(request, id):
 def show_json_by_id(request, id):
     data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+@login_required
+def checkout_view(request):
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            address = form.cleaned_data.get('address')
+            payment_method = form.cleaned_data.get('payment_method')
+
+            response_text = f"Terima kasih, {name}!\n"
+            response_text += f"Detail pemesanan Anda:\n"
+            response_text += f"Alamat Pengiriman: {address}\n"
+            response_text += f"Metode Pembayaran: {payment_method}\n"
+            response_text += "Pesanan Anda sedang diproses. Silakan cek email Anda untuk informasi lebih lanjut."
+
+            return HttpResponse(response_text, content_type='text/plain')
+    else:
+        form = CheckoutForm()
+
+    return render(request, 'cart.html', {'checkout_form': form})
+
+@login_required
+def update_quantity(request):
+    if request.method == 'POST':
+        item_id = request.POST.get('item_id')
+        new_quantity = int(request.POST.get('new_quantity'))
+
+        try:
+            order = Order.objects.get(user=request.user, ordered=False)
+            order_item = order.orderitem_set.get(product_id=item_id)
+            order_item.quantity = new_quantity
+            order_item.save()
+            return JsonResponse({'status': 'success', 'new_quantity': new_quantity})
+        except:
+            return JsonResponse({'status': 'error'}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)

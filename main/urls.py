@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import show_main, register, product_details, login_user, logout_user, add_to_cart, remove_from_cart, cart_view, show_xml, show_json, show_xml_by_id, show_json_by_id 
+from main.views import show_main, register, product_details, login_user, logout_user, add_to_cart, remove_from_cart, cart_view, show_xml, show_json, show_xml_by_id, show_json_by_id , checkout_view, update_quantity
 
 app_name = 'main'
 
@@ -16,4 +16,6 @@ urlpatterns = [
     path('json/', show_json, name='show_json'),
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+    path('checkout/', checkout_view, name='checkout_view'),
+    path('update_quantity/', update_quantity, name='update_quantity'),
 ]
