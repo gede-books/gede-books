@@ -25,7 +25,7 @@
       fetch("get-item/")
         .then((response) => response.json())
         .then((data) => {
-          const books = data.map((book) => book.fields);
+          const books = data.map((book) => book.fields); // Access the "fields" property
 
           const bookList = document.querySelector(".book-list");
 
@@ -34,7 +34,7 @@
 
             filteredBooks.forEach((book) => {
               const li = document.createElement("li");
-              li.textContent = `${book.title} by ${book.author}`;
+              li.textContent = `${book.title} by ${book.firstName} ${book.lastName}`;
               bookList.appendChild(li);
             });
           }
@@ -50,20 +50,21 @@
             let filteredBooks = [];
 
             if (category === "all") {
+              console.log(books);
               filteredBooks = books.filter(
                 (book) =>
-                  book.fields.title.toLowerCase().includes(searchTerm) ||
-                  (book.fields.firstName + " " + book.fields.lastName)
+                  book.title.toLowerCase().includes(searchTerm) ||
+                  (book.firstName + " " + book.lastName)
                     .toLowerCase()
                     .includes(searchTerm)
               );
             } else if (category === "title") {
               filteredBooks = books.filter((book) =>
-                book.fields.title.toLowerCase().includes(searchTerm)
+                book.title.toLowerCase().includes(searchTerm)
               );
             } else if (category === "author") {
               filteredBooks = books.filter((book) =>
-                (book.fields.firstName + " " + book.fields.lastName)
+                (book.firstName + " " + book.lastName)
                   .toLowerCase()
                   .includes(searchTerm)
               );
