@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
+<style>
+    .navbar-first {
+        height: 100px;
+    }
+
+    .navbar-brand {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bolder;
+        font-size: 40px;
+    }
+
+    .navbar-tagline {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 15px;
+        font-style: italic;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 72px;
+    }
+
+    .nav-link.active {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .btn-logout {
+        background-color: #343a40;
+        color: white;
+        border: 1px solid black;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Gaya tombol Logout saat dihover */
+    .btn-logout:hover {
+        background-color: red; /* Warna merah saat dihover */
+        color: white; /* Teks tetap putih saat dihover */
+    }
+
+    .star {
+        color: gold;
+    }
+
+    .rating-text {
+        margin-left: 5px;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-first">
+    <div class="container-fluid">
+
+        <!-- Search Bar -->
+        <form class="form-inline my-2 my-lg-0 mr-auto position-relative">
+            <input class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
+            <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <a href="{% url 'main:purchased_books' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
+        <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
+
+        <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
+        <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
+
+        <!-- Right side items -->
+        <ul class="navbar-nav">
+            <div class="ms-auto d-flex align-items-center">
+                <span style="margin-right: 15px;">
+                    Welcome, <strong>{{ name }}</strong>!</br>
+                </span>
+                <a href="{% url 'main:logout' %}">
+                  <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
+                </a>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Politics' %}active{% endif %}" 
+                   href="{% if selected_category == 'Politics' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Politics{% endif %}">
+                   Politics
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Children\'s Literature' %}active{% endif %}" 
+                   href="{% if selected_category == 'Children\'s Literature' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Children's Literature{% endif %}">
+                   Children's Literature
+                </a>
+            </li>
+            <!-- Other items... -->
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row" id="cards-container">       
+    </div>
+</div>
+
+<script>
+    fetch('/purchased_books_ajax/')
+        .then(response => response.json())
+        .then(data => {
+            const cardsContainer = document.getElementById('cards-container');
+            data.order_items.forEach((orderedItem, index) => {
+                const card = `
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="card h-100" style="border: 1px solid lightgray; border-radius: 8px;">
+                            <div class="card-img-container" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                <img class="card-img-top" src="${orderedItem.image_url}" alt="${orderedItem.title}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title">${orderedItem.title}</p>
+                                <h5 class="card-text">Rp. ${orderedItem.price},-</h5>
+                                <p class="card-text">
+                                    <span style="font-size: 13px; color: #444;">${orderedItem.category}</span>
+                                </p>
+                                <a href="{% url 'main:tinggalkan_review' 9999 %}" class="btn btn-info" >Tinggalkan Review</a>
+                            </div>
+                        </div>
+                    </div>
+                `.replace('9999', orderedItem.id);
+                cardsContainer.innerHTML += card;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+
+{% endblock content %}

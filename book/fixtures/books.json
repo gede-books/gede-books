@@ -1,1370 +1,1402 @@
 [
-    {
-      "pk": 1,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 1,
-        "title": "The Declaration of Independence of the United States of America",
-        "language": "en",
-        "firstName": "Thomas",
-        "lastName": "Jefferson",
-        "year": "1743-1826",
-        "subjects": "United States -- History -- Revolution, 1775-1783 -- Sources; United States. Declaration of Independence",
-        "category": "Politics; American Revolutionary War; United States Law"
-      }
-    },
-    {
-      "pk": 2,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 3,
-        "title": "John F. Kennedy's Inaugural Address",
-        "language": "en",
-        "firstName": "John F. (John Fitzgerald)",
-        "lastName": "Kennedy",
-        "year": "1917-1963",
-        "subjects": "United States -- Foreign relations -- 1961-1963; Presidents -- United States -- Inaugural addresses"
-      }
-    },
-    {
-      "pk": 3,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 4,
-        "title": "Lincoln's Gettysburg Address\r\nGiven November 19, 1863 on the battlefield near Gettysburg, Pennsylvania, USA",
-        "language": "en",
-        "firstName": "Abraham",
-        "lastName": "Lincoln",
-        "year": "1809-1865",
-        "subjects": "Consecration of cemeteries -- Pennsylvania -- Gettysburg; Soldiers' National Cemetery (Gettysburg, Pa.); Lincoln, Abraham, 1809-1865. Gettysburg address",
-        "category": "US Civil War"
-      }
-    },
-    {
-      "pk": 4,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 6,
-        "title": "Give Me Liberty or Give Me Death",
-        "language": "en",
-        "firstName": "Patrick",
-        "lastName": "Henry",
-        "year": "1736-1799",
-        "subjects": "Speeches, addresses, etc., American; United States -- Politics and government -- 1775-1783 -- Sources; Virginia -- Politics and government -- 1775-1783 -- Sources",
-        "category": "American Revolutionary War"
-      }
-    },
-    {
-      "pk": 5,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 8,
-        "title": "Abraham Lincoln's Second Inaugural Address",
-        "language": "en",
-        "firstName": "Abraham",
-        "lastName": "Lincoln",
-        "year": "1809-1865",
-        "subjects": "United States -- Politics and government -- 1861-1865; Presidents -- United States -- Inaugural addresses",
-        "category": "US Civil War"
-      }
-    },
-    {
-      "pk": 6,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 9,
-        "title": "Abraham Lincoln's First Inaugural Address",
-        "language": "en",
-        "firstName": "Abraham",
-        "lastName": "Lincoln",
-        "year": "1809-1865",
-        "subjects": "United States -- Politics and government -- 1861-1865; Presidents -- United States -- Inaugural addresses",
-        "category": "US Civil War"
-      }
-    },
-    {
-      "pk": 7,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 11,
-        "title": "Alice's Adventures in Wonderland",
-        "language": "en",
-        "firstName": "Lewis",
-        "lastName": "Carroll",
-        "year": "1832-1898",
-        "subjects": "Fantasy fiction; Children's stories; Imaginary places -- Juvenile fiction; Alice (Fictitious character from Carroll) -- Juvenile fiction",
-        "category": "Children's Literature"
-      }
-    },
-    {
-      "pk": 8,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 12,
-        "title": "Through the Looking-Glass",
-        "language": "en",
-        "firstName": "Lewis",
-        "lastName": "Carroll",
-        "year": "1832-1898",
-        "subjects": "Fantasy fiction; Children's stories; Imaginary places -- Juvenile fiction; Alice (Fictitious character from Carroll) -- Juvenile fiction",
-        "category": "Best Books Ever Listings; Children's Literature"
-      }
-    },
-    {
-      "pk": 9,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 13,
-        "title": "The Hunting of the Snark: An Agony in Eight Fits",
-        "language": "en",
-        "firstName": "Lewis",
-        "lastName": "Carroll",
-        "year": "1832-1898",
-        "subjects": "Nonsense verses, English",
-        "category": "Children's Literature"
-      }
-    },
-    {
-      "pk": 10,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 15,
-        "title": "Moby-Dick; or, The Whale",
-        "language": "en",
-        "firstName": "Herman",
-        "lastName": "Melville",
-        "year": "1819-1891",
-        "subjects": "Whaling -- Fiction; Sea stories; Psychological fiction; Ship captains -- Fiction; Adventure stories; Mentally ill -- Fiction; Ahab, Captain (Fictitious character) -- Fiction; Whales -- Fiction; Whaling ships -- Fiction",
-        "category": "Best Books Ever Listings; Adventure"
-      }
-    },
-    {
-      "pk": 11,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 16,
-        "title": "Peter Pan",
-        "language": "en",
-        "firstName": "J. M. (James Matthew)",
-        "lastName": "Barrie",
-        "year": "1860-1937",
-        "subjects": "Fantasy literature; Peter Pan (Fictitious character) -- Fiction; Never-Never Land (Imaginary place) -- Fiction; Pirates -- Fiction; Fairies -- Fiction",
-        "category": "Children's Literature; Movie Books"
-      }
-    },
-    {
-      "pk": 12,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 20,
-        "title": "Paradise Lost",
-        "language": "en",
-        "firstName": "John",
-        "lastName": "Milton",
-        "year": "1608-1674",
-        "subjects": "Fall of man -- Poetry; Adam (Biblical figure) -- Poetry; Eve (Biblical figure) -- Poetry; Bible. Genesis -- History of Biblical events -- Poetry",
-        "category": "Poetry; Banned Books from Anne Haight's list"
-      }
-    },
-    {
-      "pk": 13,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 22,
-        "title": "Roget's Thesaurus",
-        "language": "en",
-        "firstName": "Peter Mark",
-        "lastName": "Roget",
-        "year": "1779-1869",
-        "subjects": "English language -- Synonyms and antonyms",
-        "category": "Reference"
-      }
-    },
-    {
-      "pk": 14,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 23,
-        "title": "Narrative of the Life of Frederick Douglass, an American Slave",
-        "language": "en",
-        "firstName": "Frederick",
-        "lastName": "Douglass",
-        "year": "1818-1895",
-        "subjects": "Douglass, Frederick, 1818-1895; African American abolitionists -- Biography; Abolitionists -- United States -- Biography; Enslaved persons -- United States -- Biography",
-        "category": "African American Writers; Slavery"
-      }
-    },
-    {
-      "pk": 15,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 24,
-        "title": "O Pioneers!",
-        "language": "en",
-        "firstName": "Willa",
-        "lastName": "Cather",
-        "year": "1873-1947",
-        "subjects": "Nebraska -- Fiction; Historical fiction; Frontier and pioneer life -- Nebraska -- Fiction; Domestic fiction; Siblings -- Fiction; Farm life -- Fiction; Women pioneers -- Fiction; Women farmers -- Fiction; Women immigrants -- Fiction; Swedish Americans -- Fiction"
-      }
-    },
-    {
-      "pk": 16,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 26,
-        "title": "Paradise Lost",
-        "language": "en",
-        "firstName": "John",
-        "lastName": "Milton",
-        "year": "1608-1674",
-        "subjects": "Fall of man -- Poetry; Adam (Biblical figure) -- Poetry; Eve (Biblical figure) -- Poetry; Bible. Genesis -- History of Biblical events -- Poetry"
-      }
-    },
-    {
-      "pk": 17,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 27,
-        "title": "Far from the Madding Crowd",
-        "language": "en",
-        "firstName": "Thomas",
-        "lastName": "Hardy",
-        "year": "1840-1928",
-        "subjects": "Didactic fiction; Love stories; Triangles (Interpersonal relations) -- Fiction; Pastoral fiction; Farm life -- Fiction; Women farmers -- Fiction; Wessex (England) -- Fiction"
-      }
-    },
-    {
-      "pk": 18,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 32,
-        "title": "Herland",
-        "language": "en",
-        "firstName": "Charlotte Perkins",
-        "lastName": "Gilman",
-        "year": "1860-1935",
-        "subjects": "Utopias -- Fiction; Women -- Fiction; Utopian fiction; Black humor",
-        "category": "Best Books Ever Listings"
-      }
-    },
-    {
-      "pk": 19,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 33,
-        "title": "The Scarlet Letter",
-        "language": "en",
-        "firstName": "Nathaniel",
-        "lastName": "Hawthorne",
-        "year": "1804-1864",
-        "subjects": "Adultery -- Fiction; Historical fiction; Revenge -- Fiction; Psychological fiction; Married women -- Fiction; Clergy -- Fiction; Triangles (Interpersonal relations) -- Fiction; Illegitimate children -- Fiction; Women immigrants -- Fiction; Puritans -- Fiction; Boston (Mass.) -- History -- Colonial period, ca. 1600-1775 -- Fiction",
-        "category": "Harvard Classics; Movie Books"
-      }
-    },
-    {
-      "pk": 20,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 34,
-        "title": "Zen and the Art of the Internet",
-        "language": "en",
-        "firstName": "Brendan P.",
-        "lastName": "Kehoe",
-        "year": "1970-2011",
-        "subjects": "Internet; Computer networks; Information networks; Information retrieval"
-      }
-    },
-    {
-      "pk": 21,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 35,
-        "title": "The Time Machine",
-        "language": "en",
-        "firstName": "H. G. (Herbert George)",
-        "lastName": "Wells",
-        "year": "1866-1946",
-        "subjects": "Science fiction; Time travel -- Fiction; Dystopias -- Fiction",
-        "category": "Movie Books; Science Fiction"
-      }
-    },
-    {
-      "pk": 22,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 36,
-        "title": "The War of the Worlds",
-        "language": "en",
-        "firstName": "H. G. (Herbert George)",
-        "lastName": "Wells",
-        "year": "1866-1946",
-        "subjects": "Science fiction; War stories; Martians -- Fiction; Mars (Planet) -- Fiction; Space warfare -- Fiction; Imaginary wars and battles -- Fiction; Life on other planets -- Fiction",
-        "category": "Movie Books; Science Fiction"
-      }
-    },
-    {
-      "pk": 23,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 41,
-        "title": "The Legend of Sleepy Hollow",
-        "language": "en",
-        "firstName": "Washington",
-        "lastName": "Irving",
-        "year": "1783-1859",
-        "subjects": "Ghosts -- Fiction; New York (State) -- History -- 1775-1865 -- Fiction",
-        "category": "Children's Literature; Harvard Classics"
-      }
-    },
-    {
-      "pk": 24,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 42,
-        "title": "The Strange Case of Dr. Jekyll and Mr. Hyde",
-        "language": "en",
-        "firstName": "Robert Louis",
-        "lastName": "Stevenson",
-        "year": "1850-1894",
-        "subjects": "Science fiction; Horror tales; London (England) -- Fiction; Physicians -- Fiction; Psychological fiction; Self-experimentation in medicine -- Fiction; Multiple personality -- Fiction",
-        "category": "Precursors of Science Fiction; Horror; Gothic Fiction; Movie Books"
-      }
-    },
-    {
-      "pk": 25,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 43,
-        "title": "The Strange Case of Dr. Jekyll and Mr. Hyde",
-        "language": "en",
-        "firstName": "Robert Louis",
-        "lastName": "Stevenson",
-        "year": "1850-1894",
-        "subjects": "Science fiction; Horror tales; London (England) -- Fiction; Physicians -- Fiction; Psychological fiction; Self-experimentation in medicine -- Fiction; Multiple personality -- Fiction",
-        "category": "Precursors of Science Fiction; Horror; Movie Books"
-      }
-    },
-    {
-      "pk": 26,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 44,
-        "title": "The Song of the Lark",
-        "language": "en",
-        "firstName": "Willa",
-        "lastName": "Cather",
-        "year": "1873-1947",
-        "subjects": "Musical fiction; Young women -- Fiction; Bildungsromans; Chicago (Ill.) -- Fiction; Swedish Americans -- Fiction; Colorado -- Fiction; Opera -- Fiction; Children of clergy -- Fiction; Women singers -- Fiction",
-        "category": "Opera"
-      }
-    },
-    {
-      "pk": 27,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 45,
-        "title": "Anne of Green Gables",
-        "language": "en",
-        "firstName": "L. M. (Lucy Maud)",
-        "lastName": "Montgomery",
-        "year": "1874-1942",
-        "subjects": "Orphans -- Fiction; Islands -- Fiction; Friendship -- Fiction; Bildungsromans; Girls -- Fiction; Country life -- Prince Edward Island -- Fiction; Prince Edward Island -- History -- 20th century -- Fiction; Canada -- History -- 1867-1914 -- Fiction; Shirley, Anne (Fictitious character) -- Fiction",
-        "category": "Children's Literature; Canada"
-      }
-    },
-    {
-      "pk": 28,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 47,
-        "title": "Anne of Avonlea",
-        "language": "en",
-        "firstName": "L. M. (Lucy Maud)",
-        "lastName": "Montgomery",
-        "year": "1874-1942",
-        "subjects": "Orphans -- Fiction; Islands -- Fiction; Teachers -- Fiction; Prince Edward Island -- History -- 20th century -- Fiction; Canada -- History -- 1914-1945 -- Fiction; Shirley, Anne (Fictitious character) -- Fiction",
-        "category": "Children's Literature; Canada"
-      }
-    },
-    {
-      "pk": 29,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 51,
-        "title": "Anne of the Island",
-        "language": "en",
-        "firstName": "L. M. (Lucy Maud)",
-        "lastName": "Montgomery",
-        "year": "1874-1942",
-        "subjects": "Orphans -- Fiction; Prince Edward Island -- History -- 20th century -- Fiction; Interpersonal relations -- Fiction; Canada -- History -- 1914-1945 -- Fiction; Self-perception -- Fiction; Universities and colleges -- Fiction; Nova Scotia -- History -- 20th century -- Fiction; Shirley, Anne (Fictitious character) -- Fiction",
-        "category": "Children's Literature; Canada"
-      }
-    },
-    {
-      "pk": 30,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 54,
-        "title": "The Marvelous Land of Oz",
-        "language": "en",
-        "firstName": "L. Frank (Lyman Frank)",
-        "lastName": "Baum",
-        "year": "1856-1919",
-        "subjects": "Oz (Imaginary place) -- Juvenile fiction; Fantasy literature; Conduct of life -- Juvenile fiction; Friendship -- Juvenile fiction; Voyages and travels -- Juvenile fiction; Magic -- Juvenile fiction; Practical jokes -- Juvenile fiction; Youth -- Conduct of life -- Juvenile fiction; Queens -- Juvenile fiction; Kings and rulers -- Juvenile fiction; Witches -- Juvenile fiction; Women soldiers -- Juvenile fiction",
-        "category": "Children's Literature; Fantasy"
-      }
-    },
-    {
-      "pk": 31,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 55,
-        "title": "The Wonderful Wizard of Oz",
-        "language": "en",
-        "firstName": "L. Frank (Lyman Frank)",
-        "lastName": "Baum",
-        "year": "1856-1919",
-        "subjects": "Oz (Imaginary place) -- Juvenile fiction; Fantasy literature; Courage -- Juvenile fiction; Home -- Juvenile fiction; Good and evil -- Juvenile fiction; Dreams -- Juvenile fiction; Gale, Dorothy (Fictitious character) -- Juvenile fiction; Cowardly Lion (Fictitious character) -- Juvenile fiction; Cyclones -- Juvenile fiction; Scarecrow (Fictitious character from Baum) -- Juvenile fiction; Toto (Fictitious character) -- Juvenile fiction; Witches -- Juvenile fiction; Wizard of Oz (Fictitious character) -- Juvenile fiction; Tin Woodman (Fictitious character) -- Juvenile fiction",
-        "category": "Children's Literature; Fantasy"
-      }
-    },
-    {
-      "pk": 32,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 58,
-        "title": "Paradise Regained",
-        "language": "en",
-        "firstName": "John",
-        "lastName": "Milton",
-        "year": "1608-1674",
-        "subjects": "English poetry; Epic poetry; Bible. Gospels -- History of Biblical events -- Poetry; Jesus Christ -- Temptation -- Poetry"
-      }
-    },
-    {
-      "pk": 33,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 62,
-        "title": "A Princess of Mars",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Science fiction; Mars (Planet) -- Fiction; Princesses -- Fiction; Carter, John (Fictitious character) -- Fiction; Dejah Thoris (Fictitious character) -- Fiction",
-        "category": "Best Books Ever Listings; Science Fiction"
-      }
-    },
-    {
-      "pk": 34,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 64,
-        "title": "The Gods of Mars",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Science fiction; Mars (Planet) -- Fiction; Life on other planets -- Fiction; Carter, John (Fictitious character) -- Fiction; Dejah Thoris (Fictitious character) -- Fiction",
-        "category": "Science Fiction"
-      }
-    },
-    {
-      "pk": 35,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 68,
-        "title": "The warlord of Mars",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Science fiction; Mars (Planet) -- Fiction; Carter, John (Fictitious character) -- Fiction; Dejah Thoris (Fictitious character) -- Fiction",
-        "category": "Science Fiction"
-      }
-    },
-    {
-      "pk": 36,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 70,
-        "title": "What Is Man? and Other Essays",
-        "language": "en",
-        "firstName": "Mark",
-        "lastName": "Twain",
-        "year": "1835-1910",
-        "subjects": "American essays"
-      }
-    },
-    {
-      "pk": 37,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 71,
-        "title": "On the Duty of Civil Disobedience",
-        "language": "en",
-        "firstName": "Henry David",
-        "lastName": "Thoreau",
-        "year": "1817-1862",
-        "subjects": "Civil disobedience; Government, Resistance to"
-      }
-    },
-    {
-      "pk": 38,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 72,
-        "title": "Thuvia, Maid of Mars",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Science fiction; Martians -- Fiction; Mars (Planet) -- Fiction",
-        "category": "Science Fiction"
-      }
-    },
-    {
-      "pk": 39,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 73,
-        "title": "The Red Badge of Courage: An Episode of the American Civil War",
-        "language": "en",
-        "firstName": "Stephen",
-        "lastName": "Crane",
-        "year": "1871-1900",
-        "subjects": "Historical fiction; War stories; United States -- History -- Civil War, 1861-1865 -- Fiction; Virginia -- History -- Civil War, 1861-1865 -- Fiction; Chancellorsville, Battle of, Chancellorsville, Va., 1863 -- Fiction",
-        "category": "US Civil War; Historical Fiction; Best Books Ever Listings; Bestsellers, American, 1895-1923"
-      }
-    },
-    {
-      "pk": 40,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 74,
-        "title": "The Adventures of Tom Sawyer, Complete",
-        "language": "en",
-        "firstName": "Mark",
-        "lastName": "Twain",
-        "year": "1835-1910",
-        "subjects": "Humorous stories; Bildungsromans; Boys -- Fiction; Male friendship -- Fiction; Adventure stories; Missouri -- Fiction; Sawyer, Tom (Fictitious character) -- Fiction; Child witnesses -- Fiction; Runaway children -- Fiction; Mississippi River Valley -- Fiction",
-        "category": "Banned Books from Anne Haight's list; Banned Books List from the American Library Association"
-      }
-    },
-    {
-      "pk": 41,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 77,
-        "title": "The House of the Seven Gables",
-        "language": "en",
-        "firstName": "Nathaniel",
-        "lastName": "Hawthorne",
-        "year": "1804-1864",
-        "subjects": "Historical fiction; Domestic fiction; Paranormal fiction; Haunted houses -- Fiction; Salem (Mass.) -- Fiction",
-        "category": "Best Books Ever Listings"
-      }
-    },
-    {
-      "pk": 42,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 78,
-        "title": "Tarzan of the Apes",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Tarzan (Fictitious character) -- Fiction; Africa -- Fiction; Fantasy fiction; Adventure stories; British -- Africa -- Fiction; Wild men -- Fiction",
-        "category": "Movie Books; Adventure"
-      }
-    },
-    {
-      "pk": 43,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 81,
-        "title": "The Return of Tarzan",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Tarzan (Fictitious character) -- Fiction; Fantasy fiction; Adventure stories"
-      }
-    },
-    {
-      "pk": 44,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 82,
-        "title": "Ivanhoe: A Romance",
-        "language": "en",
-        "firstName": "Walter",
-        "lastName": "Scott",
-        "year": "1771-1832",
-        "subjects": "Historical fiction; Knights and knighthood -- Fiction; Love stories; Triangles (Interpersonal relations) -- Fiction; Great Britain -- History -- Richard I, 1189-1199 -- Fiction; Jews -- England -- Fiction; Ivanhoe, Wilfred of, Sir (Fictitious character) -- Fiction; Anglo-Saxons -- Fiction; Normans -- Great Britain -- Fiction",
-        "category": "Best Books Ever Listings; Historical Fiction"
-      }
-    },
-    {
-      "pk": 45,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 83,
-        "title": "From the Earth to the Moon; and, Round the Moon",
-        "language": "en",
-        "firstName": "Jules",
-        "lastName": "Verne",
-        "year": "1828-1905",
-        "subjects": "Science fiction; Space flight to the moon -- Fiction; Moon -- Fiction; Space ships -- Fiction; Manned space flight -- Fiction",
-        "category": "Movie Books; Science Fiction"
-      }
-    },
-    {
-      "pk": 46,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 84,
-        "title": "Frankenstein; Or, The Modern Prometheus",
-        "language": "en",
-        "firstName": "Mary Wollstonecraft",
-        "lastName": "Shelley",
-        "year": "1797-1851",
-        "subjects": "Science fiction; Horror tales; Gothic fiction; Scientists -- Fiction; Monsters -- Fiction; Frankenstein, Victor (Fictitious character) -- Fiction; Frankenstein's monster (Fictitious character) -- Fiction",
-        "category": "Precursors of Science Fiction; Gothic Fiction; Movie Books; Science Fiction by Women"
-      }
-    },
-    {
-      "pk": 47,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 85,
-        "title": "The Beasts of Tarzan",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Tarzan (Fictitious character) -- Fiction; Fantasy fiction; Jungle animals -- Fiction; Adventure stories",
-        "category": "Movie Books; Adventure"
-      }
-    },
-    {
-      "pk": 48,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 86,
-        "title": "A Connecticut Yankee in King Arthur's Court",
-        "language": "en",
-        "firstName": "Mark",
-        "lastName": "Twain",
-        "year": "1835-1910",
-        "subjects": "Fantasy fiction; Satire; Knights and knighthood -- Fiction; Arthurian romances -- Adaptations; Time travel -- Fiction; Americans -- Great Britain -- Fiction; Kings and rulers -- Fiction; Britons -- Fiction",
-        "category": "Precursors of Science Fiction; Arthurian Legends"
-      }
-    },
-    {
-      "pk": 49,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 88,
-        "title": "Price/Cost Indexes from 1875 to 1989; Estimated to 2010",
-        "language": "en",
-        "firstName": "Michael",
-        "lastName": "Hart",
-        "year": "1947-2011",
-        "subjects": "Cost and standard of living"
-      }
-    },
-    {
-      "pk": 50,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 90,
-        "title": "The Son of Tarzan",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Tarzan (Fictitious character) -- Fiction; Fantasy fiction; Adventure stories",
-        "category": "Adventure; Movie Books; Contemporary Reviews"
-      }
-    },
-    {
-      "pk": 51,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 91,
-        "title": "Tom Sawyer Abroad",
-        "language": "en",
-        "firstName": "Mark",
-        "lastName": "Twain",
-        "year": "1835-1910",
-        "subjects": "Adventure stories; Sawyer, Tom (Fictitious character) -- Fiction; Balloon ascensions -- Fiction; Americans -- Foreign countries -- Fiction"
-      }
-    },
-    {
-      "pk": 52,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 92,
-        "title": "Tarzan and the Jewels of Opar",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Tarzan (Fictitious character) -- Fiction; Fantasy fiction; Adventure stories",
-        "category": "Movie Books; Adventure"
-      }
-    },
-    {
-      "pk": 53,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 93,
-        "title": "Tom Sawyer, Detective",
-        "language": "en",
-        "firstName": "Mark",
-        "lastName": "Twain",
-        "year": "1835-1910",
-        "subjects": "Sawyer, Tom (Fictitious character) -- Fiction; Mystery fiction"
-      }
-    },
-    {
-      "pk": 54,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 94,
-        "title": "Alexander's Bridge",
-        "language": "en",
-        "firstName": "Willa",
-        "lastName": "Cather",
-        "year": "1873-1947",
-        "subjects": "Civil engineers -- Fiction; London (England) -- Fiction; Psychological fiction; Married people -- Fiction; Boston (Mass.) -- Fiction; Mistresses -- Fiction; Bridges -- Design and construction -- Fiction"
-      }
-    },
-    {
-      "pk": 55,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 95,
-        "title": "The Prisoner of Zenda",
-        "language": "en",
-        "firstName": "Anthony",
-        "lastName": "Hope",
-        "year": "1863-1933",
-        "subjects": "Impostors and imposture -- Fiction; Adventure stories; British -- Foreign countries -- Fiction",
-        "category": "Adventure; Best Books Ever Listings; Movie Books; Bestsellers, American, 1895-1923"
-      }
-    },
-    {
-      "pk": 56,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 96,
-        "title": "The Monster Men",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Science fiction; Fantasy fiction",
-        "category": "Science Fiction"
-      }
-    },
-    {
-      "pk": 57,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 97,
-        "title": "Flatland: A Romance of Many Dimensions",
-        "language": "en",
-        "firstName": "Edwin Abbott",
-        "lastName": "Abbott",
-        "year": "1838-1926",
-        "subjects": "Fourth dimension",
-        "category": "Science Fiction; Mathematics"
-      }
-    },
-    {
-      "pk": 58,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 98,
-        "title": "A Tale of Two Cities",
-        "language": "en",
-        "firstName": "Charles",
-        "lastName": "Dickens",
-        "year": "1812-1870",
-        "subjects": "Historical fiction; France -- History -- Revolution, 1789-1799 -- Fiction; London (England) -- History -- 18th century -- Fiction; War stories; Executions and executioners -- Fiction; French -- England -- London -- Fiction; Lookalikes -- Fiction; British -- France -- Paris -- Fiction; Paris (France) -- History -- 1789-1799 -- Fiction",
-        "category": "Historical Fiction"
-      }
-    },
-    {
-      "pk": 59,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 99,
-        "title": "Collected Articles of Frederick Douglass",
-        "language": "en",
-        "firstName": "Frederick",
-        "lastName": "Douglass",
-        "year": "1818-1895",
-        "subjects": "Douglass, Frederick, 1818-1895; Slavery; African American abolitionists; Essays; Reconstruction (U.S. history, 1865-1877)",
-        "category": "African American Writers; Slavery"
-      }
-    },
-    {
-      "pk": 60,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 100,
-        "title": "The Complete Works of William Shakespeare",
-        "language": "en",
-        "firstName": "William",
-        "lastName": "Shakespeare",
-        "year": "1564-1616",
-        "subjects": "English drama -- Early modern and Elizabethan, 1500-1600",
-        "category": "Plays"
-      }
-    },
-    {
-      "pk": 61,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 102,
-        "title": "The Tragedy of Pudd'nhead Wilson",
-        "language": "en",
-        "firstName": "Mark",
-        "lastName": "Twain",
-        "year": "1835-1910",
-        "subjects": "Impostors and imposture -- Fiction; Missouri -- Fiction; Trials (Murder) -- Fiction; Legal stories; Race relations -- Fiction; Infants switched at birth -- Fiction; Passing (Identity) -- Fiction"
-      }
-    },
-    {
-      "pk": 62,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 103,
-        "title": "Around the World in Eighty Days",
-        "language": "en",
-        "firstName": "Jules",
-        "lastName": "Verne",
-        "year": "1828-1905",
-        "subjects": "Adventure stories; Voyages around the world -- Fiction",
-        "category": "Adventure; Best Books Ever Listings; Movie Books"
-      }
-    },
-    {
-      "pk": 63,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 104,
-        "title": "Inaugural Address of Franklin Delano Roosevelt\r\nGiven in Washington, D.C. March 4th, 1933",
-        "language": "en",
-        "firstName": "Franklin D. (Franklin Delano)",
-        "lastName": "Roosevelt",
-        "year": "1882-1945",
-        "subjects": "United States -- Politics and government -- 1933-1945; Presidents -- United States -- Inaugural addresses; New Deal, 1933-1939"
-      }
-    },
-    {
-      "pk": 64,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 105,
-        "title": "Persuasion",
-        "language": "en",
-        "firstName": "Jane",
-        "lastName": "Austen",
-        "year": "1775-1817",
-        "subjects": "England -- Social life and customs -- 19th century -- Fiction; Psychological fiction; Young women -- Fiction; Motherless families -- Fiction; Rejection (Psychology) -- Fiction; First loves -- Fiction; Dysfunctional families -- Fiction; Ship captains -- Fiction; Love stories; Regency fiction"
-      }
-    },
-    {
-      "pk": 65,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 106,
-        "title": "Jungle Tales of Tarzan",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Tarzan (Fictitious character) -- Fiction; Africa -- Fiction; Fantasy fiction; Jungles -- Fiction; Adventure stories; Apes -- Fiction",
-        "category": "Movie Books; Adventure"
-      }
-    },
-    {
-      "pk": 66,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 107,
-        "title": "Far from the Madding Crowd",
-        "language": "en",
-        "firstName": "Thomas",
-        "lastName": "Hardy",
-        "year": "1840-1928",
-        "subjects": "Didactic fiction; Love stories; Triangles (Interpersonal relations) -- Fiction; Pastoral fiction; Farm life -- Fiction; Women farmers -- Fiction; Wessex (England) -- Fiction"
-      }
-    },
-    {
-      "pk": 67,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 108,
-        "title": "The Return of Sherlock Holmes",
-        "language": "en",
-        "firstName": "Arthur Conan",
-        "lastName": "Doyle",
-        "year": "1859-1930",
-        "subjects": "Holmes, Sherlock (Fictitious character) -- Fiction; Detective and mystery stories, English",
-        "category": "Detective Fiction"
-      }
-    },
-    {
-      "pk": 68,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 109,
-        "title": "Renascence, and Other Poems",
-        "language": "en",
-        "firstName": "Edna St. Vincent",
-        "lastName": "Millay",
-        "year": "1892-1950",
-        "subjects": "American poetry"
-      }
-    },
-    {
-      "pk": 69,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 110,
-        "title": "Tess of the d'Urbervilles: A Pure Woman",
-        "language": "en",
-        "firstName": "Thomas",
-        "lastName": "Hardy",
-        "year": "1840-1928",
-        "subjects": "Didactic fiction; Poor families -- Fiction; Children of the rich -- Fiction; Triangles (Interpersonal relations) -- Fiction; Pastoral fiction; Children of clergy -- Fiction; Wessex (England) -- Fiction; Man-woman relationships -- Fiction; Women murderers -- Fiction; Rape victims -- Fiction; Women household employees -- Fiction",
-        "category": "Banned Books from Anne Haight's list"
-      }
-    },
-    {
-      "pk": 70,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 113,
-        "title": "The Secret Garden",
-        "language": "en",
-        "firstName": "Frances Hodgson",
-        "lastName": "Burnett",
-        "year": "1849-1924",
-        "subjects": "Orphans -- Juvenile fiction; People with disabilities -- Juvenile fiction; Gardens -- Juvenile fiction; Yorkshire (England) -- Juvenile fiction",
-        "category": "Children's Literature"
-      }
-    },
-    {
-      "pk": 71,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 117,
-        "title": "Symphony No. 5 in C minor Opus 67",
-        "language": "en",
-        "firstName": "Ludwig van",
-        "lastName": "Beethoven",
-        "year": "1770-1827",
-        "subjects": "Music"
-      }
-    },
-    {
-      "pk": 72,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 119,
-        "title": "A Tramp Abroad",
-        "language": "en",
-        "firstName": "Mark",
-        "lastName": "Twain",
-        "year": "1835-1910",
-        "subjects": "Humorous stories; Europe -- Fiction; Americans -- Europe -- Fiction; Walking -- Fiction"
-      }
-    },
-    {
-      "pk": 73,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 121,
-        "title": "Northanger Abbey",
-        "language": "en",
-        "firstName": "Jane",
-        "lastName": "Austen",
-        "year": "1775-1817",
-        "subjects": "England -- Social life and customs -- 19th century -- Fiction; Satire; England -- Fiction; Young women -- Fiction; Love stories; Gothic fiction; Horror tales -- Appreciation -- Fiction; Books and reading -- Fiction; Gentry -- England -- Fiction; Marriage -- Economic aspects -- Fiction",
-        "category": "Gothic Fiction"
-      }
-    },
-    {
-      "pk": 74,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 122,
-        "title": "The Return of the Native",
-        "language": "en",
-        "firstName": "Thomas",
-        "lastName": "Hardy",
-        "year": "1840-1928",
-        "subjects": "Adultery -- Fiction; Didactic fiction; Love stories; Mate selection -- Fiction; Wessex (England) -- Fiction; Mothers and sons -- Fiction; People with visual disabilities -- Fiction; Heathlands -- Fiction"
-      }
-    },
-    {
-      "pk": 75,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 123,
-        "title": "At the Earth's Core",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Science fiction; Fantasy fiction; Adventure stories; Earth (Planet) -- Core -- Fiction",
-        "category": "Science Fiction"
-      }
-    },
-    {
-      "pk": 76,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 126,
-        "title": "The Poison Belt",
-        "language": "en",
-        "firstName": "Arthur Conan",
-        "lastName": "Doyle",
-        "year": "1859-1930",
-        "subjects": "Science fiction; Challenger, Professor (Fictitious character) -- Fiction",
-        "category": "Science Fiction"
-      }
-    },
-    {
-      "pk": 77,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 128,
-        "title": "The Arabian Nights Entertainments",
-        "language": "en",
-        "firstName": "Andrew",
-        "lastName": "Lang",
-        "year": "1844-1912",
-        "subjects": "Fairy tales; Children's stories; Arabs -- Folklore; Folklore -- Arab countries; Tales -- Arab countries; Fairy tales -- Arab countries"
-      }
-    },
-    {
-      "pk": 78,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 130,
-        "title": "Orthodoxy",
-        "language": "en",
-        "firstName": "G. K. (Gilbert Keith)",
-        "lastName": "Chesterton",
-        "year": "1874-1936",
-        "subjects": "Apologetics; Chesterton, G. K. (Gilbert Keith), 1874-1936; Christianity -- Essence, genius, nature",
-        "category": "Christianity"
-      }
-    },
-    {
-      "pk": 79,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 131,
-        "title": "The Pilgrim's Progress from this world to that which is to come\r\nDelivered under the similitude of a dream, by John Bunyan",
-        "language": "en",
-        "firstName": "John",
-        "lastName": "Bunyan",
-        "year": "1628-1688",
-        "subjects": "Christian fiction; Christian pilgrims and pilgrimages -- Fiction",
-        "category": "Harvard Classics; Christianity"
-      }
-    },
-    {
-      "pk": 80,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 133,
-        "title": "The Damnation of Theron Ware",
-        "language": "en",
-        "firstName": "Harold",
-        "lastName": "Frederic",
-        "year": "1856-1898",
-        "subjects": "Psychological fiction; Clergy -- Fiction; New York (State) -- Fiction; Belief and doubt -- Fiction; Methodists -- Fiction",
-        "category": "Bestsellers, American, 1895-1923"
-      }
-    },
-    {
-      "pk": 81,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 134,
-        "title": "Maria; Or, The Wrongs of Woman",
-        "language": "en",
-        "firstName": "Mary",
-        "lastName": "Wollstonecraft",
-        "year": "1759-1797",
-        "subjects": "Autobiographical fiction; Feminist fiction; Women -- Fiction"
-      }
-    },
-    {
-      "pk": 82,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 136,
-        "title": "A Child's Garden of Verses",
-        "language": "en",
-        "firstName": "Robert Louis",
-        "lastName": "Stevenson",
-        "year": "1850-1894",
-        "subjects": "Children's poetry, English"
-      }
-    },
-    {
-      "pk": 83,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 137,
-        "title": "Sara Crewe; Or, What Happened at Miss Minchin's Boarding School",
-        "language": "en",
-        "firstName": "Frances Hodgson",
-        "lastName": "Burnett",
-        "year": "1849-1924",
-        "subjects": "Orphans -- Juvenile fiction; Schools -- Juvenile fiction; Boarding schools -- Juvenile fiction; Girls -- Juvenile fiction; London (England) -- Juvenile fiction",
-        "category": "School Stories"
-      }
-    },
-    {
-      "pk": 84,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 139,
-        "title": "The Lost World",
-        "language": "en",
-        "firstName": "Arthur Conan",
-        "lastName": "Doyle",
-        "year": "1859-1930",
-        "subjects": "Challenger, Professor (Fictitious character) -- Fiction; Fantasy fiction; South America -- Fiction; Prehistoric peoples -- Fiction; Dinosaurs -- Fiction",
-        "category": "Science Fiction"
-      }
-    },
-    {
-      "pk": 85,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 140,
-        "title": "The Jungle",
-        "language": "en",
-        "firstName": "Upton",
-        "lastName": "Sinclair",
-        "year": "1878-1968",
-        "subjects": "Meat industry and trade -- Fiction; Working class -- Fiction; Political fiction; Lithuanian Americans -- Fiction; Stockyards -- Fiction; Immigrants -- Fiction; Chicago (Ill.) -- Fiction",
-        "category": "Contemporary Reviews; Bestsellers, American, 1895-1923; Banned Books from Anne Haight's list; Banned Books List from the American Library Association"
-      }
-    },
-    {
-      "pk": 86,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 141,
-        "title": "Mansfield Park",
-        "language": "en",
-        "firstName": "Jane",
-        "lastName": "Austen",
-        "year": "1775-1817",
-        "subjects": "England -- Fiction; Young women -- Fiction; Love stories; Domestic fiction; Country homes -- Fiction; Adoptees -- Fiction; Children of the rich -- Fiction; Cousins -- Fiction; Uncles -- Fiction"
-      }
-    },
-    {
-      "pk": 87,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 142,
-        "title": "The $30,000 Bequest, and Other Stories",
-        "language": "en",
-        "firstName": "Mark",
-        "lastName": "Twain",
-        "year": "1835-1910",
-        "subjects": "Short stories; Humorous stories, American; United States -- Social life and customs -- Fiction"
-      }
-    },
-    {
-      "pk": 88,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 143,
-        "title": "The Mayor of Casterbridge",
-        "language": "en",
-        "firstName": "Thomas",
-        "lastName": "Hardy",
-        "year": "1840-1928",
-        "subjects": "Psychological fiction; Fathers and daughters -- Fiction; Men -- England -- Fiction; Wessex (England) -- Fiction; Runaway husbands -- Fiction; Atonement -- Fiction; Mayors -- Fiction"
-      }
-    },
-    {
-      "pk": 89,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 144,
-        "title": "The Voyage Out",
-        "language": "en",
-        "firstName": "Virginia",
-        "lastName": "Woolf",
-        "year": "1882-1941",
-        "subjects": "Young women -- Fiction; Love stories; Bildungsromans; Ocean travel -- Fiction; Women travelers -- Fiction; British -- South America -- Fiction"
-      }
-    },
-    {
-      "pk": 90,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 145,
-        "title": "Middlemarch",
-        "language": "en",
-        "firstName": "George",
-        "lastName": "Eliot",
-        "year": "1819-1880",
-        "subjects": "Didactic fiction; City and town life -- Fiction; England -- Fiction; Young women -- Fiction; Love stories; Domestic fiction; Married people -- Fiction; Bildungsromans",
-        "category": "Best Books Ever Listings; Historical Fiction"
-      }
-    },
-    {
-      "pk": 91,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 146,
-        "title": "A Little Princess\r\nBeing the whole story of Sara Crewe now told for the first time",
-        "language": "en",
-        "firstName": "Frances Hodgson",
-        "lastName": "Burnett",
-        "year": "1849-1924",
-        "subjects": "Orphans -- Juvenile fiction; Schools -- Juvenile fiction; Boarding schools -- Juvenile fiction; Girls -- Juvenile fiction; London (England) -- Juvenile fiction",
-        "category": "Children's Literature; School Stories"
-      }
-    },
-    {
-      "pk": 92,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 147,
-        "title": "Common Sense",
-        "language": "en",
-        "firstName": "Thomas",
-        "lastName": "Paine",
-        "year": "1737-1809",
-        "subjects": "United States -- Politics and government -- 1775-1783; Political science -- Early works to 1800; Monarchy -- Early works to 1800"
-      }
-    },
-    {
-      "pk": 93,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 149,
-        "title": "The Lost Continent",
-        "language": "en",
-        "firstName": "Edgar Rice",
-        "lastName": "Burroughs",
-        "year": "1875-1950",
-        "subjects": "Science fiction; Fantasy fiction; England -- Fiction",
-        "category": "Science Fiction"
-      }
-    },
-    {
-      "pk": 94,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 151,
-        "title": "The Rime of the Ancient Mariner",
-        "language": "en",
-        "firstName": "Samuel Taylor",
-        "lastName": "Coleridge",
-        "year": "1772-1834",
-        "subjects": "Poetry"
-      }
-    },
-    {
-      "pk": 95,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 153,
-        "title": "Jude the Obscure",
-        "language": "en",
-        "firstName": "Thomas",
-        "lastName": "Hardy",
-        "year": "1840-1928",
-        "subjects": "Adultery -- Fiction; Didactic fiction; Love stories; Illegitimate children -- Fiction; Wessex (England) -- Fiction; Stonemasons -- Fiction; Children -- Death -- Fiction; Unmarried couples -- Fiction",
-        "category": "Banned Books from Anne Haight's list"
-      }
-    },
-    {
-      "pk": 96,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 154,
-        "title": "The Rise of Silas Lapham",
-        "language": "en",
-        "firstName": "William Dean",
-        "lastName": "Howells",
-        "year": "1837-1920",
-        "subjects": "Psychological fiction; Domestic fiction; Boston (Mass.) -- Fiction; Rich people -- Fiction; Socialites -- Fiction; Businessmen -- Fiction",
-        "category": "Contemporary Reviews"
-      }
-    },
-    {
-      "pk": 97,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 155,
-        "title": "The Moonstone",
-        "language": "en",
-        "firstName": "Wilkie",
-        "lastName": "Collins",
-        "year": "1824-1889",
-        "subjects": "England -- Fiction; Country homes -- Fiction; Police -- England -- Fiction; Jewelry theft -- Fiction; East Indians -- England -- Fiction; Mystery fiction",
-        "category": "Detective Fiction; Mystery Fiction"
-      }
-    },
-    {
-      "pk": 98,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 156,
-        "title": "Symphony No. 5 in C minor, Opus 67",
-        "language": "en",
-        "firstName": "Ludwig van",
-        "lastName": "Beethoven",
-        "year": "1770-1827",
-        "subjects": "Music"
-      }
-    },
-    {
-      "pk": 99,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 157,
-        "title": "Daddy-Long-Legs",
-        "language": "en",
-        "firstName": "Jean",
-        "lastName": "Webster",
-        "year": "1876-1916",
-        "subjects": "Orphans -- Fiction; Boarding schools -- Fiction; Schools -- Fiction; Young women -- Fiction; Love stories; Bildungsromans; Epistolary fiction; Women authors -- Fiction; Philanthropists -- Fiction; Women college students -- Fiction; Universities and colleges -- Fiction; Letters -- Fiction",
-        "category": "School Stories"
-      }
-    },
-    {
-      "pk": 100,
-      "model": "book.book",
-      "fields": {
-        "bookCode": 158,
-        "title": "Emma",
-        "language": "en",
-        "firstName": "Jane",
-        "lastName": "Austen",
-        "year": "1775-1817",
-        "subjects": "Humorous stories; England -- Fiction; Young women -- Fiction; Love stories; Fathers and daughters -- Fiction; Bildungsromans; Mate selection -- Fiction; Female friendship -- Fiction"
-      }
+  {
+    "pk": 1,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 1,
+      "title": "The Declaration of Independence of the United States of America",
+      "language": "English ",
+      "firstName": "Thomas",
+      "lastName": "Jefferson",
+      "year": "1743-1826",
+      "subjects": "United States -- History -- Revolution, 1775-1783 -- Sources; United States. Declaration of Independence",
+      "category": "Politics; American Revolutionary War; United States Law "
     }
-  ]
+  },
+  {
+    "pk": 2,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 3,
+      "title": "John F. Kennedy's Inaugural Address",
+      "language": "English ",
+      "firstName": "John F. (John Fitzgerald)",
+      "lastName": "Kennedy",
+      "year": "1917-1963",
+      "subjects": "United States -- Foreign relations -- 1961-1963; Presidents -- United States -- Inaugural addresses",
+      "category": " "
+    }
+  },
+  {
+    "pk": 3,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 4,
+      "title": "Lincoln's Gettysburg Address Given November 19, 1863 on the battlefield near Gettysburg, Pennsylvania, USA",
+      "language": "English ",
+      "firstName": "Abraham",
+      "lastName": "Lincoln",
+      "year": "1809-1865",
+      "subjects": "Consecration of cemeteries -- Pennsylvania -- Gettysburg; Soldiers' National Cemetery (Gettysburg, Pa.); Lincoln, Abraham, 1809-1865. Gettysburg address",
+      "category": "US Civil War "
+    }
+  },
+  {
+    "pk": 4,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 6,
+      "title": "Give Me Liberty or Give Me Death",
+      "language": "English ",
+      "firstName": "Patrick",
+      "lastName": "Henry",
+      "year": "1736-1799",
+      "subjects": "Speeches, addresses, etc., American; United States -- Politics and government -- 1775-1783 -- Sources; Virginia -- Politics and government -- 1775-1783 -- Sources",
+      "category": "American Revolutionary War "
+    }
+  },
+  {
+    "pk": 5,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 8,
+      "title": "Abraham Lincoln's Second Inaugural Address",
+      "language": "English ",
+      "firstName": "Abraham",
+      "lastName": "Lincoln",
+      "year": "1809-1865",
+      "subjects": "United States -- Politics and government -- 1861-1865; Presidents -- United States -- Inaugural addresses",
+      "category": "US Civil War "
+    }
+  },
+  {
+    "pk": 6,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 9,
+      "title": "Abraham Lincoln's First Inaugural Address",
+      "language": "English ",
+      "firstName": "Abraham",
+      "lastName": "Lincoln",
+      "year": "1809-1865",
+      "subjects": "United States -- Politics and government -- 1861-1865; Presidents -- United States -- Inaugural addresses",
+      "category": "US Civil War "
+    }
+  },
+  {
+    "pk": 7,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 11,
+      "title": "Alice's Adventures in Wonderland",
+      "language": "English ",
+      "firstName": "Lewis",
+      "lastName": "Carroll",
+      "year": "1832-1898",
+      "subjects": "Fantasy fiction; Children's stories; Imaginary places -- Juvenile fiction; Alice (Fictitious character from Carroll) -- Juvenile fiction",
+      "category": "Children's Literature "
+    }
+  },
+  {
+    "pk": 8,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 12,
+      "title": "Through the Looking-Glass",
+      "language": "English ",
+      "firstName": "Lewis",
+      "lastName": "Carroll",
+      "year": "1832-1898",
+      "subjects": "Fantasy fiction; Children's stories; Imaginary places -- Juvenile fiction; Alice (Fictitious character from Carroll) -- Juvenile fiction",
+      "category": "Best Books Ever Listings; Children's Literature "
+    }
+  },
+  {
+    "pk": 9,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 13,
+      "title": "The Hunting of the Snark: An Agony in Eight Fits",
+      "language": "English ",
+      "firstName": "Lewis",
+      "lastName": "Carroll",
+      "year": "1832-1898",
+      "subjects": "Nonsense verses, English",
+      "category": "Children's Literature "
+    }
+  },
+  {
+    "pk": 10,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 15,
+      "title": "Moby-Dick; or, The Whale",
+      "language": "English ",
+      "firstName": "Herman",
+      "lastName": "Melville",
+      "year": "1819-1891",
+      "subjects": "Whaling -- Fiction; Sea stories; Psychological fiction; Ship captains -- Fiction; Adventure stories; Mentally ill -- Fiction; Ahab, Captain (Fictitious character) -- Fiction; Whales -- Fiction; Whaling ships -- Fiction",
+      "category": "Best Books Ever Listings; Adventure "
+    }
+  },
+  {
+    "pk": 11,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 16,
+      "title": "Peter Pan",
+      "language": "English ",
+      "firstName": "J. M. (James Matthew)",
+      "lastName": "Barrie",
+      "year": "1860-1937",
+      "subjects": "Fantasy literature; Peter Pan (Fictitious character) -- Fiction; Never-Never Land (Imaginary place) -- Fiction; Pirates -- Fiction; Fairies -- Fiction",
+      "category": "Children's Literature; Movie Books "
+    }
+  },
+  {
+    "pk": 12,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 20,
+      "title": "Paradise Lost",
+      "language": "English ",
+      "firstName": "John",
+      "lastName": "Milton",
+      "year": "1608-1674",
+      "subjects": "Fall of man -- Poetry; Adam (Biblical figure) -- Poetry; Eve (Biblical figure) -- Poetry; Bible. Genesis -- History of Biblical events -- Poetry",
+      "category": "Poetry; Banned Books from Anne Haight's list "
+    }
+  },
+  {
+    "pk": 13,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 22,
+      "title": "Roget's Thesaurus",
+      "language": "English ",
+      "firstName": "Peter Mark",
+      "lastName": "Roget",
+      "year": "1779-1869",
+      "subjects": "English language -- Synonyms and antonyms",
+      "category": "Reference "
+    }
+  },
+  {
+    "pk": 14,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 23,
+      "title": "Narrative of the Life of Frederick Douglass, an American Slave",
+      "language": "English ",
+      "firstName": "Frederick",
+      "lastName": "Douglass",
+      "year": "1818-1895",
+      "subjects": "Douglass, Frederick, 1818-1895; African American abolitionists -- Biography; Abolitionists -- United States -- Biography; Enslaved persons -- United States -- Biography",
+      "category": "African American Writers; Slavery "
+    }
+  },
+  {
+    "pk": 15,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 24,
+      "title": "O Pioneers!",
+      "language": "English ",
+      "firstName": "Willa",
+      "lastName": "Cather",
+      "year": "1873-1947",
+      "subjects": "Nebraska -- Fiction; Historical fiction; Frontier and pioneer life -- Nebraska -- Fiction; Domestic fiction; Siblings -- Fiction; Farm life -- Fiction; Women pioneers -- Fiction; Women farmers -- Fiction; Women immigrants -- Fiction; Swedish Americans -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 16,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 26,
+      "title": "Paradise Lost",
+      "language": "English ",
+      "firstName": "John",
+      "lastName": "Milton",
+      "year": "1608-1674",
+      "subjects": "Fall of man -- Poetry; Adam (Biblical figure) -- Poetry; Eve (Biblical figure) -- Poetry; Bible. Genesis -- History of Biblical events -- Poetry",
+      "category": " "
+    }
+  },
+  {
+    "pk": 17,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 27,
+      "title": "Far from the Madding Crowd",
+      "language": "English ",
+      "firstName": "Thomas",
+      "lastName": "Hardy",
+      "year": "1840-1928",
+      "subjects": "Didactic fiction; Love stories; Triangles (Interpersonal relations) -- Fiction; Pastoral fiction; Farm life -- Fiction; Women farmers -- Fiction; Wessex (England) -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 18,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 32,
+      "title": "Herland",
+      "language": "English ",
+      "firstName": "Charlotte Perkins",
+      "lastName": "Gilman",
+      "year": "1860-1935",
+      "subjects": "Utopias -- Fiction; Women -- Fiction; Utopian fiction; Black humor",
+      "category": "Best Books Ever Listings "
+    }
+  },
+  {
+    "pk": 19,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 33,
+      "title": "The Scarlet Letter",
+      "language": "English ",
+      "firstName": "Nathaniel",
+      "lastName": "Hawthorne",
+      "year": "1804-1864",
+      "subjects": "Adultery -- Fiction; Historical fiction; Revenge -- Fiction; Psychological fiction; Married women -- Fiction; Clergy -- Fiction; Triangles (Interpersonal relations) -- Fiction; Illegitimate children -- Fiction; Women immigrants -- Fiction; Puritans -- Fiction; Boston (Mass.) -- History -- Colonial period, ca. 1600-1775 -- Fiction",
+      "category": "Harvard Classics; Movie Books "
+    }
+  },
+  {
+    "pk": 20,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 34,
+      "title": "Zen and the Art of the Internet",
+      "language": "English ",
+      "firstName": "Brendan P.",
+      "lastName": "Kehoe",
+      "year": "1970-2011",
+      "subjects": "Internet; Computer networks; Information networks; Information retrieval",
+      "category": " "
+    }
+  },
+  {
+    "pk": 21,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 35,
+      "title": "The Time Machine",
+      "language": "English ",
+      "firstName": "H. G. (Herbert George)",
+      "lastName": "Wells",
+      "year": "1866-1946",
+      "subjects": "Science fiction; Time travel -- Fiction; Dystopias -- Fiction",
+      "category": "Movie Books; Science Fiction "
+    }
+  },
+  {
+    "pk": 22,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 36,
+      "title": "The War of the Worlds",
+      "language": "English ",
+      "firstName": "H. G. (Herbert George)",
+      "lastName": "Wells",
+      "year": "1866-1946",
+      "subjects": "Science fiction; War stories; Martians -- Fiction; Mars (Planet) -- Fiction; Space warfare -- Fiction; Imaginary wars and battles -- Fiction; Life on other planets -- Fiction",
+      "category": "Movie Books; Science Fiction "
+    }
+  },
+  {
+    "pk": 23,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 41,
+      "title": "The Legend of Sleepy Hollow",
+      "language": "English ",
+      "firstName": "Washington",
+      "lastName": "Irving",
+      "year": "1783-1859",
+      "subjects": "Ghosts -- Fiction; New York (State) -- History -- 1775-1865 -- Fiction",
+      "category": "Children's Literature; Harvard Classics "
+    }
+  },
+  {
+    "pk": 24,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 42,
+      "title": "The Strange Case of Dr. Jekyll and Mr. Hyde",
+      "language": "English ",
+      "firstName": "Robert Louis",
+      "lastName": "Stevenson",
+      "year": "1850-1894",
+      "subjects": "Science fiction; Horror tales; London (England) -- Fiction; Physicians -- Fiction; Psychological fiction; Self-experimentation in medicine -- Fiction; Multiple personality -- Fiction",
+      "category": "Precursors of Science Fiction; Horror; Gothic Fiction; Movie Books "
+    }
+  },
+  {
+    "pk": 25,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 158,
+      "title": "Emma",
+      "language": "English ",
+      "firstName": "Jane",
+      "lastName": "Austen",
+      "year": "1775-1817",
+      "subjects": "Humorous stories; England -- Fiction; Young women -- Fiction; Love stories; Fathers and daughters -- Fiction; Bildungsromans; Mate selection -- Fiction; Female friendship -- Fiction",
+      "category": "Humorous stories; England -- Fiction; Young women -- Fiction; Love stories; Fathers and daughters -- Fiction; Bildungsromans; Mate selection -- Fiction; Female friendship -- Fiction "
+    }
+  },
+  {
+    "pk": 26,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 44,
+      "title": "The Song of the Lark",
+      "language": "English ",
+      "firstName": "Willa",
+      "lastName": "Cather",
+      "year": "1873-1947",
+      "subjects": "Musical fiction; Young women -- Fiction; Bildungsromans; Chicago (Ill.) -- Fiction; Swedish Americans -- Fiction; Colorado -- Fiction; Opera -- Fiction; Children of clergy -- Fiction; Women singers -- Fiction",
+      "category": "Opera "
+    }
+  },
+  {
+    "pk": 27,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 45,
+      "title": "Anne of Green Gables",
+      "language": "English ",
+      "firstName": "L. M. (Lucy Maud)",
+      "lastName": "Montgomery",
+      "year": "1874-1942",
+      "subjects": "Orphans -- Fiction; Islands -- Fiction; Friendship -- Fiction; Bildungsromans; Girls -- Fiction; Country life -- Prince Edward Island -- Fiction; Prince Edward Island -- History -- 20th century -- Fiction; Canada -- History -- 1867-1914 -- Fiction; Shirley, Anne (Fictitious character) -- Fiction",
+      "category": "Children's Literature; Canada "
+    }
+  },
+  {
+    "pk": 28,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 47,
+      "title": "Anne of Avonlea",
+      "language": "English ",
+      "firstName": "L. M. (Lucy Maud)",
+      "lastName": "Montgomery",
+      "year": "1874-1942",
+      "subjects": "Orphans -- Fiction; Islands -- Fiction; Teachers -- Fiction; Prince Edward Island -- History -- 20th century -- Fiction; Canada -- History -- 1914-1945 -- Fiction; Shirley, Anne (Fictitious character) -- Fiction",
+      "category": "Children's Literature; Canada "
+    }
+  },
+  {
+    "pk": 29,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 51,
+      "title": "Anne of the Island",
+      "language": "English ",
+      "firstName": "L. M. (Lucy Maud)",
+      "lastName": "Montgomery",
+      "year": "1874-1942",
+      "subjects": "Orphans -- Fiction; Prince Edward Island -- History -- 20th century -- Fiction; Interpersonal relations -- Fiction; Canada -- History -- 1914-1945 -- Fiction; Self-perception -- Fiction; Universities and colleges -- Fiction; Nova Scotia -- History -- 20th century -- Fiction; Shirley, Anne (Fictitious character) -- Fiction",
+      "category": "Children's Literature; Canada "
+    }
+  },
+  {
+    "pk": 30,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 54,
+      "title": "The Marvelous Land of Oz",
+      "language": "English ",
+      "firstName": "L. Frank (Lyman Frank)",
+      "lastName": "Baum",
+      "year": "1856-1919",
+      "subjects": "Oz (Imaginary place) -- Juvenile fiction; Fantasy literature; Conduct of life -- Juvenile fiction; Friendship -- Juvenile fiction; Voyages and travels -- Juvenile fiction; Magic -- Juvenile fiction; Practical jokes -- Juvenile fiction; Youth -- Conduct of life -- Juvenile fiction; Queens -- Juvenile fiction; Kings and rulers -- Juvenile fiction; Witches -- Juvenile fiction; Women soldiers -- Juvenile fiction",
+      "category": "Children's Literature; Fantasy "
+    }
+  },
+  {
+    "pk": 31,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 55,
+      "title": "The Wonderful Wizard of Oz",
+      "language": "English ",
+      "firstName": "L. Frank (Lyman Frank)",
+      "lastName": "Baum",
+      "year": "1856-1919",
+      "subjects": "Oz (Imaginary place) -- Juvenile fiction; Fantasy literature; Courage -- Juvenile fiction; Home -- Juvenile fiction; Good and evil -- Juvenile fiction; Dreams -- Juvenile fiction; Gale, Dorothy (Fictitious character) -- Juvenile fiction; Cowardly Lion (Fictitious character) -- Juvenile fiction; Cyclones -- Juvenile fiction; Scarecrow (Fictitious character from Baum) -- Juvenile fiction; Toto (Fictitious character) -- Juvenile fiction; Witches -- Juvenile fiction; Wizard of Oz (Fictitious character) -- Juvenile fiction; Tin Woodman (Fictitious character) -- Juvenile fiction",
+      "category": "Children's Literature; Fantasy "
+    }
+  },
+  {
+    "pk": 32,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 58,
+      "title": "Paradise Regained",
+      "language": "English ",
+      "firstName": "John",
+      "lastName": "Milton",
+      "year": "1608-1674",
+      "subjects": "English poetry; Epic poetry; Bible. Gospels -- History of Biblical events -- Poetry; Jesus Christ -- Temptation -- Poetry",
+      "category": " "
+    }
+  },
+  {
+    "pk": 33,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 62,
+      "title": "A Princess of Mars",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Science fiction; Mars (Planet) -- Fiction; Princesses -- Fiction; Carter, John (Fictitious character) -- Fiction; Dejah Thoris (Fictitious character) -- Fiction",
+      "category": "Best Books Ever Listings; Science Fiction "
+    }
+  },
+  {
+    "pk": 34,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 64,
+      "title": "The Gods of Mars",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Science fiction; Mars (Planet) -- Fiction; Life on other planets -- Fiction; Carter, John (Fictitious character) -- Fiction; Dejah Thoris (Fictitious character) -- Fiction",
+      "category": "Science Fiction "
+    }
+  },
+  {
+    "pk": 35,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 68,
+      "title": "The warlord of Mars",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Science fiction; Mars (Planet) -- Fiction; Carter, John (Fictitious character) -- Fiction; Dejah Thoris (Fictitious character) -- Fiction",
+      "category": "Science Fiction "
+    }
+  },
+  {
+    "pk": 36,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 70,
+      "title": "What Is Man? and Other Essays",
+      "language": "English ",
+      "firstName": "Mark",
+      "lastName": "Twain",
+      "year": "1835-1910",
+      "subjects": "American essays",
+      "category": " "
+    }
+  },
+  {
+    "pk": 37,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 71,
+      "title": "On the Duty of Civil Disobedience",
+      "language": "English ",
+      "firstName": "Henry David",
+      "lastName": "Thoreau",
+      "year": "1817-1862",
+      "subjects": "Civil disobedience; Government, Resistance to",
+      "category": " "
+    }
+  },
+  {
+    "pk": 38,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 72,
+      "title": "Thuvia, Maid of Mars",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Science fiction; Martians -- Fiction; Mars (Planet) -- Fiction",
+      "category": "Science Fiction "
+    }
+  },
+  {
+    "pk": 39,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 73,
+      "title": "The Red Badge of Courage: An Episode of the American Civil War",
+      "language": "English ",
+      "firstName": "Stephen",
+      "lastName": "Crane",
+      "year": "1871-1900",
+      "subjects": "Historical fiction; War stories; United States -- History -- Civil War, 1861-1865 -- Fiction; Virginia -- History -- Civil War, 1861-1865 -- Fiction; Chancellorsville, Battle of, Chancellorsville, Va., 1863 -- Fiction",
+      "category": "US Civil War; Historical Fiction; Best Books Ever Listings; Bestsellers"
+    }
+  },
+  {
+    "pk": 40,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 74,
+      "title": "The Adventures of Tom Sawyer, Complete",
+      "language": "English ",
+      "firstName": "Mark",
+      "lastName": "Twain",
+      "year": "1835-1910",
+      "subjects": "Humorous stories; Bildungsromans; Boys -- Fiction; Male friendship -- Fiction; Adventure stories; Missouri -- Fiction; Sawyer, Tom (Fictitious character) -- Fiction; Child witnesses -- Fiction; Runaway children -- Fiction; Mississippi River Valley -- Fiction",
+      "category": "Banned Books from Anne Haight's list; Banned Books List from the American Library Association "
+    }
+  },
+  {
+    "pk": 41,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 77,
+      "title": "The House of the Seven Gables",
+      "language": "English ",
+      "firstName": "Nathaniel",
+      "lastName": "Hawthorne",
+      "year": "1804-1864",
+      "subjects": "Historical fiction; Domestic fiction; Paranormal fiction; Haunted houses -- Fiction; Salem (Mass.) -- Fiction",
+      "category": "Best Books Ever Listings "
+    }
+  },
+  {
+    "pk": 42,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 78,
+      "title": "Tarzan of the Apes",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Tarzan (Fictitious character) -- Fiction; Africa -- Fiction; Fantasy fiction; Adventure stories; British -- Africa -- Fiction; Wild men -- Fiction",
+      "category": "Movie Books; Adventure "
+    }
+  },
+  {
+    "pk": 43,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 81,
+      "title": "The Return of Tarzan",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Tarzan (Fictitious character) -- Fiction; Fantasy fiction; Adventure stories",
+      "category": " "
+    }
+  },
+  {
+    "pk": 44,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 82,
+      "title": "Ivanhoe: A Romance",
+      "language": "English ",
+      "firstName": "Walter",
+      "lastName": "Scott",
+      "year": "1771-1832",
+      "subjects": "Historical fiction; Knights and knighthood -- Fiction; Love stories; Triangles (Interpersonal relations) -- Fiction; Great Britain -- History -- Richard I, 1189-1199 -- Fiction; Jews -- England -- Fiction; Ivanhoe, Wilfred of, Sir (Fictitious character) -- Fiction; Anglo-Saxons -- Fiction; Normans -- Great Britain -- Fiction",
+      "category": "Best Books Ever Listings; Historical Fiction "
+    }
+  },
+  {
+    "pk": 45,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 83,
+      "title": "From the Earth to the Moon; and, Round the Moon",
+      "language": "English ",
+      "firstName": "Jules",
+      "lastName": "Verne",
+      "year": "1828-1905",
+      "subjects": "Science fiction; Space flight to the moon -- Fiction; Moon -- Fiction; Space ships -- Fiction; Manned space flight -- Fiction",
+      "category": "Movie Books; Science Fiction "
+    }
+  },
+  {
+    "pk": 46,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 84,
+      "title": "Frankenstein; Or, The Modern Prometheus",
+      "language": "English ",
+      "firstName": "Mary Wollstonecraft",
+      "lastName": "Shelley",
+      "year": "1797-1851",
+      "subjects": "Science fiction; Horror tales; Gothic fiction; Scientists -- Fiction; Monsters -- Fiction; Frankenstein, Victor (Fictitious character) -- Fiction; Frankenstein's monster (Fictitious character) -- Fiction",
+      "category": "Precursors of Science Fiction; Gothic Fiction; Movie Books; Science Fiction by Women "
+    }
+  },
+  {
+    "pk": 47,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 85,
+      "title": "The Beasts of Tarzan",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Tarzan (Fictitious character) -- Fiction; Fantasy fiction; Jungle animals -- Fiction; Adventure stories",
+      "category": "Movie Books; Adventure "
+    }
+  },
+  {
+    "pk": 48,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 86,
+      "title": "A Connecticut Yankee in King Arthur's Court",
+      "language": "English ",
+      "firstName": "Mark",
+      "lastName": "Twain",
+      "year": "1835-1910",
+      "subjects": "Fantasy fiction; Satire; Knights and knighthood -- Fiction; Arthurian romances -- Adaptations; Time travel -- Fiction; Americans -- Great Britain -- Fiction; Kings and rulers -- Fiction; Britons -- Fiction",
+      "category": "Precursors of Science Fiction; Arthurian Legends "
+    }
+  },
+  {
+    "pk": 49,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 88,
+      "title": "Price/Cost Indexes from 1875 to 1989; Estimated to 2010",
+      "language": "English ",
+      "firstName": "Michael",
+      "lastName": "Hart",
+      "year": "1947-2011",
+      "subjects": "Cost and standard of living",
+      "category": " "
+    }
+  },
+  {
+    "pk": 50,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 90,
+      "title": "The Son of Tarzan",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Tarzan (Fictitious character) -- Fiction; Fantasy fiction; Adventure stories",
+      "category": "Adventure; Movie Books; Contemporary Reviews "
+    }
+  },
+  {
+    "pk": 51,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 91,
+      "title": "Tom Sawyer Abroad",
+      "language": "English ",
+      "firstName": "Mark",
+      "lastName": "Twain",
+      "year": "1835-1910",
+      "subjects": "Adventure stories; Sawyer, Tom (Fictitious character) -- Fiction; Balloon ascensions -- Fiction; Americans -- Foreign countries -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 52,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 92,
+      "title": "Tarzan and the Jewels of Opar",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Tarzan (Fictitious character) -- Fiction; Fantasy fiction; Adventure stories",
+      "category": "Movie Books; Adventure "
+    }
+  },
+  {
+    "pk": 53,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 93,
+      "title": "Tom Sawyer, Detective",
+      "language": "English ",
+      "firstName": "Mark",
+      "lastName": "Twain",
+      "year": "1835-1910",
+      "subjects": "Sawyer, Tom (Fictitious character) -- Fiction; Mystery fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 54,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 94,
+      "title": "Alexander's Bridge",
+      "language": "English ",
+      "firstName": "Willa",
+      "lastName": "Cather",
+      "year": "1873-1947",
+      "subjects": "Civil engineers -- Fiction; London (England) -- Fiction; Psychological fiction; Married people -- Fiction; Boston (Mass.) -- Fiction; Mistresses -- Fiction; Bridges -- Design and construction -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 55,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 95,
+      "title": "The Prisoner of Zenda",
+      "language": "English ",
+      "firstName": "Anthony",
+      "lastName": "Hope",
+      "year": "1863-1933",
+      "subjects": "Impostors and imposture -- Fiction; Adventure stories; British -- Foreign countries -- Fiction",
+      "category": "Adventure; Best Books Ever Listings; Movie Books; Bestsellers"
+    }
+  },
+  {
+    "pk": 56,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 96,
+      "title": "The Monster Men",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Science fiction; Fantasy fiction",
+      "category": "Science Fiction "
+    }
+  },
+  {
+    "pk": 57,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 97,
+      "title": "Flatland: A Romance of Many Dimensions",
+      "language": "English ",
+      "firstName": "Edwin Abbott",
+      "lastName": "Abbott",
+      "year": "1838-1926",
+      "subjects": "Fourth dimension",
+      "category": "Science Fiction; Mathematics "
+    }
+  },
+  {
+    "pk": 58,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 98,
+      "title": "A Tale of Two Cities",
+      "language": "English ",
+      "firstName": "Charles",
+      "lastName": "Dickens",
+      "year": "1812-1870",
+      "subjects": "Historical fiction; France -- History -- Revolution, 1789-1799 -- Fiction; London (England) -- History -- 18th century -- Fiction; War stories; Executions and executioners -- Fiction; French -- England -- London -- Fiction; Lookalikes -- Fiction; British -- France -- Paris -- Fiction; Paris (France) -- History -- 1789-1799 -- Fiction",
+      "category": "Historical Fiction "
+    }
+  },
+  {
+    "pk": 59,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 99,
+      "title": "Collected Articles of Frederick Douglass",
+      "language": "English ",
+      "firstName": "Frederick",
+      "lastName": "Douglass",
+      "year": "1818-1895",
+      "subjects": "Douglass, Frederick, 1818-1895; Slavery; African American abolitionists; Essays; Reconstruction (U.S. history, 1865-1877)",
+      "category": "African American Writers; Slavery "
+    }
+  },
+  {
+    "pk": 60,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 100,
+      "title": "The Complete Works of William Shakespeare",
+      "language": "English ",
+      "firstName": "William",
+      "lastName": "Shakespeare",
+      "year": "1564-1616",
+      "subjects": "English drama -- Early modern and Elizabethan, 1500-1600",
+      "category": "Plays "
+    }
+  },
+  {
+    "pk": 61,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 102,
+      "title": "The Tragedy of Pudd'nhead Wilson",
+      "language": "English ",
+      "firstName": "Mark",
+      "lastName": "Twain",
+      "year": "1835-1910",
+      "subjects": "Impostors and imposture -- Fiction; Missouri -- Fiction; Trials (Murder) -- Fiction; Legal stories; Race relations -- Fiction; Infants switched at birth -- Fiction; Passing (Identity) -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 62,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 103,
+      "title": "Around the World in Eighty Days",
+      "language": "English ",
+      "firstName": "Jules",
+      "lastName": "Verne",
+      "year": "1828-1905",
+      "subjects": "Adventure stories; Voyages around the world -- Fiction",
+      "category": "Adventure; Best Books Ever Listings; Movie Books "
+    }
+  },
+  {
+    "pk": 63,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 104,
+      "title": "Inaugural Address of Franklin Delano Roosevelt Given in Washington, D.C. March 4th, 1933",
+      "language": "English ",
+      "firstName": "Franklin D. (Franklin Delano)",
+      "lastName": "Roosevelt",
+      "year": "1882-1945",
+      "subjects": "United States -- Politics and government -- 1933-1945; Presidents -- United States -- Inaugural addresses; New Deal, 1933-1939",
+      "category": " "
+    }
+  },
+  {
+    "pk": 64,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 105,
+      "title": "Persuasion",
+      "language": "English ",
+      "firstName": "Jane",
+      "lastName": "Austen",
+      "year": "1775-1817",
+      "subjects": "England -- Social life and customs -- 19th century -- Fiction; Psychological fiction; Young women -- Fiction; Motherless families -- Fiction; Rejection (Psychology) -- Fiction; First loves -- Fiction; Dysfunctional families -- Fiction; Ship captains -- Fiction; Love stories; Regency fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 65,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 106,
+      "title": "Jungle Tales of Tarzan",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Tarzan (Fictitious character) -- Fiction; Africa -- Fiction; Fantasy fiction; Jungles -- Fiction; Adventure stories; Apes -- Fiction",
+      "category": "Movie Books; Adventure "
+    }
+  },
+  {
+    "pk": 66,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 107,
+      "title": "Far from the Madding Crowd",
+      "language": "English ",
+      "firstName": "Thomas",
+      "lastName": "Hardy",
+      "year": "1840-1928",
+      "subjects": "Didactic fiction; Love stories; Triangles (Interpersonal relations) -- Fiction; Pastoral fiction; Farm life -- Fiction; Women farmers -- Fiction; Wessex (England) -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 67,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 108,
+      "title": "The Return of Sherlock Holmes",
+      "language": "English ",
+      "firstName": "Arthur Conan",
+      "lastName": "Doyle",
+      "year": "1859-1930",
+      "subjects": "Holmes, Sherlock (Fictitious character) -- Fiction; Detective and mystery stories, English",
+      "category": "Detective Fiction "
+    }
+  },
+  {
+    "pk": 68,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 109,
+      "title": "Renascence, and Other Poems",
+      "language": "English ",
+      "firstName": "Edna St. Vincent",
+      "lastName": "Millay",
+      "year": "1892-1950",
+      "subjects": "American poetry",
+      "category": " "
+    }
+  },
+  {
+    "pk": 69,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 110,
+      "title": "Tess of the d'Urbervilles: A Pure Woman",
+      "language": "English ",
+      "firstName": "Thomas",
+      "lastName": "Hardy",
+      "year": "1840-1928",
+      "subjects": "Didactic fiction; Poor families -- Fiction; Children of the rich -- Fiction; Triangles (Interpersonal relations) -- Fiction; Pastoral fiction; Children of clergy -- Fiction; Wessex (England) -- Fiction; Man-woman relationships -- Fiction; Women murderers -- Fiction; Rape victims -- Fiction; Women household employees -- Fiction",
+      "category": "Banned Books from Anne Haight's list "
+    }
+  },
+  {
+    "pk": 70,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 113,
+      "title": "The Secret Garden",
+      "language": "English ",
+      "firstName": "Frances Hodgson",
+      "lastName": "Burnett",
+      "year": "1849-1924",
+      "subjects": "Orphans -- Juvenile fiction; People with disabilities -- Juvenile fiction; Gardens -- Juvenile fiction; Yorkshire (England) -- Juvenile fiction",
+      "category": "Children's Literature "
+    }
+  },
+  {
+    "pk": 71,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 117,
+      "title": "Symphony No. 5 in C minor Opus 67",
+      "language": "English ",
+      "firstName": "Ludwig van",
+      "lastName": "Beethoven",
+      "year": "1770-1827",
+      "subjects": "Music",
+      "category": " "
+    }
+  },
+  {
+    "pk": 72,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 119,
+      "title": "A Tramp Abroad",
+      "language": "English ",
+      "firstName": "Mark",
+      "lastName": "Twain",
+      "year": "1835-1910",
+      "subjects": "Humorous stories; Europe -- Fiction; Americans -- Europe -- Fiction; Walking -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 73,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 121,
+      "title": "Northanger Abbey",
+      "language": "English ",
+      "firstName": "Jane",
+      "lastName": "Austen",
+      "year": "1775-1817",
+      "subjects": "England -- Social life and customs -- 19th century -- Fiction; Satire; England -- Fiction; Young women -- Fiction; Love stories; Gothic fiction; Horror tales -- Appreciation -- Fiction; Books and reading -- Fiction; Gentry -- England -- Fiction; Marriage -- Economic aspects -- Fiction",
+      "category": "Gothic Fiction "
+    }
+  },
+  {
+    "pk": 74,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 122,
+      "title": "The Return of the Native",
+      "language": "English ",
+      "firstName": "Thomas",
+      "lastName": "Hardy",
+      "year": "1840-1928",
+      "subjects": "Adultery -- Fiction; Didactic fiction; Love stories; Mate selection -- Fiction; Wessex (England) -- Fiction; Mothers and sons -- Fiction; People with visual disabilities -- Fiction; Heathlands -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 75,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 123,
+      "title": "At the Earth's Core",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Science fiction; Fantasy fiction; Adventure stories; Earth (Planet) -- Core -- Fiction",
+      "category": "Science Fiction "
+    }
+  },
+  {
+    "pk": 76,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 126,
+      "title": "The Poison Belt",
+      "language": "English ",
+      "firstName": "Arthur Conan",
+      "lastName": "Doyle",
+      "year": "1859-1930",
+      "subjects": "Science fiction; Challenger, Professor (Fictitious character) -- Fiction",
+      "category": "Science Fiction "
+    }
+  },
+  {
+    "pk": 77,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 128,
+      "title": "The Arabian Nights Entertainments",
+      "language": "English ",
+      "firstName": "Andrew",
+      "lastName": "Lang",
+      "year": "1844-1912",
+      "subjects": "Fairy tales; Children's stories; Arabs -- Folklore; Folklore -- Arab countries; Tales -- Arab countries; Fairy tales -- Arab countries",
+      "category": " "
+    }
+  },
+  {
+    "pk": 78,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 130,
+      "title": "Orthodoxy",
+      "language": "English ",
+      "firstName": "G. K. (Gilbert Keith)",
+      "lastName": "Chesterton",
+      "year": "1874-1936",
+      "subjects": "Apologetics; Chesterton, G. K. (Gilbert Keith), 1874-1936; Christianity -- Essence, genius, nature",
+      "category": "Christianity "
+    }
+  },
+  {
+    "pk": 79,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 131,
+      "title": "The Pilgrim's Progress from this world to that which is to come Delivered under the similitude of a dream, by John Bunyan",
+      "language": "English ",
+      "firstName": "John",
+      "lastName": "Bunyan",
+      "year": "1628-1688",
+      "subjects": "Christian fiction; Christian pilgrims and pilgrimages -- Fiction",
+      "category": "Harvard Classics; Christianity "
+    }
+  },
+  {
+    "pk": 80,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 133,
+      "title": "The Damnation of Theron Ware",
+      "language": "English ",
+      "firstName": "Harold",
+      "lastName": "Frederic",
+      "year": "1856-1898",
+      "subjects": "Psychological fiction; Clergy -- Fiction; New York (State) -- Fiction; Belief and doubt -- Fiction; Methodists -- Fiction",
+      "category": "Bestsellers"
+    }
+  },
+  {
+    "pk": 81,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 134,
+      "title": "Maria; Or, The Wrongs of Woman",
+      "language": "English ",
+      "firstName": "Mary",
+      "lastName": "Wollstonecraft",
+      "year": "1759-1797",
+      "subjects": "Autobiographical fiction; Feminist fiction; Women -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 82,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 136,
+      "title": "A Child's Garden of Verses",
+      "language": "English ",
+      "firstName": "Robert Louis",
+      "lastName": "Stevenson",
+      "year": "1850-1894",
+      "subjects": "Children's poetry, English",
+      "category": " "
+    }
+  },
+  {
+    "pk": 83,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 137,
+      "title": "Sara Crewe; Or, What Happened at Miss Minchin's Boarding School",
+      "language": "English ",
+      "firstName": "Frances Hodgson",
+      "lastName": "Burnett",
+      "year": "1849-1924",
+      "subjects": "Orphans -- Juvenile fiction; Schools -- Juvenile fiction; Boarding schools -- Juvenile fiction; Girls -- Juvenile fiction; London (England) -- Juvenile fiction",
+      "category": "School Stories "
+    }
+  },
+  {
+    "pk": 84,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 139,
+      "title": "The Lost World",
+      "language": "English ",
+      "firstName": "Arthur Conan",
+      "lastName": "Doyle",
+      "year": "1859-1930",
+      "subjects": "Challenger, Professor (Fictitious character) -- Fiction; Fantasy fiction; South America -- Fiction; Prehistoric peoples -- Fiction; Dinosaurs -- Fiction",
+      "category": "Science Fiction "
+    }
+  },
+  {
+    "pk": 85,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 140,
+      "title": "The Jungle",
+      "language": "English ",
+      "firstName": "Upton",
+      "lastName": "Sinclair",
+      "year": "1878-1968",
+      "subjects": "Meat industry and trade -- Fiction; Working class -- Fiction; Political fiction; Lithuanian Americans -- Fiction; Stockyards -- Fiction; Immigrants -- Fiction; Chicago (Ill.) -- Fiction",
+      "category": "Contemporary Reviews; Bestsellers"
+    }
+  },
+  {
+    "pk": 86,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 141,
+      "title": "Mansfield Park",
+      "language": "English ",
+      "firstName": "Jane",
+      "lastName": "Austen",
+      "year": "1775-1817",
+      "subjects": "England -- Fiction; Young women -- Fiction; Love stories; Domestic fiction; Country homes -- Fiction; Adoptees -- Fiction; Children of the rich -- Fiction; Cousins -- Fiction; Uncles -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 87,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 142,
+      "title": "The $30,000 Bequest, and Other Stories",
+      "language": "English ",
+      "firstName": "Mark",
+      "lastName": "Twain",
+      "year": "1835-1910",
+      "subjects": "Short stories; Humorous stories, American; United States -- Social life and customs -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 88,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 143,
+      "title": "The Mayor of Casterbridge",
+      "language": "English ",
+      "firstName": "Thomas",
+      "lastName": "Hardy",
+      "year": "1840-1928",
+      "subjects": "Psychological fiction; Fathers and daughters -- Fiction; Men -- England -- Fiction; Wessex (England) -- Fiction; Runaway husbands -- Fiction; Atonement -- Fiction; Mayors -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 89,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 144,
+      "title": "The Voyage Out",
+      "language": "English ",
+      "firstName": "Virginia",
+      "lastName": "Woolf",
+      "year": "1882-1941",
+      "subjects": "Young women -- Fiction; Love stories; Bildungsromans; Ocean travel -- Fiction; Women travelers -- Fiction; British -- South America -- Fiction",
+      "category": " "
+    }
+  },
+  {
+    "pk": 90,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 145,
+      "title": "Middlemarch",
+      "language": "English ",
+      "firstName": "George",
+      "lastName": "Eliot",
+      "year": "1819-1880",
+      "subjects": "Didactic fiction; City and town life -- Fiction; England -- Fiction; Young women -- Fiction; Love stories; Domestic fiction; Married people -- Fiction; Bildungsromans",
+      "category": "Best Books Ever Listings; Historical Fiction "
+    }
+  },
+  {
+    "pk": 91,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 146,
+      "title": "A Little Princess Being the whole story of Sara Crewe now told for the first time",
+      "language": "English ",
+      "firstName": "Frances Hodgson",
+      "lastName": "Burnett",
+      "year": "1849-1924",
+      "subjects": "Orphans -- Juvenile fiction; Schools -- Juvenile fiction; Boarding schools -- Juvenile fiction; Girls -- Juvenile fiction; London (England) -- Juvenile fiction",
+      "category": "Children's Literature; School Stories "
+    }
+  },
+  {
+    "pk": 92,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 147,
+      "title": "Common Sense",
+      "language": "English ",
+      "firstName": "Thomas",
+      "lastName": "Paine",
+      "year": "1737-1809",
+      "subjects": "United States -- Politics and government -- 1775-1783; Political science -- Early works to 1800; Monarchy -- Early works to 1800",
+      "category": " "
+    }
+  },
+  {
+    "pk": 93,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 149,
+      "title": "The Lost Continent",
+      "language": "English ",
+      "firstName": "Edgar Rice",
+      "lastName": "Burroughs",
+      "year": "1875-1950",
+      "subjects": "Science fiction; Fantasy fiction; England -- Fiction",
+      "category": "Science Fiction "
+    }
+  },
+  {
+    "pk": 94,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 151,
+      "title": "The Rime of the Ancient Mariner",
+      "language": "English ",
+      "firstName": "Samuel Taylor",
+      "lastName": "Coleridge",
+      "year": "1772-1834",
+      "subjects": "Poetry",
+      "category": " "
+    }
+  },
+  {
+    "pk": 95,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 153,
+      "title": "Jude the Obscure",
+      "language": "English ",
+      "firstName": "Thomas",
+      "lastName": "Hardy",
+      "year": "1840-1928",
+      "subjects": "Adultery -- Fiction; Didactic fiction; Love stories; Illegitimate children -- Fiction; Wessex (England) -- Fiction; Stonemasons -- Fiction; Children -- Death -- Fiction; Unmarried couples -- Fiction",
+      "category": "Banned Books from Anne Haight's list "
+    }
+  },
+  {
+    "pk": 96,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 154,
+      "title": "The Rise of Silas Lapham",
+      "language": "English ",
+      "firstName": "William Dean",
+      "lastName": "Howells",
+      "year": "1837-1920",
+      "subjects": "Psychological fiction; Domestic fiction; Boston (Mass.) -- Fiction; Rich people -- Fiction; Socialites -- Fiction; Businessmen -- Fiction",
+      "category": "Contemporary Reviews "
+    }
+  },
+  {
+    "pk": 97,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 155,
+      "title": "The Moonstone",
+      "language": "English ",
+      "firstName": "Wilkie",
+      "lastName": "Collins",
+      "year": "1824-1889",
+      "subjects": "England -- Fiction; Country homes -- Fiction; Police -- England -- Fiction; Jewelry theft -- Fiction; East Indians -- England -- Fiction; Mystery fiction",
+      "category": "Detective Fiction; Mystery Fiction "
+    }
+  },
+  {
+    "pk": 98,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 157,
+      "title": "Daddy-Long-Legs",
+      "language": "English ",
+      "firstName": "Jean",
+      "lastName": "Webster",
+      "year": "1876-1916",
+      "subjects": "Orphans -- Fiction; Boarding schools -- Fiction; Schools -- Fiction; Young women -- Fiction; Love stories; Bildungsromans; Epistolary fiction; Women authors -- Fiction; Philanthropists -- Fiction; Women college students -- Fiction; Universities and colleges -- Fiction; Letters -- Fiction",
+      "category": "School Stories "
+    }
+  },
+  {
+    "pk": 99,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 159,
+      "title": "The island of Doctor Moreau",
+      "language": "English ",
+      "firstName": "H. G. (Herbert George)",
+      "lastName": "Wells",
+      "year": "1866-1946",
+      "subjects": "Science fiction; Shipwreck survival -- Fiction; Animal experimentation -- Fiction; Islands -- Fiction; Science -- Ethics -- Fiction",
+      "category": "Science Fiction; Best Books Ever Listings; Movie Books "
+    }
+  },
+  {
+    "pk": 100,
+    "model": "book.book",
+    "fields": {
+      "bookCode": 160,
+      "title": "The Awakening, and Selected Short Stories",
+      "language": "English ",
+      "firstName": "Kate",
+      "lastName": "Chopin",
+      "year": "1850-1904",
+      "subjects": "Adultery -- Fiction; Women -- Louisiana -- New Orleans -- Social conditions -- Fiction; Self-actualization (Psychology) -- Fiction; New Orleans (La.) -- Fiction; Louisiana -- Social life and customs -- Fiction",
+      "category": "Banned Books from Anne Haight's list; Banned Books List from the American Library Association "
+    }
+  }
+]
