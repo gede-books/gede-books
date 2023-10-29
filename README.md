@@ -2,6 +2,9 @@
 Great Educational, Diverse, and Entertaining Books <br>
 *(How to pronounce: ‘Gedebuk’ as in suara jika kita jatuh)*
 <br>
+![Django CI](https://github.com/gede-books/gede-books/actions/workflows/django.yml/badge.svg?branch=master)<br>
+![Jekyll site CI](https://github.com/gede-books/gede-books/workflows/Jekyll%20site%20CI/badge.svg)
+<br>
 <br>
 
 ## [Anggota Kelompok]
@@ -35,7 +38,7 @@ Selain modul inti pengimplementasian buku, berikut adalah daftar modul lain yang
 
 ## [Sumber Dataset]
 Sumber dataset katalog buku yang digunakan adalah:
-[Dataset Buku](https://drive.google.com/file/d/17jiAwHx_68zUrolbTl75IoLRFK_JLYrx/view)
+[Project Gutenberg](https://drive.google.com/file/d/17jiAwHx_68zUrolbTl75IoLRFK_JLYrx/view)
 
 <br>
 
