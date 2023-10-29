@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.urls import reverse
+from django.http import JsonResponse
 
 from main.models import Product, Order, OrderItem
 from book.models import Book
@@ -140,9 +141,10 @@ def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(user=request.user, ordered=False)
     order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
-    order_item.save()
     order_item.quantity += 1
-    return redirect('main:cart_view')
+    order_item.save()
+    
+    return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke keranjang'})
 
 @login_required
 def remove_from_cart(request, product_id):
@@ -159,7 +161,11 @@ def remove_from_cart(request, product_id):
 @login_required
 def cart_view(request):
     order = Order.objects.get(user=request.user, ordered=False)
-    return render(request, 'cart.html', {'order': order})
+    context = {
+        'name': request.user.username,
+        'order': order
+    }
+    return render(request, 'cart.html', context)
 
 def show_xml(request):
     data = Product.objects.all()

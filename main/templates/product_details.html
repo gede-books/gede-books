@@ -119,6 +119,9 @@
         <!-- Right side items -->
         <ul class="navbar-nav">
             <div class="ms-auto d-flex align-items-center">
+                <a href="{% url 'main:cart_view' %}" class="mr-3">
+                    <i class="fas fa-shopping-cart" style="color: black;"></i>
+                </a>
                 <span style="margin-right: 15px;">
                     Hi, <strong>{{ name }}</strong>!</br>
                 </span>
@@ -160,9 +163,7 @@
         <div class="product-details-content">
             <h2>{{ product.title }}</h2>
             <p class="price">Rp. {{ product.price }},-</p>
-            <a href="{% url 'main:add_to_cart' product.id %}">
-                <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
-            </a>
+            <button class="btn btn-outline-success btn-keranjang add-to-cart-btn" data-product-id="{{ product.id }}">+ Keranjang</button>
             <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
         </div>
     </div>
@@ -185,5 +186,32 @@
         <p>{{ product.category }}</p>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(".add-to-cart-btn").click(function(event) {
+    event.preventDefault(); 
+
+    const productId = $(this).data('product-id');
+
+    $.ajax({
+        url: '{% url "main:add_to_cart" product.id %}',
+        method: 'POST',
+        data: {
+            'product_id': productId,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            if(response.status === 'success') {
+                alert(response.message);
+            }
+        },
+        error: function(response) {
+            alert("Terjadi kesalahan saat menambahkan ke keranjang.");
+        }
+    });
+});
+
+</script>
 
 {% endblock content %}
