@@ -38,7 +38,7 @@ Selain modul inti pengimplementasian buku, berikut adalah daftar modul lain yang
 
 ## [Sumber Dataset]
 Sumber dataset katalog buku yang digunakan adalah:
-[Dataset Buku](https://drive.google.com/file/d/17jiAwHx_68zUrolbTl75IoLRFK_JLYrx/view)
+[Project Gutenberg](https://drive.google.com/file/d/17jiAwHx_68zUrolbTl75IoLRFK_JLYrx/view)
 
 <br>
 
