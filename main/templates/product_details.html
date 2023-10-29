@@ -24,7 +24,6 @@
         font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 15px;
         font-style: italic;
-        font-weight:;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -34,6 +33,33 @@
     .nav-link.active {
         color: white;
         text-decoration: underline;
+    }
+
+    .navbar-nav.mr-auto {
+        width: 100%;
+    }
+
+    .navbar-nav.mr-auto .nav-item {
+        flex: 1;
+        text-align: center; /* agar teks di tengah-tengah nav-item */
+    }
+
+    .nav-link.active {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .btn-login {
+        background-color: #343a40;
+        color: white;
+        border: 1px solid black;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Gaya tombol Login saat dihover */
+    .btn-login:hover {
+        background-color: darkgreen; /* Warna merah saat dihover */
+        color: white; /* Teks tetap putih saat dihover */
     }
 
     .btn-logout {
@@ -49,6 +75,8 @@
     }
 
     .btn-keranjang {
+        margin-top: 20px;
+        margin-right: 10px;
         background-color: #343a40;
         color: white;
         border: 1px solid #343a40;
@@ -61,6 +89,8 @@
     }
 
     .btn-wishlist {
+        margin-top: 20px;
+        margin-right: 10px;
         background-color: white;
         color: #343a40;
         border: 1px solid #343a40;
@@ -71,6 +101,23 @@
         background-color: rgb(255, 36, 62);
         color: white;
         border: 1px solid red;
+    }
+
+    .product-details {
+        display: flex;
+        border: 1px solid darkgrey;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-details img {
+        max-width: 300px;
+        margin-right: 30px;
+    }
+
+    .product-details-content {
+        flex: 1;
     }
 
     .star {
@@ -107,25 +154,36 @@
     <div class="container-fluid">
 
         <!-- Search Bar -->
-        <form class="form-inline my-2 my-lg-0 mr-auto position-relative">
-            <input class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
+        <form class="form-inline my-2 my-lg-0 mr-auto position-relative" id="productSearchForm" method="get" action="{% url 'main:show_main' %}">
+            <input class="form-control mr-sm-2 pl-4 pr-5 search-input" type="text" name="{{ search_form.query.name }}" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
             <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
                 <i class="fas fa-search"></i>
             </button>
         </form>
 
-        <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
+        {% if user.is_authenticated %}
+            <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
+        {% else %}
+            <a class="navbar-brand" href="{% url 'main:show_guest' %}">GEDE-Books</a>
+        {% endif %}
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
         <!-- Right side items -->
         <ul class="navbar-nav">
             <div class="ms-auto d-flex align-items-center">
-                <span style="margin-right: 15px;">
-                    Hi, <strong>{{ name }}</strong>!</br>
-                </span>
-                <a href="{% url 'main:logout' %}">
-                  <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
-                </a>
+                {% if request.user.is_authenticated %}
+                    <span style="margin-right: 15px;">
+                        Happy shopping, <strong>{{ name }}</strong>!</br>
+                        <small>Last login: {{ last_login }}</small>
+                    </span>
+                    <a href="{% url 'main:logout' %}">
+                      <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
+                    </a>
+                {% else %}
+                    <a href="{% url 'main:login' %}">
+                      <button class="btn btn-outline-success btn-login" type="submit" style="border-color: darkgreen;">Login</button>
+                    </a>
+                {% endif %}
             </div>
         </ul>
     </div>
@@ -133,7 +191,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto d-flex justify-content-between">
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Politics' %}active{% endif %}" 
                    href="{% if selected_category == 'Politics' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Politics{% endif %}">
@@ -143,7 +201,43 @@
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Children\'s Literature' %}active{% endif %}" 
                    href="{% if selected_category == 'Children\'s Literature' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Children's Literature{% endif %}">
-                   Children's Literature
+                   Children
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Adventure' %}active{% endif %}" 
+                   href="{% if selected_category == 'Adventure' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Adventure{% endif %}">
+                   Adventure
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Horror' %}active{% endif %}" 
+                   href="{% if selected_category == 'Horror' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Horror{% endif %}">
+                   Horror
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Movie Books' %}active{% endif %}" 
+                   href="{% if selected_category == 'Movie Books' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Movie Books{% endif %}">
+                   Movie
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Science Fiction' %}active{% endif %}" 
+                   href="{% if selected_category == 'Science Fiction' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Science Fiction{% endif %}">
+                   Sci-Fi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Humorous stories' %}active{% endif %}" 
+                   href="{% if selected_category == 'Humorous stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Humorous stories{% endif %}">
+                   Humorous
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Love stories' %}active{% endif %}" 
+                   href="{% if selected_category == 'Love stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Love stories{% endif %}">
+                   Love
                 </a>
             </li>
             <!-- Other items... -->
@@ -151,7 +245,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container mt-5">
     <div class="product-details">
         <!-- Product Image -->
         {% if product.image_url %}
@@ -163,7 +257,8 @@
             <p class="price">Rp. {{ product.price }},-</p>
             <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
             <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
-        </div>
+            <p class="card-text" style="margin-top: 10px;"><span style="color: gold;">&#9733;</span> {{ product.rating }}</p>
+        </div>        
     </div>
 
     <!-- Product Details -->
@@ -181,8 +276,13 @@
         <p>{{ product.subjects }}</p>
     
         <h5>Kategori: </h5>
-        <p>{{ product.category }}</p>
+        {% if product.category == " " %}
+            <p>-</p>
+        {% else %}
+            <p>{{ product.category }}</p>
+        {% endif %}
     </div>
 </div>
+
 
 {% endblock content %}
