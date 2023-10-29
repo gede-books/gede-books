@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
+<style>
+    .navbar-first {
+        height: 100px;
+    }
+
+    .navbar-brand {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bolder;
+        font-size: 40px;
+    }
+
+    .navbar-tagline {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 15px;
+        font-style: italic;
+        font-weight:;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 72px;
+    }
+
+    .nav-link.active {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .btn-logout {
+        background-color: #343a40;
+        color: white;
+        border: 1px solid black;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Gaya tombol Logout saat dihover */
+    .btn-logout:hover {
+        background-color: red; /* Warna merah saat dihover */
+        color: white; /* Teks tetap putih saat dihover */
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-first">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
+        <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+            <li class="nav-item"> </li>
+    </div>
+</nav>
+
+<div class = "login">
+    
+    <h1>Register</h1>  
+
+        <form method="POST" >  
+            {% csrf_token %}  
+            <table>  
+                {{ form.as_table }}  
+                <tr>  
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Daftar"/></td>  
+                </tr>  
+            </table>  
+        </form>
+
+    {% if messages %}  
+        <ul>   
+            {% for message in messages %}  
+                <li>{{ message }}</li>  
+                {% endfor %}  
+        </ul>   
+    {% endif %}
+
+</div>  
+
+{% endblock content %}
