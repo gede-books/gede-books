@@ -34,11 +34,12 @@ Berikut adalah daftar modul yang diimplementasikan:
     - _User_ maupun _guest_ dapat melihat tampilan buku
     - _User_ maupun _guest_ dapat melihat detail produk setiap buku
     - _User_ maupun _guest_ dapat melakukan _filter_ tampilan buku berdasarkan kategori
-    - Admin dapat mengelola stok, harga, dan detail buku
+    - Tambahan: Mengatur dataset beserta gambar buku yang akan digunakan
 - **Modul Wishlist & Search Buku — Rakha Abid Bangsawan**
     - Pengaturan _authentication_ dan _authorization_ untuk _Logged-In User_. _Guest_, dan Admin
     - _User_ maupun _guest_ dapat melakukan _search_ judul buku
     - _User_ yang sudah login dapat menambah, mengurangi, dan menghapus produk buku ke dalam _wishlist_
+    - - Admin dapat mengelola stok, harga, dan detail buku
 - **Modul Keranjang & _Checkout_ Buku — Lidwina Eurora Firsta Nobella**
     - _User_ yang sudah login dapat memasukkan produk buku ke dalam keranjang
     - _User_ dapat menambah, mengurangi, dan menghapus produk buku yang ada di keranjang
