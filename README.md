@@ -2,6 +2,8 @@
 Great Educational, Diverse, and Entertaining Books <br>
 *(How to pronounce: ‘Gedebuk’ as in suara jika kita jatuh)*
 <br>
+![Django CI](https://github.com/gede-books/gede-books/actions/workflows/django.yml/badge.svg?branch=master)
+<br>
 <br>
 
 ## [Anggota Kelompok]
