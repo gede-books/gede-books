@@ -17,7 +17,7 @@
       <option value="author">Author</option>
     </select>
 
-    <ul class="book-list"></ul>
+    <div class="book-list"></div>
 
     <script>
       // Assume books.json has the following structure:
@@ -25,7 +25,7 @@
       fetch("get-item/")
         .then((response) => response.json())
         .then((data) => {
-          const books = data.map((book) => book.fields); // Access the "fields" property
+          const books = data.map((book) => book.fields);
 
           const bookList = document.querySelector(".book-list");
 
@@ -34,7 +34,7 @@
 
             filteredBooks.forEach((book) => {
               const li = document.createElement("li");
-              li.textContent = `${book.fields.title} by ${book.fields.firstName} ${book.fields.lastName}`;
+              li.textContent = `${book.title} by ${book.author}`;
               bookList.appendChild(li);
             });
           }
