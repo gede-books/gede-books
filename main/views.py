@@ -203,8 +203,12 @@ def checkout_view(request):
             return HttpResponse(response_text, content_type='text/plain')
     else:
         form = CheckoutForm()
+    
+    context = {
+        'checkout_form': form
+    }
 
-    return render(request, 'cart.html', {'checkout_form': form})
+    return render(request, 'cart.html', context)
 
 @login_required
 def update_quantity(request):
