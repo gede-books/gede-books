@@ -1,13 +1,67 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="col-12">
-    <!-- Main Content -->
-    <div class="row">
-        <div class="col-12 mt-3 text-center text-uppercase">
-            <h2>Shopping Cart</h2>
-        </div>
+<link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+<style>
+    .navbar-first {
+        height: 100px;
+    }
+
+    .navbar-brand {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bolder;
+        font-size: 40px;
+    }
+
+    .navbar-tagline {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 15px;
+        font-style: italic;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 72px;
+    }
+
+    .nav-link.active {
+        color: white;
+        text-decoration: underline;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-first">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
+        <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
+
+        <!-- Right side items -->
+        <ul class="navbar-nav">
+            <div class="ms-auto d-flex align-items-right justify-content">
+                <span style="margin-right: 15px;">
+                    Welcome, <strong>{{ name }}</strong>!</br>
+                </span>
+                <a href="{% url 'main:logout' %}">
+                  <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
+                </a>
+            </div>
+        </ul>
     </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="col-12 mt-3 text-center" style="color: white;font-size: x-large;display: flex;align-items: center;justify-content: center;height: 50px;">
+        Keranjang Belanja
+    </div>
+</nav>
+
+
+<div class="col-12">
 
     <main class="row">
         <div class="col-12 bg-white py-3 mb-3">
@@ -26,61 +80,43 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {% for item in order.orderitem_set.all %}
                                 <tr>
                                     <td>
-                                        <img src="images/image-2.jpg" class="img-fluid">
-                                        Optoma 4K HDR Projector
+                                        {{ item.product.image_url }}
+                                        {{ item.product.title }}
                                     </td>
                                     <td>
-                                        $1,500
+                                        ${{ item.product.price }}
                                     </td>
                                     <td>
-                                        <input type="number" min="1" value="1">
+                                        {{ item.quantity }}
                                     </td>
                                     <td>
-                                        $1,500
+                                        ${{ item.get_total_price }}
                                     </td>
                                     <td>
-                                        <button class="btn btn-link text-danger"><i class="fas fa-times"></i></button>
+                                        <a href="{% url 'main:remove_from_cart' item.product.id %}" class="btn btn-link text-danger"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <img src="images/image-3.jpg" class="img-fluid">
-                                        HP Envy Specter 360
-                                    </td>
-                                    <td>
-                                        $2,500
-                                    </td>
-                                    <td>
-                                        <input type="number" min="1" value="1">
-                                    </td>
-                                    <td>
-                                        $2,500
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-link text-danger"><i class="fas fa-times"></i></button>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <th colspan="3" class="text-right">Total</th>
-                                    <th>$4,000</th>
+                                    <th>${{ order.get_total }}</th>
                                     <th></th>
                                 </tr>
                                 </tfoot>
                             </table>
                         </div>
                         <div class="col-12 text-right">
-                            <button class="btn btn-outline-secondary me-3" type="submit">Update</button>
                             <a href="#" class="btn btn-outline-success">Checkout</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
     </main>
     <!-- Main Content -->
 </div>

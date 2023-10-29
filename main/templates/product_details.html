@@ -160,7 +160,9 @@
         <div class="product-details-content">
             <h2>{{ product.title }}</h2>
             <p class="price">Rp. {{ product.price }},-</p>
-            <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+            <a href="{% url 'main:add_to_cart' product.id %}">
+                <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+            </a>
             <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
         </div>
     </div>

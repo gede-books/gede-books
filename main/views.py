@@ -92,9 +92,11 @@ def product_details(request, product_id):
     else:
         product.image_url = None
 
+    last_login = request.COOKIES.get('last_login', 'Not available')
+
     context = {
         'name': request.user.username,
-        'last_login': request.COOKIES['last_login'],
+        'last_login': last_login,
         'product': product,
     }
 
@@ -138,9 +140,9 @@ def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(user=request.user, ordered=False)
     order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
-    order_item.quantity += 1
     order_item.save()
-    return redirect('cart_view')
+    order_item.quantity += 1
+    return redirect('main:cart_view')
 
 @login_required
 def remove_from_cart(request, product_id):
@@ -152,7 +154,7 @@ def remove_from_cart(request, product_id):
         order_item.save()
     else:
         order_item.delete()
-    return redirect('cart_view')
+    return redirect('main:cart_view')
 
 @login_required
 def cart_view(request):
