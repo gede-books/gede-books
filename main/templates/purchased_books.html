@@ -107,34 +107,70 @@
 </nav>
 
 <div class="container mt-5">
-    <div class="row">
-      {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <a href="{% url 'main:product_details' product.id %}" style="text-decoration: none; color: inherit;">
-                <div class="card h-100" style="border: 1px solid lightgray; border-radius: 8px;">
-                    <div class="card-img-container" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                        {% if product.image_url %}
-                            <img class="card-img-top" src="{{ product.image_url }}" alt="{{ product.title }}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                        {% endif %}
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{ product.title }}</p>
-                        <h5 class="card-text">Rp. {{ product.price }},-</h5>
-                        <p class="card-text">
-                            <span style="font-size: 13px; color: #444;">
-                                {{ product.category }}
-                            </span>
-                        </p>
-                        <p class="card-text"><span style="color: gold;">&#9733;</span> {{ product.rating }}</p>  <!-- Mengubah warna bintang menjadi emas -->
-                    </div>
-                </div>
-            </a>
-        </div>
-        {% if forloop.counter|divisibleby:4 %}
-        </div><div class="row">
-        {% endif %}
-      {% endfor %}        
+    <div class="row" id="cards-container">       
     </div>
 </div>
+
+<script>
+    fetch('/purchased_books_ajax/')
+        .then(response => response.json())
+        .then(data => {
+            const cardsContainer = document.getElementById('cards-container');
+            data.order_items.forEach((orderedItem, index) => {
+                const card = `
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="card h-100" style="border: 1px solid lightgray; border-radius: 8px;">
+                            <div class="card-img-container" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                <img class="card-img-top" src="${orderedItem.image_url}" alt="${orderedItem.title}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title">${orderedItem.title}</p>
+                                <h5 class="card-text">Rp. ${orderedItem.price},-</h5>
+                                <p class="card-text">
+                                    <span style="font-size: 13px; color: #444;">${orderedItem.category}</span>
+                                </p>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal${index}">Tinggalkan Review</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cardsContainer.innerHTML += card;
+
+                const modal = `
+                    <div class="modal" id="exampleModal${index}" tabindex="-1" aria-labelledby="exampleModalLabel${index}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel${index}">Tinggalkan Review</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="add-review-form">
+                                        {% csrf_token %}
+                                        <input type="text" name="rating" placeholder="Rating (1-5)">
+                                        <input type="text" name="description" placeholder="Description">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Buat Review</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', modal);
+            });
+
+            document.addEventListener('click', event => {
+                if (event.target.classList.contains('review-button')) {
+                    const targetModalId = event.target.getAttribute('data-bs-target').replace('#', '');
+                    const myModal = new bootstrap.Modal(document.getElementById(targetModalId));
+                    myModal.show();
+                }
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
 
 {% endblock content %}

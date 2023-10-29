@@ -112,6 +112,8 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
+        <a href="{% url 'main:show_main' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
+        <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
 
         <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
@@ -120,7 +122,7 @@
         <ul class="navbar-nav">
             <div class="ms-auto d-flex align-items-center">
                 <span style="margin-right: 15px;">
-                    Hi, <strong>{{ name }}</strong>!</br>
+                    Welcome, <strong>{{ name }}</strong>!</br>
                 </span>
                 <a href="{% url 'main:logout' %}">
                   <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
@@ -160,7 +162,7 @@
         <div class="product-details-content">
             <h2>{{ product.title }}</h2>
             <p class="price">Rp. {{ product.price }},-</p>
-            <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+            <a href="{% url 'main:add_to_cart' product.id %}" class="btn btn-outline-success btn-keranjang">+ Keranjang</a>
             <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
         </div>
     </div>

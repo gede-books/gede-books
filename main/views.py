@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages  
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
 
@@ -137,10 +137,12 @@ def logout_user(request):
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(user=request.user, ordered=False)
-    order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
-    order_item.quantity += 1
+    order_item, created_order_item = OrderItem.objects.get_or_create(order=order, product=product)
+    print(created_order_item)
+    if not created_order_item:
+        order_item.quantity +=1
     order_item.save()
-    return redirect('cart_view')
+    return redirect('/cart')
 
 @login_required
 def remove_from_cart(request, product_id):
@@ -152,12 +154,81 @@ def remove_from_cart(request, product_id):
         order_item.save()
     else:
         order_item.delete()
-    return redirect('cart_view')
+    return redirect('/cart')
 
 @login_required
 def cart_view(request):
+    try:
+        order = Order.objects.get(user=request.user, ordered=False)
+        total = order.get_total()
+        order_items = OrderItem.objects.filter(order=order)
+
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        # Add the image_url and total price to the product
+        for order_item in order_items:
+            if order_item.product.bookCode in image_map:
+                order_item.product.image_url = image_map[order_item.product.bookCode]
+            else:
+                order_item.product.image_url = None
+            order_item.total_price = order_item.get_total_price()
+
+        return render(request, 'cart.html', {'orders': order_items, 'total':total, 'name': request.user.username})
+    except:
+        return render(request, 'cart.html', {'total':0, 'name': request.user.username})
+
+
+@login_required
+def checkout_cart(request):
     order = Order.objects.get(user=request.user, ordered=False)
-    return render(request, 'cart.html', {'order': order})
+    order.ordered = True
+    order.save()
+    return redirect('/purchased_books')
+
+@login_required
+def purchased_books(request):
+    return render(request, 'purchased_books.html')
+                    
+@login_required
+def purchased_books_ajax(request):
+    orders = Order.objects.filter(user=request.user, ordered=True)
+    purchased_books = []
+    for order in orders:
+        order_items = OrderItem.objects.filter(order=order)
+        for order_item in order_items:
+            image_map = {}
+            with open('main/bookImages.csv', 'r') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    try:
+                        image_map[int(row['bookCode'])] = row['image']
+                    except KeyError as e:
+                        print(f"KeyError: {e}. Row: {row}")
+
+            image_url=None
+            if order_item.product.bookCode in image_map:
+                image_url = image_map[order_item.product.bookCode]
+            else:
+                image_url = None
+
+            book_data = {
+                'title': order_item.product.title,
+                'price': order_item.product.price,
+                'category': order_item.product.category,
+                'rating': order_item.product.rating,
+                'image_url': image_url
+            }
+
+            purchased_books.append(book_data)
+
+    return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
 
 def show_xml(request):
     data = Product.objects.all()

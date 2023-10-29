@@ -1,3 +1,4 @@
+from django.db.models import Avg
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -16,6 +17,15 @@ class Product(models.Model):
     price = models.IntegerField(default=75000)
     rating = models.FloatField(default=0.0)
 
+    def update_average_rating(self):
+        avg_rating = ReviewProduct.objects.filter(product=self).aggregate(Avg('rating'))['rating__avg']
+        if avg_rating is not None:
+            self.rating = avg_rating
+            self.save()
+        else:
+            self.rating = 0.0
+            self.save()
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
@@ -30,3 +40,8 @@ class OrderItem(models.Model):
 
     def get_total_price(self):
         return self.product.price * self.quantity
+
+class ReviewProduct(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    rating = models.FloatField(default=0.0)
+    review = models.TextField(null=True, blank=True)
