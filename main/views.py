@@ -9,6 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
 from main.forms import ReviewForm
+from .forms import SearchForm
 
 from main.models import Product, Order, OrderItem, ReviewProduct
 from book.models import Book
@@ -255,6 +256,73 @@ def remove_from_cart(request, product_id):
         order_item.save()
     else:
         order_item.delete()
+    return redirect('cart_view')
+
+
+@login_required
+def cart_view(request):
+    order = Order.objects.get(user=request.user, ordered=False)
+    return render(request, 'cart.html', {'order': order})
+
+
+def show_search(request, judul):
+    # Ambil semua buku
+    books = Book.objects.filter(title=judul)
+
+    form = SearchForm()
+
+    # Buat objek Product untuk setiaps buku
+    products = []
+    for book in books:
+        product = Product(
+            bookCode=book.bookCode,
+            title=book.title,
+            language=book.language,
+            firstName=book.firstName,
+            lastName=book.lastName,
+            year=book.year,
+            subjects=book.subjects,
+            category=book.category,
+            stock=25,
+            price=75000,
+        )
+        product.save()
+        products.append(product)
+
+    # Jika ada parameter kategori, filter produk berdasarkan kategori tersebut
+    selected_category = request.GET.get('category')
+    if selected_category:
+        products = [
+            product for product in products if selected_category in product.category.split('; ')]
+
+    # Baca file CSV dan buat kamus untuk URL gambar
+    image_map = {}
+    with open('main/bookImages.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            try:
+                image_map[int(row['bookCode'])] = row['image']
+            except KeyError as e:
+                print(f"KeyError: {e}. Row: {row}")
+
+    # Tambahkan URL gambar ke setiap produk jika ada di kamus
+    for product in products:
+        if product.bookCode in image_map:
+            product.image_url = image_map[product.bookCode]
+        else:
+            product.image_url = None
+
+    context = {
+        'name': request.user.username,
+        'products': products,
+        'form': form
+    }
+    return render(request, 'search.html', context)
+
+
+def get_item_json(request):
+    product_item = Product.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
     return redirect('/cart')
 
 @login_required

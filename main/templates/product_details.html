@@ -62,6 +62,7 @@
         color: white; /* Teks tetap putih saat dihover */
     }
 
+
     .btn-logout {
         background-color: #343a40;
         color: white;
@@ -247,6 +248,7 @@
     </div>
 </nav>
 
+<div class="container">
 <div class="container mt-5">
     <div class="product-details">
         <!-- Product Image -->
@@ -257,6 +259,9 @@
         <div class="product-details-content">
             <h2>{{ product.title }}</h2>
             <p class="price">Rp. {{ product.price }},-</p>
+            <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+            <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
+        </div>
             {% if user.is_authenticated %}
                 <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
             {% else %}
@@ -312,6 +317,5 @@
         {% endfor %}
     </div>
 </div>
-
-
 {% endblock content %}
+

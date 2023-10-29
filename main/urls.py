@@ -10,6 +10,9 @@ urlpatterns = [
     path('product/<int:product_id>/', product_details, name='product_details'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('add_to_cart/', add_to_cart, name='add_to_cart'),
+    path('remove_from_cart/', remove_from_cart, name='remove_from_cart'),
+    path('cart/', cart_view, name='cart_view'),
     path('add_to_cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('remove_from_cart/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
     path('cart/', cart_view, name='cart_view'),
@@ -21,4 +24,5 @@ urlpatterns = [
     path('json/', show_json, name='show_json'),
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
-]
+    path('get-item/', get_item_json, name='get_item_json'),
+    path('search/<str:judul>', show_search, name='show_search')

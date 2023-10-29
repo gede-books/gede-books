@@ -3,7 +3,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-
 class Product(models.Model):
     bookCode = models.IntegerField(null=True, blank=True)
     title = models.TextField(null=True, blank=True)
@@ -29,6 +28,9 @@ class Product(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
+
+    def get_total(self):
+        return sum(item.get_total_price() for item in self.orderitem_set.all())
     
     def get_total(self):
         return sum(item.get_total_price() for item in self.orderitem_set.all())
