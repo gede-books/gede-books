@@ -60,12 +60,12 @@
     <div class="container-fluid">
 
         <!-- Search Bar -->
-        <form class="form-inline my-2 my-lg-0 mr-auto position-relative">
-            <input class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
-            <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
+        <div class="form-inline my-2 my-lg-0 mr-auto position-relative">
+            <input id="search-book" class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
+            <button id="button-search-book" class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
                 <i class="fas fa-search"></i>
             </button>
-        </form>
+        </div>
 
         <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
@@ -134,5 +134,15 @@
       {% endfor %}        
     </div>
 </div>
+
+<script>
+    const input = document.getElementById("search-book");
+    const btn = document.getElementById("button-search-book");
+
+    btn.addEventListener("click", () => {
+        window.location.href=`/search/${input.value}`
+    })
+
+</script>
 
 {% endblock content %}

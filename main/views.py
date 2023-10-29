@@ -7,9 +7,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.urls import reverse
+from .forms import SearchForm
 
 from main.models import Product, Order, OrderItem
 from book.models import Book
+
 
 import datetime
 import csv
@@ -171,8 +173,59 @@ def cart_view(request):
     return render(request, 'cart.html', {'order': order})
 
 
-def book_search(request):
-    return render(request, 'search.html')
+def show_search(request, judul):
+    # Ambil semua buku
+    books = Book.objects.filter(title=judul)
+
+    form = SearchForm()
+
+    # Buat objek Product untuk setiaps buku
+    products = []
+    for book in books:
+        product = Product(
+            bookCode=book.bookCode,
+            title=book.title,
+            language=book.language,
+            firstName=book.firstName,
+            lastName=book.lastName,
+            year=book.year,
+            subjects=book.subjects,
+            category=book.category,
+            stock=25,
+            price=75000,
+        )
+        product.save()
+        products.append(product)
+
+    # Jika ada parameter kategori, filter produk berdasarkan kategori tersebut
+    selected_category = request.GET.get('category')
+    if selected_category:
+        products = [
+            product for product in products if selected_category in product.category.split('; ')]
+
+    # Baca file CSV dan buat kamus untuk URL gambar
+    image_map = {}
+    with open('main/bookImages.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            try:
+                image_map[int(row['bookCode'])] = row['image']
+            except KeyError as e:
+                print(f"KeyError: {e}. Row: {row}")
+
+    # Tambahkan URL gambar ke setiap produk jika ada di kamus
+    for product in products:
+        if product.bookCode in image_map:
+            product.image_url = image_map[product.bookCode]
+        else:
+            product.image_url = None
+
+    context = {
+        'name': request.user.username,
+        'products': products,
+        'form': form
+    }
+    return render(request, 'search.html', context)
 
 
 def get_item_json(request):
