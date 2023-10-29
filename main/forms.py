@@ -1,7 +1,7 @@
-from django import forms
+from django.forms import ModelForm
+from main.models import Checkout
 
-class CheckoutForm(forms.Form):
+class CheckoutForm(ModelForm):
     class Meta:
-        name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-        address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
-        payment_method = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class': 'form-control'}))
+        model = Checkout
+        fields = ['name', 'address', 'payment_method']

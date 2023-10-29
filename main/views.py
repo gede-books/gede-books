@@ -187,9 +187,8 @@ def show_json_by_id(request, id):
 
 @login_required
 def checkout_view(request):
-    if request.method == 'POST':
-        form = CheckoutForm(request.POST)
-        if form.is_valid():
+    form = CheckoutForm(request.POST)
+    if form.is_valid():
             name = form.cleaned_data.get('name')
             address = form.cleaned_data.get('address')
             payment_method = form.cleaned_data.get('payment_method')
@@ -203,12 +202,8 @@ def checkout_view(request):
             return HttpResponse(response_text, content_type='text/plain')
     else:
         form = CheckoutForm()
-    
-    context = {
-        'checkout_form': form
-    }
 
-    return render(request, 'cart.html', context)
+    return render(request, 'cart.html', {'form': form})
 
 @login_required
 def update_quantity(request):
