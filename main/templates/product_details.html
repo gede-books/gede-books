@@ -255,8 +255,20 @@
         <div class="product-details-content">
             <h2>{{ product.title }}</h2>
             <p class="price">Rp. {{ product.price }},-</p>
-            <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
-            <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
+            {% if user.is_authenticated %}
+                <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+            {% else %}
+                <a href="{% url 'main:login' %}">
+                    <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+                </a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
+            {% else %}
+                <a href="{% url 'main:login' %}">
+                    <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
+                </a>
+            {% endif %}
             <p class="card-text" style="margin-top: 10px;"><span style="color: gold;">&#9733;</span> {{ product.rating }}</p>
         </div>        
     </div>

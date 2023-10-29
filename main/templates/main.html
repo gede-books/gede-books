@@ -219,11 +219,25 @@
 </div>
 
 <script>
-    $('.dropdown').on('click', function (e) {
-        if ($(this).hasClass('show')) {
-            $(this).children('.dropdown-menu').toggleClass('show');
-            $(this).toggleClass('show');
-        }
+    $(document).ready(function () {
+        $('#productSearchForm').on('submit', function (e) {
+            e.preventDefault();
+            var query = $('[name="query"]').val();
+
+            $.ajax({
+                url: '{% url "main:show_main" %}',
+                type: 'POST',
+                data: {
+                    'query': query,
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function (data) {
+                    // Update halaman dengan data yang diterima
+                    // Sementara hanya log ke console
+                    console.log(data);
+                }
+            });
+        });
     });
 </script>
 {% endblock content %}

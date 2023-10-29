@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages  
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
@@ -15,10 +16,10 @@ from .forms import SearchForm
 import datetime
 import csv
 
-
+@csrf_exempt
 @login_required(login_url='/login')
 def show_main(request):
-    search_form = SearchForm(request.GET or None)
+    search_form = SearchForm(request.POST or None)
 
     # Ambil semua buku
     books = Book.objects.all()
@@ -41,8 +42,9 @@ def show_main(request):
         product.save()
         products.append(product)
 
-    # Jika ada parameter judul, filter produk berdasarkan judul tersebut
-    search_query = request.GET.get('query', '')
+    # Ambil parameter query dari URL atau dari POST jika ada
+    search_query = request.GET.get('query') or request.POST.get('query', '')
+
     if search_query:
         search_query_lower = search_query.lower()
         products = [product for product in products if search_query_lower in product.title.lower()]
@@ -51,6 +53,11 @@ def show_main(request):
     selected_category = request.GET.get('category')
     if selected_category:
         products = [product for product in products if selected_category in product.category]
+
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        # Buat respons untuk AJAX
+        titles = [product.title for product in products]
+        return JsonResponse({'titles': titles})
 
     # Ambil parameter sorting dari URL
     sort_by = request.GET.get('sort_by')
