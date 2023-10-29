@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -136,3 +139,58 @@
 </div>
 
 {% endblock content %}
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Search</title>
+  </head>
+  <body>
+    <div class="book-list"></div>
+
+    <script>
+      // Assume books.json has the following structure:
+      // {"pk": 98, "model": "book.book", "fields": {"bookCode": 156, "title": "..."}}
+      fetch("get-item/")
+        .then((response) => response.json())
+        .then((data) => {
+          const books = data.map((book) => book.fields); // Access the "fields" property
+
+          const bookList = document.querySelector(".book-list");
+
+          function renderBooks(filteredBooks) {
+            bookList.innerHTML = "";
+
+            filteredBooks.forEach((book) => {
+              const li = document.createElement("li");
+              li.textContent = `${book.title} by ${book.firstName} ${book.lastName}`;
+              bookList.appendChild(li);
+            });
+          }
+
+          const searchInput = document.querySelector(
+            ".form-control mr-sm-2 pl-4 pr-5"
+          );
+          const searchBtn = document.querySelector(
+            ".btn btn-outline-none position-absolute"
+          );
+
+          searchBtn.addEventListener("click", () => {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            let filteredBooks = [];
+
+            filteredBooks = books.filter(
+              (book) =>
+                book.title.toLowerCase().includes(searchTerm) ||
+                (book.firstName + " " + book.lastName)
+                  .toLowerCase()
+                  .includes(searchTerm)
+            );
+
+            renderBooks(filteredBooks);
+          });
+        });
+    </script>
+  </body>
+</html>
