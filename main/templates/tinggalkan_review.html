@@ -1,0 +1,76 @@
+{% block content %}
+<style>
+
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #dddfe2;
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #dddfe2;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .input-container {
+        text-align: center;
+    }
+
+    .input-container input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .input-container .submit-button {
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 12px 20px;
+        cursor: pointer;
+    }
+
+    .input-container .submit-button:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+
+<div class="container">
+    <h1>Add Review</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-container">
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <input type="text" name="rating" placeholder="Rating (1-5)">
+            <input type="text" name="review" placeholder="Review">
+            <button class="submit-button" type="submit">Add Review</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

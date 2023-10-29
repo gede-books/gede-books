@@ -15,6 +15,7 @@ urlpatterns = [
     path('checkout_cart/', checkout_cart, name='checkout_cart'),
     path('purchased_books/', purchased_books, name='purchased_books'),
     path('purchased_books_ajax/', purchased_books_ajax, name='purchased_books_ajax'),
+    path('tinggalkan_review/<int:id>', tinggalkan_review, name='tinggalkan_review'),
     path('xml/', show_xml, name='show_xml'),
     path('json/', show_json, name='show_json'),
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),

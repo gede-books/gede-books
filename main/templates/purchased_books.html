@@ -66,7 +66,7 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
-        <a href="{% url 'main:show_main' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
+        <a href="{% url 'main:purchased_books' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
         <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
 
         <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
@@ -129,45 +129,12 @@
                                 <p class="card-text">
                                     <span style="font-size: 13px; color: #444;">${orderedItem.category}</span>
                                 </p>
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal${index}">Tinggalkan Review</button>
+                                <a href="{% url 'main:tinggalkan_review' 9999 %}" class="btn btn-info" >Tinggalkan Review</a>
                             </div>
                         </div>
                     </div>
-                `;
+                `.replace('9999', orderedItem.id);
                 cardsContainer.innerHTML += card;
-
-                const modal = `
-                    <div class="modal" id="exampleModal${index}" tabindex="-1" aria-labelledby="exampleModalLabel${index}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel${index}">Tinggalkan Review</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="add-review-form">
-                                        {% csrf_token %}
-                                        <input type="text" name="rating" placeholder="Rating (1-5)">
-                                        <input type="text" name="description" placeholder="Description">
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Buat Review</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                document.body.insertAdjacentHTML('beforeend', modal);
-            });
-
-            document.addEventListener('click', event => {
-                if (event.target.classList.contains('review-button')) {
-                    const targetModalId = event.target.getAttribute('data-bs-target').replace('#', '');
-                    const myModal = new bootstrap.Modal(document.getElementById(targetModalId));
-                    myModal.show();
-                }
             });
         })
         .catch(error => console.error('Error:', error));

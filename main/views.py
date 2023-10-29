@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
+from main.forms import ReviewForm
 
-from main.models import Product, Order, OrderItem
+from main.models import Product, Order, OrderItem, ReviewProduct
 from book.models import Book
 
 import datetime
@@ -92,10 +93,13 @@ def product_details(request, product_id):
     else:
         product.image_url = None
 
+    reviews=ReviewProduct.objects.filter(product=product)
+    print(reviews)
     context = {
         'name': request.user.username,
         'last_login': request.COOKIES['last_login'],
         'product': product,
+        'reviews':reviews
     }
 
     return render(request, 'product_details.html', context)
@@ -219,6 +223,7 @@ def purchased_books_ajax(request):
                 image_url = None
 
             book_data = {
+                'id': order_item.product.id,
                 'title': order_item.product.title,
                 'price': order_item.product.price,
                 'category': order_item.product.category,
@@ -229,6 +234,26 @@ def purchased_books_ajax(request):
             purchased_books.append(book_data)
 
     return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
+
+@login_required
+def tinggalkan_review(request, id):
+    form = ReviewForm(request.POST or None)
+    product = get_object_or_404(Product, pk=id)
+    print(ReviewProduct.objects.filter(product=product))
+    if form.is_valid() and request.method == "POST":
+        review = form.save(commit=False)
+        review.product = product
+        review.user = request.user
+        review.save()
+        product.update_average_rating()
+        return HttpResponseRedirect(reverse('main:purchased_books'))
+    
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, 'tinggalkan_review.html', context)
 
 def show_xml(request):
     data = Product.objects.all()
