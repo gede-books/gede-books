@@ -6,7 +6,7 @@ Great Educational, Diverse, and Entertaining Books <br>
 ![Jekyll site CI](https://github.com/gede-books/gede-books/workflows/Jekyll%20site%20CI/badge.svg)
 <br>
 <br>
-Link APK: https://gedebooks-a07-tk.pbp.cs.ui.ac.id/ 
+Link APK: http://gedebooks-a07-tk.pbp.cs.ui.ac.id/ 
 
 <br>
 
