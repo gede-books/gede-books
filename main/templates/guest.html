@@ -43,16 +43,16 @@
         text-align: center; /* agar teks di tengah-tengah nav-item */
     }
 
-     .btn-logout {
+     .btn-login {
         background-color: #343a40;
         color: white;
         border: 1px solid black;
         transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Gaya tombol Logout saat dihover */
-    .btn-logout:hover {
-        background-color: red; /* Warna merah saat dihover */
+    /* Gaya tombol Login saat dihover */
+    .btn-login:hover {
+        background-color: darkgreen; /* Warna merah saat dihover */
         color: white; /* Teks tetap putih saat dihover */
     }
 
@@ -91,25 +91,21 @@
     <div class="container-fluid">
 
         <!-- Search Bar -->
-        <form class="form-inline my-2 my-lg-0 mr-auto position-relative" id="productSearchForm" method="get" action="{% url 'main:show_main' %}">
+        <form class="form-inline my-2 my-lg-0 mr-auto position-relative" id="productSearchForm" method="get" action="{% url 'main:show_guest' %}">
             <input class="form-control mr-sm-2 pl-4 pr-5 search-input" type="text" name="{{ search_form.query.name }}" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
             <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
                 <i class="fas fa-search"></i>
             </button>
         </form>
 
-        <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
+        <a class="navbar-brand" href="{% url 'main:show_guest' %}">GEDE-Books</a>
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
         <!-- Right side items -->
         <ul class="navbar-nav">
             <div class="ms-auto d-flex align-items-center">
-                <span style="margin-right: 15px;">
-                    Welcome, <strong>{{ name }}</strong>!</br>
-                    <small>Last login: {{ last_login }}</small>
-                </span>
-                <a href="{% url 'main:logout' %}">
-                  <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
+                <a href="{% url 'main:login' %}">
+                  <button class="btn btn-outline-success btn-login" type="submit" style="border-color: darkgreen;">Login</button>
                 </a>
             </div>
         </ul>
@@ -121,49 +117,49 @@
         <ul class="navbar-nav mr-auto d-flex justify-content-between">
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Politics' %}active{% endif %}" 
-                   href="{% if selected_category == 'Politics' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Politics{% endif %}">
+                   href="{% if selected_category == 'Politics' %}{% url 'main:show_guest' %}{% else %}{% url 'main:show_guest' %}?category=Politics{% endif %}">
                    Politics
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Children\'s Literature' %}active{% endif %}" 
-                   href="{% if selected_category == 'Children\'s Literature' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Children's Literature{% endif %}">
+                   href="{% if selected_category == 'Children\'s Literature' %}{% url 'main:show_guest' %}{% else %}{% url 'main:show_guest' %}?category=Children's Literature{% endif %}">
                    Children
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Adventure' %}active{% endif %}" 
-                   href="{% if selected_category == 'Adventure' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Adventure{% endif %}">
+                   href="{% if selected_category == 'Adventure' %}{% url 'main:show_guest' %}{% else %}{% url 'main:show_guest' %}?category=Adventure{% endif %}">
                    Adventure
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Horror' %}active{% endif %}" 
-                   href="{% if selected_category == 'Horror' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Horror{% endif %}">
+                   href="{% if selected_category == 'Horror' %}{% url 'main:show_guest' %}{% else %}{% url 'main:show_guest' %}?category=Horror{% endif %}">
                    Horror
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Movie Books' %}active{% endif %}" 
-                   href="{% if selected_category == 'Movie Books' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Movie Books{% endif %}">
+                   href="{% if selected_category == 'Movie Books' %}{% url 'main:show_guest' %}{% else %}{% url 'main:show_guest' %}?category=Movie Books{% endif %}">
                    Movie
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Science Fiction' %}active{% endif %}" 
-                   href="{% if selected_category == 'Science Fiction' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Science Fiction{% endif %}">
+                   href="{% if selected_category == 'Science Fiction' %}{% url 'main:show_guest' %}{% else %}{% url 'main:show_guest' %}?category=Science Fiction{% endif %}">
                    Sci-Fi
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Humorous stories' %}active{% endif %}" 
-                   href="{% if selected_category == 'Humorous stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Humorous stories{% endif %}">
+                   href="{% if selected_category == 'Humorous stories' %}{% url 'main:show_guest' %}{% else %}{% url 'main:show_guest' %}?category=Humorous stories{% endif %}">
                    Humorous
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Love stories' %}active{% endif %}" 
-                   href="{% if selected_category == 'Love stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Love stories{% endif %}">
+                   href="{% if selected_category == 'Love stories' %}{% url 'main:show_guest' %}{% else %}{% url 'main:show_guest' %}?category=Love stories{% endif %}">
                    Love
                 </a>
             </li>
@@ -219,25 +215,11 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('#productSearchForm').on('submit', function (e) {
-            e.preventDefault();
-            var query = $('[name="query"]').val();
-
-            $.ajax({
-                url: '{% url "main:show_main" %}',
-                type: 'POST',
-                data: {
-                    'query': query,
-                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
-                },
-                success: function (data) {
-                    // Update halaman dengan data yang diterima
-                    // Sementara hanya log ke console
-                    console.log(data);
-                }
-            });
-        });
+    $('.dropdown').on('click', function (e) {
+        if ($(this).hasClass('show')) {
+            $(this).children('.dropdown-menu').toggleClass('show');
+            $(this).toggleClass('show');
+        }
     });
 </script>
 {% endblock content %}
