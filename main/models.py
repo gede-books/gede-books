@@ -30,3 +30,8 @@ class OrderItem(models.Model):
 
     def get_total_price(self):
         return self.product.price * self.quantity
+    
+class Checkout(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.TextField()
+    payment_method = models.CharField(max_length=20)

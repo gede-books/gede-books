@@ -11,7 +11,7 @@ from django.urls import reverse
 
 from main.models import Product, Order, OrderItem
 from book.models import Book
-from .forms import SearchForm
+from .forms import SearchForm, CheckoutForm
 
 import datetime
 import csv
@@ -237,10 +237,11 @@ def logout_user(request):
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(user=request.user, ordered=False)
-    order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
-    order_item.quantity += 1
+    order_item, created_order_item = OrderItem.objects.get_or_create(order=order, product=product)
+    if not created_order_item:
+        order_item.quantity +=1
     order_item.save()
-    return redirect('cart_view')
+    return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke keranjang'})
 
 @login_required
 def remove_from_cart(request, product_id):
@@ -254,10 +255,37 @@ def remove_from_cart(request, product_id):
         order_item.delete()
     return redirect('cart_view')
 
+def get_item_json(request):
+    product_item = Product.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+    return redirect('/cart')
+
 @login_required
 def cart_view(request):
-    order = Order.objects.get(user=request.user, ordered=False)
-    return render(request, 'cart.html', {'order': order})
+    try:
+        order = Order.objects.get(user=request.user, ordered=False)
+        total = order.get_total()
+        order_items = OrderItem.objects.filter(order=order)
+
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        for order_item in order_items:
+            if order_item.product.bookCode in image_map:
+                order_item.product.image_url = image_map[order_item.product.bookCode]
+            else:
+                order_item.product.image_url = None
+            order_item.total_price = order_item.get_total_price()
+
+        return render(request, 'cart.html', {'orders': order_items, 'total':total, 'name': request.user.username})
+    except:
+        return render(request, 'cart.html', {'total':0, 'name': request.user.username})
 
 def show_xml(request):
     data = Product.objects.all()
@@ -275,3 +303,55 @@ def show_xml_by_id(request, id):
 def show_json_by_id(request, id):
     data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+@login_required
+def update_quantity(request):
+    if request.method == 'POST':
+        item_id = request.POST.get('item_id')
+        new_quantity = int(request.POST.get('new_quantity'))
+
+        try:
+            order = Order.objects.get(user=request.user, ordered=False)
+            order_item = order.orderitem_set.get(product_id=item_id)
+            order_item.quantity = new_quantity
+            order_item.save()
+            return JsonResponse({'status': 'success', 'new_quantity': new_quantity})
+        except:
+            return JsonResponse({'status': 'error'}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+
+@login_required
+def checkout_cart(request):
+    order = Order.objects.get(user=request.user, ordered=False)
+    order.ordered = True
+    order.save()
+    return redirect('/purchased_books')
+
+@login_required
+def checkout_view(request):
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            address = form.cleaned_data.get('address')
+            payment_method = form.cleaned_data.get('payment_method')
+
+            context = {
+                'name': request.user.username if request.user.is_authenticated else None,
+                'address': address,
+                'payment_method': payment_method,
+                'is_submitted': True
+            }
+            try:
+                current_order = Order.objects.get(user=request.user, ordered=False)
+                current_order_items = OrderItem.objects.filter(order=current_order)
+                current_order_items.delete()
+                current_order.ordered = True
+                current_order.save()
+
+            except Order.DoesNotExist:
+                pass
+            return render(request, 'checkout.html', context)
+    else:
+        form = CheckoutForm()
+
+    return render(request, 'checkout.html', {'form': form})
