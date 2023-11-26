@@ -6,6 +6,9 @@ Great Educational, Diverse, and Entertaining Books <br>
 ![Jekyll site CI](https://github.com/gede-books/gede-books/workflows/Jekyll%20site%20CI/badge.svg)
 <br>
 <br>
+Link APK: https://gedebooks-a07-tk.pbp.cs.ui.ac.id/ 
+
+<br>
 
 ## [Anggota Kelompok] 🧑‍🤝‍🧑
 Proyek ini dibuat oleh kelompok A07 yang beranggotakan sebagai berikut:
