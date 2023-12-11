@@ -1,3 +1,85 @@
+{% extends 'base.html' %} {% block content %}
+<div class="col-12">
+  <!-- Main Content -->
+  <div class="row">
+    <div class="col-12 mt-3 text-center text-uppercase">
+      <h2>Shopping Cart</h2>
+    </div>
+  </div>
+
+  <main class="row">
+    <div class="col-12 bg-white py-3 mb-3">
+      <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-10 mx-auto table-responsive">
+          <form class="row">
+            <div class="col-12">
+              <table class="table table-striped table-hover table-sm">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Amount</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <img src="images/image-2.jpg" class="img-fluid" />
+                      Optoma 4K HDR Projector
+                    </td>
+                    <td>$1,500</td>
+                    <td>
+                      <input type="number" min="1" value="1" />
+                    </td>
+                    <td>$1,500</td>
+                    <td>
+                      <button class="btn btn-link text-danger">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img src="images/image-3.jpg" class="img-fluid" />
+                      HP Envy Specter 360
+                    </td>
+                    <td>$2,500</td>
+                    <td>
+                      <input type="number" min="1" value="1" />
+                    </td>
+                    <td>$2,500</td>
+                    <td>
+                      <button class="btn btn-link text-danger">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th colspan="3" class="text-right">Total</th>
+                    <th>$4,000</th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="col-12 text-right">
+              <button class="btn btn-outline-secondary me-3" type="submit">
+                Update
+              </button>
+              <a href="#" class="btn btn-outline-success">Checkout</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Main Content -->
+</div>
+{% endblock content %}
 {% extends 'base.html' %}
 
 {% block content %}
@@ -23,6 +105,10 @@
         font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 15px;
         font-style: italic;
+<<<<<<< HEAD
+=======
+        font-weight:normal;
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -34,6 +120,7 @@
         text-decoration: underline;
     }
 
+<<<<<<< HEAD
     .navbar-nav.mr-auto {
         width: 100%;
     }
@@ -43,6 +130,8 @@
         text-align: center; /* agar teks di tengah-tengah nav-item */
     }
 
+=======
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
     .btn-logout {
         background-color: #343a40;
         color: white;
@@ -56,10 +145,13 @@
         color: white; /* Teks tetap putih saat dihover */
     }
 
+<<<<<<< HEAD
     body.modal-open {
         overflow: visible !important;
     }
 
+=======
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
     .star {
         color: gold;
     }
@@ -71,6 +163,10 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-first">
     <div class="container-fluid">
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
         <!-- Search Bar -->
         <form class="form-inline my-2 my-lg-0 mr-auto position-relative">
             <input class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
@@ -78,10 +174,17 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
+<<<<<<< HEAD
+=======
+        <a href="{% url 'main:purchased_books' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
+        <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
+
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
         <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
         <!-- Right side items -->
+<<<<<<< HEAD
         <ul class="navbar-nav ml-auto">
             <div class="d-flex justify-content-end">
                 <a href="{% url 'main:cart_view' %}" class="mr-3">
@@ -89,6 +192,12 @@
                 </a>
                 <span style="margin-right: 15px;">
                     Hi, <strong>{{ name }}</strong>!</br>
+=======
+        <ul class="navbar-nav">
+            <div class="ms-auto d-flex align-items-center">
+                <span style="margin-right: 15px;">
+                    Welcome, <strong>{{ name }}</strong>!</br>
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
                 </span>
                 <a href="{% url 'main:logout' %}">
                   <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
@@ -99,7 +208,11 @@
 </nav>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
+<<<<<<< HEAD
         <ul class="navbar-nav mr-auto d-flex justify-content-between">
+=======
+        <ul class="navbar-nav mr-auto">
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Politics' %}active{% endif %}" 
                    href="{% if selected_category == 'Politics' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Politics{% endif %}">
@@ -109,6 +222,7 @@
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Children\'s Literature' %}active{% endif %}" 
                    href="{% if selected_category == 'Children\'s Literature' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Children's Literature{% endif %}">
+<<<<<<< HEAD
                    Children
                 </a>
             </li>
@@ -146,6 +260,9 @@
                 <a class="nav-link {% if selected_category == 'Love stories' %}active{% endif %}" 
                    href="{% if selected_category == 'Love stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Love stories{% endif %}">
                    Love
+=======
+                   Children's Literature
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
                 </a>
             </li>
             <!-- Other items... -->
@@ -188,6 +305,7 @@
                                     <th></th>
                                 </tr>
                                 </thead>
+<<<<<<< HEAD
                                 <tbody>
                                 {% for item in order.orderitem_set.all %}
                                 <tr data-item-id="{{ item.product.id }}">
@@ -234,6 +352,24 @@
                                 <tfoot>
                                 <tr>
                                     <th colspan="3" class="text-right">Total</th>
+=======
+                                {% for order in orders %}
+                                    <tbody>
+                                        <td>
+                                            {% if order.product.image_url %}
+                                                <img class="card-img-top" src="{{ order.product.image_url }}" alt="{{ order.product.title }}" style="height: 50px; width: 50px; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                            {% endif %}
+                                            {{ order.product.title }}
+                                        </td>
+                                        <td>Rp. {{ order.product.price }},-</td>
+                                        <td>{{ order.quantity }}</td>
+                                        <td>Rp. {{ order.total_price }},-</td>
+                                    </tbody>
+                                {% endfor %}
+                                <tfoot>
+                                <tr>
+                                    <th colspan="3" class="text-right">Total</th>
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
                                     <th>Rp. {{ total }},-</th>
                                     <th></th>
                                 </tr>
@@ -241,10 +377,15 @@
                             </table>
                         </div>
                         <div class="col-12 text-right">
+<<<<<<< HEAD
                             <a href="{% url 'main:show_main' %}" class="btn btn-outline-none">Back</a>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkoutModal">
                                 Checkout
                             </button>
+=======
+                            <button class="btn btn-outline-secondary me-3" type="submit">Update</button>
+                            <a href="{% url 'main:checkout_cart'%}" class="btn btn-outline-success">Checkout</a>
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
                         </div>
                     </form>
                 </div>
@@ -286,6 +427,7 @@
     </main>
     <!-- Main Content -->
 </div>
+<<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
@@ -343,4 +485,6 @@
 });
 
 </script>
+=======
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
 {% endblock content %}

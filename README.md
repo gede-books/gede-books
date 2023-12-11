@@ -8,8 +8,11 @@ Great Educational, Diverse, and Entertaining Books <br>
 <br>
 Link APK: http://gedebooks-a07-tk.pbp.cs.ui.ac.id/ 
 
+<<<<<<< HEAD
 <br>
 
+=======
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
 ## [Anggota Kelompok] 🧑‍🤝‍🧑
 Proyek ini dibuat oleh kelompok A07 yang beranggotakan sebagai berikut:
 - [Wahyu Sahrijal](https://github.com/whysyahrizal) (2106752142)
@@ -42,7 +45,11 @@ Berikut adalah daftar modul yang diimplementasikan:
     - Pengaturan _authentication_ dan _authorization_ untuk _Logged-In User_. _Guest_, dan Admin
     - _User_ maupun _guest_ dapat melakukan _search_ judul buku
     - _User_ yang sudah login dapat menambah, mengurangi, dan menghapus produk buku ke dalam _wishlist_
+<<<<<<< HEAD
     - Admin dapat mengelola stok, harga, dan detail buku
+=======
+    - - Admin dapat mengelola stok, harga, dan detail buku
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
 - **Modul Keranjang & _Checkout_ Buku — Lidwina Eurora Firsta Nobella**
     - _User_ yang sudah login dapat memasukkan produk buku ke dalam keranjang
     - _User_ dapat menambah, mengurangi, dan menghapus produk buku yang ada di keranjang

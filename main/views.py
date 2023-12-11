@@ -8,10 +8,16 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
+from main.forms import ReviewForm
+from .forms import SearchForm
 
-from main.models import Product, Order, OrderItem
+from main.models import Product, Order, OrderItem, ReviewProduct
 from book.models import Book
+<<<<<<< HEAD
 from .forms import SearchForm, CheckoutForm
+=======
+from .forms import SearchForm
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
 
 import datetime
 import csv
@@ -241,10 +247,18 @@ def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(user=request.user, ordered=False)
     order_item, created_order_item = OrderItem.objects.get_or_create(order=order, product=product)
+<<<<<<< HEAD
     if not created_order_item:
         order_item.quantity +=1
     order_item.save()
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke keranjang'})
+=======
+    print(created_order_item)
+    if not created_order_item:
+        order_item.quantity +=1
+    order_item.save()
+    return redirect('/cart')
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
 
 @login_required
 def remove_from_cart(request, product_id):
@@ -258,10 +272,13 @@ def remove_from_cart(request, product_id):
         order_item.delete()
     return redirect('cart_view')
 
+<<<<<<< HEAD
 def get_item_json(request):
     product_item = Product.objects.all()
     return HttpResponse(serializers.serialize('json', product_item))
     return redirect('/cart')
+=======
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
 
 @login_required
 def cart_view(request):
@@ -290,6 +307,162 @@ def cart_view(request):
     except:
         return render(request, 'cart.html', {'total':0, 'name': request.user.username})
 
+
+def show_search(request, judul):
+    # Ambil semua buku
+    books = Book.objects.filter(title=judul)
+
+    form = SearchForm()
+
+    # Buat objek Product untuk setiaps buku
+    products = []
+    for book in books:
+        product = Product(
+            bookCode=book.bookCode,
+            title=book.title,
+            language=book.language,
+            firstName=book.firstName,
+            lastName=book.lastName,
+            year=book.year,
+            subjects=book.subjects,
+            category=book.category,
+            stock=25,
+            price=75000,
+        )
+        product.save()
+        products.append(product)
+
+    # Jika ada parameter kategori, filter produk berdasarkan kategori tersebut
+    selected_category = request.GET.get('category')
+    if selected_category:
+        products = [
+            product for product in products if selected_category in product.category.split('; ')]
+
+    # Baca file CSV dan buat kamus untuk URL gambar
+    image_map = {}
+    with open('main/bookImages.csv', 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            try:
+                image_map[int(row['bookCode'])] = row['image']
+            except KeyError as e:
+                print(f"KeyError: {e}. Row: {row}")
+
+    # Tambahkan URL gambar ke setiap produk jika ada di kamus
+    for product in products:
+        if product.bookCode in image_map:
+            product.image_url = image_map[product.bookCode]
+        else:
+            product.image_url = None
+
+    context = {
+        'name': request.user.username,
+        'products': products,
+        'form': form
+    }
+    return render(request, 'search.html', context)
+
+
+def get_item_json(request):
+    product_item = Product.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+    return redirect('/cart')
+
+@login_required
+def cart_view(request):
+    try:
+        order = Order.objects.get(user=request.user, ordered=False)
+        total = order.get_total()
+        order_items = OrderItem.objects.filter(order=order)
+
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        # Add the image_url and total price to the product
+        for order_item in order_items:
+            if order_item.product.bookCode in image_map:
+                order_item.product.image_url = image_map[order_item.product.bookCode]
+            else:
+                order_item.product.image_url = None
+            order_item.total_price = order_item.get_total_price()
+
+        return render(request, 'cart.html', {'orders': order_items, 'total':total, 'name': request.user.username})
+    except:
+        return render(request, 'cart.html', {'total':0, 'name': request.user.username})
+
+
+@login_required
+def checkout_cart(request):
+    order = Order.objects.get(user=request.user, ordered=False)
+    order.ordered = True
+    order.save()
+    return redirect('/purchased_books')
+
+@login_required
+def purchased_books(request):
+    return render(request, 'purchased_books.html')
+                    
+@login_required
+def purchased_books_ajax(request):
+    orders = Order.objects.filter(user=request.user, ordered=True)
+    purchased_books = []
+    for order in orders:
+        order_items = OrderItem.objects.filter(order=order)
+        for order_item in order_items:
+            image_map = {}
+            with open('main/bookImages.csv', 'r') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    try:
+                        image_map[int(row['bookCode'])] = row['image']
+                    except KeyError as e:
+                        print(f"KeyError: {e}. Row: {row}")
+
+            image_url=None
+            if order_item.product.bookCode in image_map:
+                image_url = image_map[order_item.product.bookCode]
+            else:
+                image_url = None
+
+            book_data = {
+                'id': order_item.product.id,
+                'title': order_item.product.title,
+                'price': order_item.product.price,
+                'category': order_item.product.category,
+                'rating': order_item.product.rating,
+                'image_url': image_url
+            }
+
+            purchased_books.append(book_data)
+
+    return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
+
+@login_required
+def tinggalkan_review(request, id):
+    form = ReviewForm(request.POST or None)
+    product = get_object_or_404(Product, pk=id)
+    print(ReviewProduct.objects.filter(product=product))
+    if form.is_valid() and request.method == "POST":
+        review = form.save(commit=False)
+        review.product = product
+        review.user = request.user
+        review.save()
+        product.update_average_rating()
+        return HttpResponseRedirect(reverse('main:purchased_books'))
+    
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, 'tinggalkan_review.html', context)
+
 def show_xml(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
@@ -306,6 +479,7 @@ def show_xml_by_id(request, id):
 def show_json_by_id(request, id):
     data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+<<<<<<< HEAD
 
 @login_required
 def update_quantity(request):
@@ -358,3 +532,5 @@ def checkout_view(request):
         form = CheckoutForm()
 
     return render(request, 'checkout.html', {'form': form})
+=======
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675

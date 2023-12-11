@@ -4,5 +4,8 @@ whitenoise
 psycopg2-binary
 requests
 urllib3
+<<<<<<< HEAD
 django-environ
 django-cors-headers
+=======
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
