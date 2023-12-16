@@ -39,26 +39,13 @@
         text-decoration: underline;
     }
 
-    .btn-logout {
-        background-color: #343a40;
-        color: white;
-        border: 1px solid black;
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-    /* Gaya tombol Logout saat dihover */
-    .btn-logout:hover {
-        background-color: red; /* Warna merah saat dihover */
-        color: white; /* Teks tetap putih saat dihover */
-    }
-
     .login-box {
         max-width: 400px;
         margin: 50px auto;
-        border: 1px solid #ddd;
+        border: 1px solid lightgray;
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
     }
 
     .login-box h2 {
@@ -111,6 +98,8 @@
     {% endif %}
 
     <p class="text-center">Apakah kamu belum mempunyai akun? <a href="{% url 'main:register' %}">Segera daftar sekarang!</a></p>
+    <p class="text-center">Atau</p>
+    <p class="text-center"><a href="{% url 'main:show_guest' %}">Masuk dengan mode guest</a></p>
 </div>
 
 {% endblock content %}

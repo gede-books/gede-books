@@ -23,7 +23,6 @@
         font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 15px;
         font-style: italic;
-        font-weight:normal;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -33,6 +32,15 @@
     .nav-link.active {
         color: white;
         text-decoration: underline;
+    }
+
+    .navbar-nav.mr-auto {
+        width: 100%;
+    }
+
+    .navbar-nav.mr-auto .nav-item {
+        flex: 1;
+        text-align: center; /* agar teks di tengah-tengah nav-item */
     }
 
     .btn-logout {
@@ -48,6 +56,10 @@
         color: white; /* Teks tetap putih saat dihover */
     }
 
+    body.modal-open {
+        overflow: visible !important;
+    }
+
     .star {
         color: gold;
     }
@@ -59,7 +71,6 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-first">
     <div class="container-fluid">
-
         <!-- Search Bar -->
         <form class="form-inline my-2 my-lg-0 mr-auto position-relative">
             <input class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
@@ -67,17 +78,17 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
-        <a href="{% url 'main:purchased_books' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
-        <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
-
         <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
         <!-- Right side items -->
-        <ul class="navbar-nav">
-            <div class="ms-auto d-flex align-items-center">
+        <ul class="navbar-nav ml-auto">
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'main:cart_view' %}" class="mr-3">
+                    <i class="fas fa-shopping-cart" style="color: black;"></i>
+                </a>
                 <span style="margin-right: 15px;">
-                    Welcome, <strong>{{ name }}</strong>!</br>
+                    Hi, <strong>{{ name }}</strong>!</br>
                 </span>
                 <a href="{% url 'main:logout' %}">
                   <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
@@ -88,7 +99,7 @@
 </nav>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto d-flex justify-content-between">
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Politics' %}active{% endif %}" 
                    href="{% if selected_category == 'Politics' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Politics{% endif %}">
@@ -98,7 +109,43 @@
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Children\'s Literature' %}active{% endif %}" 
                    href="{% if selected_category == 'Children\'s Literature' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Children's Literature{% endif %}">
-                   Children's Literature
+                   Children
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Adventure' %}active{% endif %}" 
+                   href="{% if selected_category == 'Adventure' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Adventure{% endif %}">
+                   Adventure
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Horror' %}active{% endif %}" 
+                   href="{% if selected_category == 'Horror' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Horror{% endif %}">
+                   Horror
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Movie Books' %}active{% endif %}" 
+                   href="{% if selected_category == 'Movie Books' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Movie Books{% endif %}">
+                   Movie
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Science Fiction' %}active{% endif %}" 
+                   href="{% if selected_category == 'Science Fiction' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Science Fiction{% endif %}">
+                   Sci-Fi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Humorous stories' %}active{% endif %}" 
+                   href="{% if selected_category == 'Humorous stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Humorous stories{% endif %}">
+                   Humorous
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Love stories' %}active{% endif %}" 
+                   href="{% if selected_category == 'Love stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Love stories{% endif %}">
+                   Love
                 </a>
             </li>
             <!-- Other items... -->
@@ -113,11 +160,21 @@
             <h2>Shopping Cart</h2>
         </div>
     </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="col-12 mt-3 text-center align-items-center" style="color: white;font-size: x-large;display: flex;align-items: center;justify-content: center;height: 50px;">
+        Keranjang Belanja
+    </div>
+</nav>
+
+
+<div class="col-12">
 
     <main class="row">
         <div class="col-12 bg-white py-3 mb-3">
             <div class="row">
-                <div class="col-lg-6 col-md-8 col-sm-10 mx-auto table-responsive">
+                <div class="col-lg-8 col-md-10 mx-auto table-responsive">
                     <form class="row">
                         <div class="col-12">
                             <table class="table table-striped table-hover table-sm">
@@ -128,8 +185,39 @@
                                     <th>Qty</th>
                                     <th>Amount</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
+                                <tbody>
+                                {% for item in order.orderitem_set.all %}
+                                <tr data-item-id="{{ item.product.id }}">
+                                    <td>
+                                        {{ item.product.image_url }}
+                                        {{ item.product.title }}
+                                    </td>
+                                    <td>
+                                        Rp. {{ item.product.price }}
+                                    </td>
+                                    <td>
+                                        <span class="quantity">{{ item.quantity }}</span>
+                                    </td>
+                                    <td>
+                                        Rp. {{ item.get_total_price }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary add-quantity">+</button>
+                                        <button class="btn btn-sm btn-danger remove-quantity">-</button>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'main:remove_from_cart' item.product.id %}" class="btn btn-link text-danger"><i class="fas fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th colspan="3" class="text-right">Total</th>
+                                    <th>Rp. {{ order.get_total }}</th>
                                 {% for order in orders %}
                                     <tbody>
                                         <td>
@@ -153,15 +241,106 @@
                             </table>
                         </div>
                         <div class="col-12 text-right">
-                            <button class="btn btn-outline-secondary me-3" type="submit">Update</button>
-                            <a href="{% url 'main:checkout_cart'%}" class="btn btn-outline-success">Checkout</a>
+                            <a href="{% url 'main:show_main' %}" class="btn btn-outline-none">Back</a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkoutModal">
+                                Checkout
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
+            <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'main:checkout_view' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="{{ form.name.id_for_label }}">Name:</label>
+                                <input type="text" name="{{ form.name.name }}" class="form-control" id="{{ form.name.id_for_label }}" value="{{ form.name.value|default:'' }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.address.id_for_label }}">Address:</label>
+                                <textarea name="{{ form.address.name }}" class="form-control" id="{{ form.address.id_for_label }}">{{ form.address.value|default:'' }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.payment_method.id_for_label }}">Payment Method:</label>
+                                <input type="text" name="{{ form.payment_method.name }}" class="form-control" id="{{ form.payment_method.id_for_label }}" value="{{ form.payment_method.value|default:'' }}">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Proceed</button>
+                            </div>
+                        </form>                
+                    </div>                      
+                  </div>
+                </div>
+            </div>
         </div>
-
     </main>
     <!-- Main Content -->
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('.add-quantity').click(function() {
+        var row = $(this).closest('tr');
+        var itemId = row.data('item-id');
+        var quantity = row.find('.quantity').text();
+        quantity = parseInt(quantity) + 1;
+        
+        $.ajax({
+            url: '/update_quantity/',
+            method: 'POST',
+            data: {
+                'item_id': itemId,
+                'new_quantity': quantity,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                row.find('.quantity').text(quantity);
+            },
+            error: function(response) {
+                alert("Terjadi kesalahan saat mengubah jumlah item.");
+            }
+        });
+    });
+
+    $('.remove-quantity').click(function() {
+        var row = $(this).closest('tr');
+        var itemId = row.data('item-id');
+        var quantity = row.find('.quantity').text();
+        quantity = parseInt(quantity) - 1;
+        
+        if (quantity <= 1) {
+            quantity = 1;
+        }
+        
+        $.ajax({
+            url: '/update_quantity/', 
+            method: 'POST',
+            data: {
+                'item_id': itemId,
+                'new_quantity': quantity,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+
+                row.find('.quantity').text(quantity);
+            },
+            error: function(response) {
+                alert("Terjadi kesalahan saat mengubah jumlah item.");
+            }
+        });
+    });
+});
+
+</script>
 {% endblock content %}
