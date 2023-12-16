@@ -94,7 +94,6 @@ def product_details(request, product_id):
         product.image_url = None
 
     reviews=ReviewProduct.objects.filter(product=product)
-    print(reviews)
     context = {
         'name': request.user.username,
         'last_login': request.COOKIES['last_login'],
