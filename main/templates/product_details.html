@@ -171,6 +171,9 @@
         <!-- Right side items -->
         <ul class="navbar-nav">
             <div class="ms-auto d-flex align-items-center">
+                <a href="{% url 'main:wishlist_view' %}" class="mr-3">
+                    <i class="fas fa-heart" style="color: black;"></i>
+                </a>
                 <a href="{% url 'main:cart_view' %}" class="mr-3">
                     <i class="fas fa-shopping-cart" style="color: black;"></i>
                 </a>
@@ -266,7 +269,7 @@
                 </a>
             {% endif %}
             {% if user.is_authenticated %}
-                <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
+                <button class="btn btn-outline-success btn-wishlist" data-product-id="{{ product.id }}">♡ Wishlist</button>
             {% else %}
                 <a href="{% url 'main:login' %}">
                     <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
@@ -299,7 +302,7 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
     $(".add-to-cart-btn").click(function(event) {
     event.preventDefault(); 
@@ -320,6 +323,29 @@
         },
         error: function(response) {
             alert("Terjadi kesalahan saat menambahkan ke keranjang.");
+        }
+    });
+});
+
+    $(".btn-wishlist").click(function(event) {
+    event.preventDefault(); 
+
+    const productId = $(this).data('product-id');
+
+    $.ajax({
+        url: '{% url "main:add_to_wishlist" product.id %}',
+        method: 'POST',
+        data: {
+            'product_id': productId,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            if(response.status === 'success') {
+                alert(response.message);
+            }
+        },
+        error: function(response) {
+            alert("Terjadi kesalahan saat menambahkan ke wishlist.");
         }
     });
 });
