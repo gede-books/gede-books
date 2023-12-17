@@ -155,29 +155,75 @@
         </ul>
     </div>
 </nav>
-<div style="text-align: center;">
-    <br>
-    {% if is_submitted %}
-        <h2>Terima kasih, {{ name }}!</h2>
-        <br>
-        <h3>Detail pemesanan Anda:</h3>
-        <h4>Alamat Pengiriman: {{ address }}</h4>
-        <h4>Metode Pembayaran: {{ payment_method }}</h4>
-        <br>
-        <h2>Pesanan Anda sedang diproses. Silakan cek email Anda untuk informasi lebih lanjut.</h2>
-    {% else %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
-    {% endif %}
-    <br>
-    <a href="{% url 'main:show_main' %}" class="back-button">
-        <button class="btn btn-logout">
-            Kembali ke Beranda
-        </button>
-    </a>
+
+<div class="col-12">
+    <!-- Main Content -->
+    <div class="row">
+        <div class="col-12 mt-3 text-center text-uppercase">
+            <h2>Shopping Wishlist</h2>
+        </div>
+    </div>
+</nav>
+
+<div class="col-12">
+    <main class="row">
+        <div class="col-12 bg-white py-3 mb-3">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto table-responsive">
+                    <form class="row">
+                        <div class="col-12">
+                            {% if wishlists %}
+                                <table class="table table-striped table-hover table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    {% for wishlist in wishlists %}
+                                    <tbody>
+                                        <td>
+                                            {% if wishlist.product.image_url %}
+                                                <img class="card-img-top" src="{{ wishlist.product.image_url }}" alt="{{ wishlist.product.title }}" style="height: 50px; width: 50px; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                            {% endif %}
+                                            {{ wishlist.product.title }}
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'main:remove_from_wishlist' wishlist.product.id %}" class="btn btn-link text-danger"><i class="fas fa-times"></i></a>
+                                        </td>
+                                        <!-- <td>Rp. {{ order.product.price }},-</td>
+                                        <td>{{ order.quantity }}</td>
+                                        <td>Rp. {{ order.total_price }},-</td> -->
+                                    </tbody>
+                                    {% endfor %}
+                                    <tfoot>
+                                        <tr>
+                                            <!-- <th colspan="3" class="text-right">Total</th>
+                                            <th>Rp. {{ order.get_total }}</th> -->
+                                        </tr>
+                                    <tfoot>
+                                </table>
+                            {% else %}
+                                <h4 class="text-center">Wishlist kamu masih kosong, nih!</h4>
+                            {% endif %}
+                        </div>
+                        <div class="col-12 text-right">
+                            <a href="{% url 'main:show_main' %}" class="btn btn-outline-none">Back</a>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'main:cart_view' %}'">
+                                Go To Cart
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Main Content -->
 </div>
 
+<!-- Your existing script imports and script code -->
+<script>
+    // Your existing script code here
+</script>
 {% endblock content %}

@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
 
-from main.models import Product, Order, OrderItem
+from main.models import Product, Order, OrderItem, Wishlist, WishlistItem
 from book.models import Book
 from .forms import SearchForm, CheckoutForm
 
@@ -289,6 +289,52 @@ def cart_view(request):
         return render(request, 'cart.html', {'orders': order_items, 'total':total, 'name': request.user.username})
     except:
         return render(request, 'cart.html', {'total':0, 'name': request.user.username})
+
+@login_required
+def add_to_wishlist(request, product_id):
+    product = Product.objects.get(id=product_id)
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user, wishlisted=False)
+    wishlist_item, created_wishlist_item = WishlistItem.objects.get_or_create(wishlist=wishlist, product=product)
+
+    wishlist_item.save()
+    return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke wishlist'})
+
+@login_required
+def remove_from_wishlist(request, product_id):
+    product = Product.objects.get(id=product_id)
+    wishlist = Wishlist.objects.get(user=request.user, wishlisted=False)
+    wishlist_item = WishlistItem.objects.get(wishlist=wishlist, product=product)
+    wishlist_item.delete()
+    return redirect('main:wishlist_view')
+
+@login_required
+def wishlist_view(request):
+    try:
+        wishlist = Wishlist.objects.get(user=request.user, wishlisted=False)
+        # total = order.get_total()
+        wishlist_items = WishlistItem.objects.filter(wishlist=wishlist)
+
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        for wishlist_item in wishlist_items:
+            if wishlist_item.product.bookCode in image_map:
+                wishlist_item.product.image_url = image_map[wishlist_item.product.bookCode]
+            else:
+                wishlist_item.product.image_url = None
+            # wishlist_item.total_price = wishlist_item.get_total_price()
+
+        # return render(request, 'cart.html', {'orders': order_items, 'total':total, 'name': request.user.username})
+        return render(request, 'wishlist.html', {'wishlists': wishlist_items, 'name': request.user.username})
+    except:
+        # return render(request, 'cart.html', {'total':0, 'name': request.user.username})
+        return render(request, 'wishlist.html', {'name': request.user.username})
 
 def show_xml(request):
     data = Product.objects.all()
