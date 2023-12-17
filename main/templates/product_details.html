@@ -160,35 +160,25 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
-        <a href="{% url 'main:purchased_books' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
-        <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
-
-        {% if user.is_authenticated %}
-            <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
-        {% else %}
-            <a class="navbar-brand" href="{% url 'main:show_guest' %}">GEDE-Books</a>
-        {% endif %}
+        <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
         <!-- Right side items -->
         <ul class="navbar-nav">
             <div class="ms-auto d-flex align-items-center">
+                <a href="{% url 'main:purchased_books' %}" class="mr-3">
+                    <i class="fas fa-archive" style="color: black;"></i>
+                </a>
                 <a href="{% url 'main:cart_view' %}" class="mr-3">
                     <i class="fas fa-shopping-cart" style="color: black;"></i>
                 </a>
-                {% if request.user.is_authenticated %}
-                    <span style="margin-right: 15px;">
-                        Happy shopping, <strong>{{ name }}</strong>!</br>
-                        <small>Last login: {{ last_login }}</small>
-                    </span>
-                    <a href="{% url 'main:logout' %}">
-                      <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
-                    </a>
-                {% else %}
-                    <a href="{% url 'main:login' %}">
-                      <button class="btn btn-outline-success btn-login" type="submit" style="border-color: darkgreen;">Login</button>
-                    </a>
-                {% endif %}
+                <span style="margin-right: 15px;">
+                    Welcome, <strong>{{ name }}</strong>!</br>
+                    <small>Last login: {{ last_login }}</small>
+                </span>
+                <a href="{% url 'main:logout' %}">
+                  <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
+                </a>
             </div>
         </ul>
     </div>

@@ -1,6 +1,6 @@
 from django.urls import path
 from main.views import show_main, show_guest, register, product_details, login_user, logout_user, add_to_cart, remove_from_cart, cart_view, show_xml, show_json, show_xml_by_id, show_json_by_id
-from main.views import get_item_json, checkout_cart, checkout_view, update_quantity, purchased_books, purchased_books_ajax, tinggalkan_review
+from main.views import get_item_json, checkout_view, update_quantity, purchased_books, purchased_books_ajax, tinggalkan_review
 
 app_name = 'main'
 
@@ -16,7 +16,6 @@ urlpatterns = [
     path('add_to_cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('remove_from_cart/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
     path('cart/', cart_view, name='cart_view'),
-    path('checkout_cart/', checkout_cart, name='checkout_cart'),
     path('purchased_books/', purchased_books, name='purchased_books'),
     path('purchased_books_ajax/', purchased_books_ajax, name='purchased_books_ajax'),
     path('tinggalkan_review/<int:id>', tinggalkan_review, name='tinggalkan_review'),
@@ -25,7 +24,6 @@ urlpatterns = [
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
     path('get-item/', get_item_json, name='get_item_json'),
-    path('checkout_cart/', checkout_cart, name='checkout_cart'),
     path('checkout/', checkout_view, name='checkout_view'),
     path('update_quantity/', update_quantity, name='update_quantity'),
 ]

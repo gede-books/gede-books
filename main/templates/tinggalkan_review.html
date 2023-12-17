@@ -1,5 +1,72 @@
+{% extends 'base.html' %}
+
 {% block content %}
+<link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
 <style>
+    .navbar-first {
+        height: 100px;
+    }
+
+    .navbar-brand {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bolder;
+        font-size: 40px;
+    }
+
+    .navbar-tagline {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 15px;
+        font-style: italic;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 72px;
+    }
+
+    .nav-link.active {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .navbar-nav.mr-auto {
+        width: 100%;
+    }
+
+    .navbar-nav.mr-auto .nav-item {
+        flex: 1;
+        text-align: center; /* agar teks di tengah-tengah nav-item */
+    }
+
+    .btn-logout {
+        background-color: #343a40;
+        color: white;
+        border: 1px solid black;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Gaya tombol Logout saat dihover */
+    .btn-logout:hover {
+        background-color: red; /* Warna merah saat dihover */
+        color: white; /* Teks tetap putih saat dihover */
+    }
+
+    body.modal-open {
+        overflow: visible !important;
+    }
+
+    .star {
+        color: gold;
+    }
+
+    .rating-text {
+        margin-left: 5px;
+    }
 
     .container {
         max-width: 500px;
@@ -59,6 +126,95 @@
     
 </style>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-first">
+    <div class="container-fluid">
+
+        <!-- Search Bar -->
+        <form class="form-inline my-2 my-lg-0 mr-auto position-relative" id="productSearchForm" method="get" action="{% url 'main:show_main' %}">
+            <input class="form-control mr-sm-2 pl-4 pr-5 search-input" type="text" name="{{ search_form.query.name }}" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
+            <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
+        <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
+
+        <!-- Right side items -->
+        <ul class="navbar-nav">
+            <div class="ms-auto d-flex align-items-center">
+                <a href="{% url 'main:purchased_books' %}" class="mr-3">
+                    <i class="fas fa-archive" style="color: black;"></i>
+                </a>
+                <a href="{% url 'main:cart_view' %}" class="mr-3">
+                    <i class="fas fa-shopping-cart" style="color: black;"></i>
+                </a>
+                <span style="margin-right: 15px;">
+                    Welcome, <strong>{{ name }}</strong>!</br>
+                    <small>Last login: {{ last_login }}</small>
+                </span>
+                <a href="{% url 'main:logout' %}">
+                  <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
+                </a>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav mr-auto d-flex justify-content-between">
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Politics' %}active{% endif %}" 
+                   href="{% if selected_category == 'Politics' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Politics{% endif %}">
+                   Politics
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Children\'s Literature' %}active{% endif %}" 
+                   href="{% if selected_category == 'Children\'s Literature' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Children's Literature{% endif %}">
+                   Children
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Adventure' %}active{% endif %}" 
+                   href="{% if selected_category == 'Adventure' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Adventure{% endif %}">
+                   Adventure
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Horror' %}active{% endif %}" 
+                   href="{% if selected_category == 'Horror' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Horror{% endif %}">
+                   Horror
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Movie Books' %}active{% endif %}" 
+                   href="{% if selected_category == 'Movie Books' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Movie Books{% endif %}">
+                   Movie
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Science Fiction' %}active{% endif %}" 
+                   href="{% if selected_category == 'Science Fiction' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Science Fiction{% endif %}">
+                   Sci-Fi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Humorous stories' %}active{% endif %}" 
+                   href="{% if selected_category == 'Humorous stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Humorous stories{% endif %}">
+                   Humorous
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Love stories' %}active{% endif %}" 
+                   href="{% if selected_category == 'Love stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Love stories{% endif %}">
+                   Love
+                </a>
+            </li>
+            <!-- Other items... -->
+        </ul>
+    </div>
+</nav>
 <div class="container">
     <h1>Add Review</h1>
 

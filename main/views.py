@@ -204,7 +204,7 @@ def product_details(request, product_id):
 @csrf_exempt
 def register(request):
     form = UserCreationForm()
-
+    
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -301,15 +301,8 @@ def cart_view(request):
 
 
 @login_required
-def checkout_cart(request):
-    order = Order.objects.get(user=request.user, ordered=False)
-    order.ordered = True
-    order.save()
-    return redirect('/purchased_books')
-
-@login_required
 def purchased_books(request):
-    return render(request, 'purchased_books.html')
+    return render(request, 'purchased_books.html', {'name': request.user.username})
                     
 @login_required
 def purchased_books_ajax(request):
@@ -332,6 +325,12 @@ def purchased_books_ajax(request):
                 image_url = image_map[order_item.product.bookCode]
             else:
                 image_url = None
+            
+            try:
+                ReviewProduct.objects.get(user=request.user, product=order_item.product)
+                reviewed = True
+            except:
+                reviewed = False
 
             book_data = {
                 'id': order_item.product.id,
@@ -339,18 +338,19 @@ def purchased_books_ajax(request):
                 'price': order_item.product.price,
                 'category': order_item.product.category,
                 'rating': order_item.product.rating,
-                'image_url': image_url
+                'image_url': image_url,
+                'reviewed': reviewed
             }
 
             purchased_books.append(book_data)
-
+            
     return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
 
 @login_required
 def tinggalkan_review(request, id):
     form = ReviewForm(request.POST or None)
     product = get_object_or_404(Product, pk=id)
-    print(ReviewProduct.objects.filter(product=product))
+    
     if form.is_valid() and request.method == "POST":
         review = form.save(commit=False)
         review.product = product
@@ -400,13 +400,6 @@ def update_quantity(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
 @login_required
-def checkout_cart(request):
-    order = Order.objects.get(user=request.user, ordered=False)
-    order.ordered = True
-    order.save()
-    return redirect('/purchased_books')
-
-@login_required
 def checkout_view(request):
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
@@ -423,7 +416,7 @@ def checkout_view(request):
             try:
                 current_order = Order.objects.get(user=request.user, ordered=False)
                 current_order_items = OrderItem.objects.filter(order=current_order)
-                current_order_items.delete()
+                # current_order_items.delete()
                 current_order.ordered = True
                 current_order.save()
 

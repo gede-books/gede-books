@@ -1,4 +1,5 @@
-from django.forms import *
+from django.forms import ModelForm
+from django import forms
 from main.models import ReviewProduct, Checkout
 
 class ReviewForm(ModelForm):
