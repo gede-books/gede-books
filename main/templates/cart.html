@@ -84,6 +84,9 @@
         <!-- Right side items -->
         <ul class="navbar-nav ml-auto">
             <div class="d-flex justify-content-end">
+                <a href="{% url 'main:wishlist_view' %}" class="mr-3">
+                    <i class="fas fa-heart" style="color: black;"></i>
+                </a>
                 <a href="{% url 'main:cart_view' %}" class="mr-3">
                     <i class="fas fa-shopping-cart" style="color: black;"></i>
                 </a>
@@ -223,124 +226,4 @@
                                         <td>
                                             {% if order.product.image_url %}
                                                 <img class="card-img-top" src="{{ order.product.image_url }}" alt="{{ order.product.title }}" style="height: 50px; width: 50px; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                                            {% endif %}
-                                            {{ order.product.title }}
-                                        </td>
-                                        <td>Rp. {{ order.product.price }},-</td>
-                                        <td>{{ order.quantity }}</td>
-                                        <td>Rp. {{ order.total_price }},-</td>
-                                    </tbody>
-                                {% endfor %}
-                                <tfoot>
-                                <tr>
-                                    <th colspan="3" class="text-right">Total</th>
-                                    <th>Rp. {{ total }},-</th>
-                                    <th></th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <div class="col-12 text-right">
-                            <a href="{% url 'main:show_main' %}" class="btn btn-outline-none">Back</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkoutModal">
-                                Checkout
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="{% url 'main:checkout_view' %}">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="{{ form.name.id_for_label }}">Name:</label>
-                                <input type="text" name="{{ form.name.name }}" class="form-control" id="{{ form.name.id_for_label }}" value="{{ form.name.value|default:'' }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="{{ form.address.id_for_label }}">Address:</label>
-                                <textarea name="{{ form.address.name }}" class="form-control" id="{{ form.address.id_for_label }}">{{ form.address.value|default:'' }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="{{ form.payment_method.id_for_label }}">Payment Method:</label>
-                                <input type="text" name="{{ form.payment_method.name }}" class="form-control" id="{{ form.payment_method.id_for_label }}" value="{{ form.payment_method.value|default:'' }}">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Proceed</button>
-                            </div>
-                        </form>                
-                    </div>                      
-                  </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <!-- Main Content -->
-</div>
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function() {
-    $('.add-quantity').click(function() {
-        var row = $(this).closest('tr');
-        var itemId = row.data('item-id');
-        var quantity = row.find('.quantity').text();
-        quantity = parseInt(quantity) + 1;
-        
-        $.ajax({
-            url: '/update_quantity/',
-            method: 'POST',
-            data: {
-                'item_id': itemId,
-                'new_quantity': quantity,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-                row.find('.quantity').text(quantity);
-            },
-            error: function(response) {
-                alert("Terjadi kesalahan saat mengubah jumlah item.");
-            }
-        });
-    });
-
-    $('.remove-quantity').click(function() {
-        var row = $(this).closest('tr');
-        var itemId = row.data('item-id');
-        var quantity = row.find('.quantity').text();
-        quantity = parseInt(quantity) - 1;
-        
-        if (quantity <= 1) {
-            quantity = 1;
-        }
-        
-        $.ajax({
-            url: '/update_quantity/', 
-            method: 'POST',
-            data: {
-                'item_id': itemId,
-                'new_quantity': quantity,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-
-                row.find('.quantity').text(quantity);
-            },
-            error: function(response) {
-                alert("Terjadi kesalahan saat mengubah jumlah item.");
-            }
-        });
-    });
-});
-
-</script>
-{% endblock content %}
+      

@@ -92,12 +92,27 @@
     <div class="container-fluid">
 
         <!-- Search Bar -->
+<<<<<<< HEAD
+=======
+        <div class="form-inline my-2 my-lg-0 mr-auto position-relative">
+            <input id="search-book" class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
+            <button id="button-search-book" class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
         <form class="form-inline my-2 my-lg-0 mr-auto position-relative" id="productSearchForm" method="get" action="{% url 'main:show_main' %}">
             <input class="form-control mr-sm-2 pl-4 pr-5 search-input" type="text" name="{{ search_form.query.name }}" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
             <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
                 <i class="fas fa-search"></i>
             </button>
         </form>
+<<<<<<< HEAD
+=======
+        <a href="{% url 'main:purchased_books' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
+        <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
+
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
         <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
@@ -203,6 +218,15 @@
                         {% if product.image_url %}
                             <img class="card-img-top" src="{{ product.image_url }}" alt="{{ product.title }}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
                         {% endif %}
+<<<<<<< HEAD
+=======
+                    </div>
+                <div class="card h-100 product-card" style="border: 1px solid lightgray; border-radius: 8px;">
+                    <div class="card-img-container" style="background-color: lightgrey; height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                        {% if product.image_url %}
+                            <img class="card-img-top" src="{{ product.image_url }}" alt="{{ product.title }}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                        {% endif %}
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
                     </div>                    
                     <div class="card-body">
                         <p class="card-title">{{ product.title }}</p>
@@ -225,6 +249,18 @@
 </div>
 
 <script>
+<<<<<<< HEAD
+=======
+    const input = document.getElementById("search-book");
+    const btn = document.getElementById("button-search-book");
+
+    btn.addEventListener("click", () => {
+        window.location.href=`/search/${input.value}`
+    })
+
+</script>
+
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
     $(document).ready(function () {
         $('#productSearchForm').on('submit', function (e) {
             e.preventDefault();

@@ -20,5 +20,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+<<<<<<< HEAD
     path('api/books/', include('book.urls')),
+    path('auth/', include('authentication.urls')),
 ]
+=======
+    path('api/books/', include('book.urls')),
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675

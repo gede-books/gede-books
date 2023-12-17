@@ -160,6 +160,8 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
+        <a href="{% url 'main:purchased_books' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
+        <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
 
         {% if user.is_authenticated %}
             <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
@@ -177,6 +179,8 @@
                 <a href="{% url 'main:cart_view' %}" class="mr-3">
                     <i class="fas fa-shopping-cart" style="color: black;"></i>
                 </a>
+=======
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
                 {% if request.user.is_authenticated %}
                     <span style="margin-right: 15px;">
                         Happy shopping, <strong>{{ name }}</strong>!</br>
@@ -251,6 +255,10 @@
     </div>
 </nav>
 
+<<<<<<< HEAD
+=======
+<div class="container">
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
 <div class="container mt-5">
     <div class="product-details">
         <!-- Product Image -->
@@ -261,8 +269,16 @@
         <div class="product-details-content">
             <h2>{{ product.title }}</h2>
             <p class="price">Rp. {{ product.price }},-</p>
+<<<<<<< HEAD
             {% if user.is_authenticated %}
                 <button class="btn btn-outline-success btn-keranjang add-to-cart-btn" data-product-id="{{ product.id }}">+ Keranjang</button>
+=======
+            <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+            <button class="btn btn-outline-success btn-wishlist">♡ Wishlist</button>
+        </div>
+            {% if user.is_authenticated %}
+                <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
             {% else %}
                 <a href="{% url 'main:login' %}">
                     <button class="btn btn-outline-success btn-keranjang">+ Keranjang</button>
@@ -299,6 +315,7 @@
         {% else %}
             <p>{{ product.category }}</p>
         {% endif %}
+<<<<<<< HEAD
     </div>
 </div>
 
@@ -351,4 +368,24 @@
 });
 
 </script>
+=======
+    </div>
+    <h3>Reviews</h3>
+    <div class="card-group mt-3">
+        {% for review in reviews %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.user.username }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ review.timestamp }}</h6>
+                    <p class="card-text">{{ review.review }}</p>
+                    <p class="card-text">Rating: {{ review.rating }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>No reviews yet.</p>
+        {% endfor %}
+    </div>
+</div>
+>>>>>>> cb2366c7a62a2fb7e99ca49eabc216a9ed650675
 {% endblock content %}
+

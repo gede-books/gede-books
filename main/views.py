@@ -9,7 +9,11 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
 
+<<<<<<< HEAD
 from main.models import Product, Order, OrderItem, Wishlist, WishlistItem
+=======
+from main.models import Product, Order, OrderItem, Wishlist
+>>>>>>> 9a63bcb9bbda8b6e95590ea795f502f2b1331832
 from book.models import Book
 from .forms import SearchForm, CheckoutForm
 
@@ -254,6 +258,38 @@ def remove_from_cart(request, product_id):
     else:
         order_item.delete()
     return redirect('cart_view')
+
+@login_required
+def add_to_wishlist(request, product_id):
+    product = Product.objects.get(id=product_id)
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+    wishlist.products.add(product)
+    return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke wishlist'})
+
+@login_required
+def remove_from_wishlist(request, product_id):
+    product = Product.objects.get(id=product_id)
+    order = Order.objects.get(user=request.user, ordered=False)
+    order_item = OrderItem.objects.get(order=order, product=product)
+    if order_item.quantity > 1:
+        order_item.quantity -= 1
+        order_item.save()
+    else:
+        order_item.delete()
+    return redirect('cart_view')
+
+@login_required
+def wishlist_view(request):
+    try:
+        wishlist = Wishlist.objects.get(user=request.user)
+        wishlist_items = wishlist.products.all()
+
+        image_map = {}
+
+        print(wishlist_items)
+        return render(request, 'wishlist.html', {'wishlist': wishlist_items, 'name': request.user.username})
+    except:
+        return render(request, 'wishlist.html', {'name': request.user.username})
 
 @login_required
 def cart_view(request):
