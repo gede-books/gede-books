@@ -35,3 +35,11 @@ class Checkout(models.Model):
     name = models.CharField(max_length=100)
     address = models.TextField()
     payment_method = models.CharField(max_length=20)
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    wishlisted = models.BooleanField(default=False)
+
+class WishlistItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
