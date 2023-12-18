@@ -236,6 +236,7 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+@csrf_exempt
 @login_required
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -246,6 +247,7 @@ def add_to_cart(request, product_id):
     order_item.save()
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke keranjang'})
 
+@csrf_exempt
 @login_required
 def remove_from_cart(request, product_id):
     product = Product.objects.get(id=product_id)

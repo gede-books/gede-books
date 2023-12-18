@@ -33,6 +33,7 @@ PRODUCTION = env.bool('PRODUCTION', False)
 DEBUG = True
 
 ALLOWED_HOSTS = ["https://gedebooks-a07-tk.pbp.cs.ui.ac.id",
+                 "http://gedebooks-a07-tk.pbp.cs.ui.ac.id",
                  "localhost"]
 
 
