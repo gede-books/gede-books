@@ -67,13 +67,71 @@
     .rating-text {
         margin-left: 5px;
     }
+
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #dddfe2;
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #dddfe2;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .input-container {
+        text-align: center;
+    }
+
+    .input-container input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .input-container .submit-button {
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 12px 20px;
+        cursor: pointer;
+    }
+
+    .input-container .submit-button:hover {
+        background-color: #0056b3;
+    }
+    
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-first">
     <div class="container-fluid">
+
         <!-- Search Bar -->
-        <form class="form-inline my-2 my-lg-0 mr-auto position-relative">
-            <input class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
+        <form class="form-inline my-2 my-lg-0 mr-auto position-relative" id="productSearchForm" method="get" action="{% url 'main:show_main' %}">
+            <input class="form-control mr-sm-2 pl-4 pr-5 search-input" type="text" name="{{ search_form.query.name }}" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
             <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
                 <i class="fas fa-search"></i>
             </button>
@@ -82,8 +140,8 @@
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
         <!-- Right side items -->
-        <ul class="navbar-nav ml-auto">
-            <div class="d-flex justify-content-end">
+        <ul class="navbar-nav">
+            <div class="ms-auto d-flex align-items-center">
                 <a href="{% url 'main:purchased_books' %}" class="mr-3">
                     <i class="fas fa-archive" style="color: black;"></i>
                 </a>
@@ -94,7 +152,8 @@
                     <i class="fas fa-shopping-cart" style="color: black;"></i>
                 </a>
                 <span style="margin-right: 15px;">
-                    Hi, <strong>{{ name }}</strong>!</br>
+                    Welcome, <strong>{{ name }}</strong>!</br>
+                    <small>Last login: {{ last_login }}</small>
                 </span>
                 <a href="{% url 'main:logout' %}">
                   <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
@@ -103,6 +162,7 @@
         </ul>
     </div>
 </nav>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <ul class="navbar-nav mr-auto d-flex justify-content-between">
@@ -158,29 +218,18 @@
         </ul>
     </div>
 </nav>
-<div style="text-align: center;">
-    <br>
-    {% if is_submitted %}
-        <h2>Terima kasih, {{ name }}!</h2>
-        <br>
-        <h3>Detail pemesanan Anda:</h3>
-        <h4>Alamat Pengiriman: {{ address }}</h4>
-        <h4>Metode Pembayaran: {{ payment_method }}</h4>
-        <br>
-        <h2>Pesanan Anda sedang diproses. Silakan cek email Anda untuk informasi lebih lanjut.</h2>
-    {% else %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
-    {% endif %}
-    <br>
-    <a href="{% url 'main:show_main' %}" class="back-button">
-        <button class="btn btn-logout">
-            Kembali ke Beranda
-        </button>
-    </a>
+<div class="container">
+    <h1>Add Review</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-container">
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <input type="text" name="rating" placeholder="Rating (1-5)">
+            <input type="text" name="review" placeholder="Review">
+            <button class="submit-button" type="submit">Add Review</button>
+        </div>
+    </form>
 </div>
 
 {% endblock content %}
