@@ -422,6 +422,7 @@ def purchased_books(request):
     return render(request, 'purchased_books.html', {'name': request.user.username, 'last_login': last_login})
                     
 @login_required
+@csrf_exempt
 def purchased_books_ajax(request):
     orders = Order.objects.filter(user=request.user, ordered=True)
     purchased_books = []
@@ -467,6 +468,7 @@ def purchased_books_ajax(request):
     return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
 
 @login_required
+@csrf_exempt
 def tinggalkan_review(request, id):
     form = ReviewForm(request.POST or None)
     product = get_object_or_404(Product, pk=id)
