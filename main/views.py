@@ -9,11 +9,9 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
 
-from main.forms import ReviewForm
-from main.models import Product, Order, OrderItem, ReviewProduct
+from main.models import Product, Order, OrderItem, Wishlist, WishlistItem
 from book.models import Book
-from main.forms import CheckoutForm
-from .forms import SearchForm
+from .forms import SearchForm, CheckoutForm
 
 import datetime
 import csv
@@ -200,6 +198,7 @@ def product_details(request, product_id):
 
     return render(request, 'product_details.html', context)
 
+@csrf_exempt
 def register(request):
     form = UserCreationForm()
 
@@ -212,6 +211,7 @@ def register(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
+@csrf_exempt
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -229,6 +229,7 @@ def login_user(request):
     context = {}
     return render(request, 'login.html', context)
 
+@csrf_exempt
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:login'))
@@ -236,17 +237,18 @@ def logout_user(request):
     return response
 
 @login_required
+@csrf_exempt
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(user=request.user, ordered=False)
     order_item, created_order_item = OrderItem.objects.get_or_create(order=order, product=product)
-    print(created_order_item)
     if not created_order_item:
         order_item.quantity +=1
     order_item.save()
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke keranjang'})
 
 @login_required
+@csrf_exempt
 def remove_from_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order = Order.objects.get(user=request.user, ordered=False)
@@ -256,73 +258,7 @@ def remove_from_cart(request, product_id):
         order_item.save()
     else:
         order_item.delete()
-    return redirect('main:cart_view')
-
-
-@login_required
-def cart_view(request):
-    order, created = Order.objects.get_or_create(user=request.user, ordered=False)
-    context = {
-        'name': request.user.username,
-        'order': order
-    }
-    return render(request, 'cart.html', context)
-
-
-def show_search(request, judul):
-    # Ambil semua buku
-    books = Book.objects.filter(title=judul)
-
-    form = SearchForm()
-
-    # Buat objek Product untuk setiaps buku
-    products = []
-    for book in books:
-        product = Product(
-            bookCode=book.bookCode,
-            title=book.title,
-            language=book.language,
-            firstName=book.firstName,
-            lastName=book.lastName,
-            year=book.year,
-            subjects=book.subjects,
-            category=book.category,
-            stock=25,
-            price=75000,
-        )
-        product.save()
-        products.append(product)
-
-    # Jika ada parameter kategori, filter produk berdasarkan kategori tersebut
-    selected_category = request.GET.get('category')
-    if selected_category:
-        products = [
-            product for product in products if selected_category in product.category.split('; ')]
-
-    # Baca file CSV dan buat kamus untuk URL gambar
-    image_map = {}
-    with open('main/bookImages.csv', 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            try:
-                image_map[int(row['bookCode'])] = row['image']
-            except KeyError as e:
-                print(f"KeyError: {e}. Row: {row}")
-
-    # Tambahkan URL gambar ke setiap produk jika ada di kamus
-    for product in products:
-        if product.bookCode in image_map:
-            product.image_url = image_map[product.bookCode]
-        else:
-            product.image_url = None
-
-    context = {
-        'name': request.user.username,
-        'products': products,
-        'form': form
-    }
-    return render(request, 'search.html', context)
-
+    return redirect('cart_view')
 
 def get_item_json(request):
     product_item = Product.objects.all()
@@ -330,6 +266,7 @@ def get_item_json(request):
     return redirect('/cart')
 
 @login_required
+@csrf_exempt
 def cart_view(request):
     try:
         order = Order.objects.get(user=request.user, ordered=False)
@@ -345,7 +282,6 @@ def cart_view(request):
                 except KeyError as e:
                     print(f"KeyError: {e}. Row: {row}")
 
-        # Add the image_url and total price to the product
         for order_item in order_items:
             if order_item.product.bookCode in image_map:
                 order_item.product.image_url = image_map[order_item.product.bookCode]
@@ -357,72 +293,54 @@ def cart_view(request):
     except:
         return render(request, 'cart.html', {'total':0, 'name': request.user.username})
 
+@login_required
+@csrf_exempt
+def add_to_wishlist(request, product_id):
+    product = Product.objects.get(id=product_id)
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user, wishlisted=False)
+    wishlist_item, created_wishlist_item = WishlistItem.objects.get_or_create(wishlist=wishlist, product=product)
+
+    wishlist_item.save()
+    return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke wishlist'})
 
 @login_required
-def checkout_cart(request):
-    order = Order.objects.get(user=request.user, ordered=False)
-    order.ordered = True
-    order.save()
-    return redirect('/purchased_books')
+@csrf_exempt
+def remove_from_wishlist(request, product_id):
+    product = Product.objects.get(id=product_id)
+    wishlist = Wishlist.objects.get(user=request.user, wishlisted=False)
+    wishlist_item = WishlistItem.objects.get(wishlist=wishlist, product=product)
+    wishlist_item.delete()
+    return redirect('main:wishlist_view')
 
 @login_required
-def purchased_books(request):
-    return render(request, 'purchased_books.html')
-                    
-@login_required
-def purchased_books_ajax(request):
-    orders = Order.objects.filter(user=request.user, ordered=True)
-    purchased_books = []
-    for order in orders:
-        order_items = OrderItem.objects.filter(order=order)
-        for order_item in order_items:
-            image_map = {}
-            with open('main/bookImages.csv', 'r') as file:
-                reader = csv.DictReader(file)
-                for row in reader:
-                    try:
-                        image_map[int(row['bookCode'])] = row['image']
-                    except KeyError as e:
-                        print(f"KeyError: {e}. Row: {row}")
+@csrf_exempt
+def wishlist_view(request):
+    try:
+        wishlist = Wishlist.objects.get(user=request.user, wishlisted=False)
+        # total = order.get_total()
+        wishlist_items = WishlistItem.objects.filter(wishlist=wishlist)
 
-            image_url=None
-            if order_item.product.bookCode in image_map:
-                image_url = image_map[order_item.product.bookCode]
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        for wishlist_item in wishlist_items:
+            if wishlist_item.product.bookCode in image_map:
+                wishlist_item.product.image_url = image_map[wishlist_item.product.bookCode]
             else:
-                image_url = None
+                wishlist_item.product.image_url = None
+            # wishlist_item.total_price = wishlist_item.get_total_price()
 
-            book_data = {
-                'id': order_item.product.id,
-                'title': order_item.product.title,
-                'price': order_item.product.price,
-                'category': order_item.product.category,
-                'rating': order_item.product.rating,
-                'image_url': image_url
-            }
-
-            purchased_books.append(book_data)
-
-    return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
-
-@login_required
-def tinggalkan_review(request, id):
-    form = ReviewForm(request.POST or None)
-    product = get_object_or_404(Product, pk=id)
-    print(ReviewProduct.objects.filter(product=product))
-    if form.is_valid() and request.method == "POST":
-        review = form.save(commit=False)
-        review.product = product
-        review.user = request.user
-        review.save()
-        product.update_average_rating()
-        return HttpResponseRedirect(reverse('main:purchased_books'))
-    
-    context = {
-        'form': form,
-        'product': product,
-    }
-
-    return render(request, 'tinggalkan_review.html', context)
+        # return render(request, 'cart.html', {'orders': order_items, 'total':total, 'name': request.user.username})
+        return render(request, 'wishlist.html', {'wishlists': wishlist_items, 'name': request.user.username})
+    except:
+        # return render(request, 'cart.html', {'total':0, 'name': request.user.username})
+        return render(request, 'wishlist.html', {'name': request.user.username})
 
 def show_xml(request):
     data = Product.objects.all()
@@ -442,26 +360,7 @@ def show_json_by_id(request, id):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 @login_required
-def checkout_view(request):
-    form = CheckoutForm(request.POST)
-    if form.is_valid():
-            name = form.cleaned_data.get('name')
-            address = form.cleaned_data.get('address')
-            payment_method = form.cleaned_data.get('payment_method')
-
-            response_text = f"Terima kasih, {name}!\n"
-            response_text += f"Detail pemesanan Anda:\n"
-            response_text += f"Alamat Pengiriman: {address}\n"
-            response_text += f"Metode Pembayaran: {payment_method}\n"
-            response_text += "Pesanan Anda sedang diproses. Silakan cek email Anda untuk informasi lebih lanjut."
-
-            return HttpResponse(response_text, content_type='text/plain')
-    else:
-        form = CheckoutForm()
-
-    return render(request, 'cart.html', {'form': form})
-
-@login_required
+@csrf_exempt
 def update_quantity(request):
     if request.method == 'POST':
         item_id = request.POST.get('item_id')
@@ -476,3 +375,41 @@ def update_quantity(request):
         except:
             return JsonResponse({'status': 'error'}, status=400)
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+
+@login_required
+@csrf_exempt
+def checkout_cart(request):
+    order = Order.objects.get(user=request.user, ordered=False)
+    order.ordered = True
+    order.save()
+    return redirect('/purchased_books')
+
+@login_required
+@csrf_exempt
+def checkout_view(request):
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            address = form.cleaned_data.get('address')
+            payment_method = form.cleaned_data.get('payment_method')
+
+            context = {
+                'name': request.user.username if request.user.is_authenticated else None,
+                'address': address,
+                'payment_method': payment_method,
+                'is_submitted': True
+            }
+            try:
+                current_order = Order.objects.get(user=request.user, ordered=False)
+                current_order_items = OrderItem.objects.filter(order=current_order)
+                current_order_items.delete()
+                current_order.ordered = True
+                current_order.save()
+
+            except Order.DoesNotExist:
+                pass
+            return render(request, 'checkout.html', context)
+    else:
+        form = CheckoutForm()
+
+    return render(request, 'checkout.html', {'form': form})

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Coba Deploy Ulang -->
 <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
@@ -44,7 +43,7 @@
         text-align: center; /* agar teks di tengah-tengah nav-item */
     }
 
-     .btn-logout {
+    .btn-logout {
         background-color: #343a40;
         color: white;
         border: 1px solid black;
@@ -57,26 +56,8 @@
         color: white; /* Teks tetap putih saat dihover */
     }
 
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
-
-    #sortingDropdown {
-        background-color: transparent !important;
-        color: #343a40 !important;
-        border-color: #343a40 !important;
-    }
-
-    .navbar-lg {
-        background-color: rgb(236, 236, 236) !important;
-    }
-
-    .product-card:hover {
-        border-color: #343a40 !important;
-    }
-
-    .product-card:hover .card-img-container {
-        background-color: #343a40 !important;
+    body.modal-open {
+        overflow: visible !important;
     }
 
     .star {
@@ -90,10 +71,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-first">
     <div class="container-fluid">
-
         <!-- Search Bar -->
-        <form class="form-inline my-2 my-lg-0 mr-auto position-relative" id="productSearchForm" method="get" action="{% url 'main:show_main' %}">
-            <input class="form-control mr-sm-2 pl-4 pr-5 search-input" type="text" name="{{ search_form.query.name }}" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
+        <form class="form-inline my-2 my-lg-0 mr-auto position-relative">
+            <input class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
             <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
                 <i class="fas fa-search"></i>
             </button>
@@ -102,8 +82,8 @@
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
         <!-- Right side items -->
-        <ul class="navbar-nav">
-            <div class="ms-auto d-flex align-items-center">
+        <ul class="navbar-nav ml-auto">
+            <div class="d-flex justify-content-end">
                 <a href="{% url 'main:wishlist_view' %}" class="mr-3">
                     <i class="fas fa-heart" style="color: black;"></i>
                 </a>
@@ -111,8 +91,7 @@
                     <i class="fas fa-shopping-cart" style="color: black;"></i>
                 </a>
                 <span style="margin-right: 15px;">
-                    Welcome, <strong>{{ name }}</strong>!</br>
-                    <small>Last login: {{ last_login }}</small>
+                    Hi, <strong>{{ name }}</strong>!</br>
                 </span>
                 <a href="{% url 'main:logout' %}">
                   <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
@@ -121,7 +100,6 @@
         </ul>
     </div>
 </nav>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <ul class="navbar-nav mr-auto d-flex justify-content-between">
@@ -177,73 +155,29 @@
         </ul>
     </div>
 </nav>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lg">
-    <div class="container-fluid">
-        <!-- Dropdown for Sorting -->
-        <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="sortingDropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sorting Buku
-            </button>
-            <div class="dropdown-menu" aria-labelledby="sortingDropdown">
-                <a class="dropdown-item" href="?sort_by=az">Dari A-Z</a>
-                <a class="dropdown-item" href="?sort_by=za">Dari Z-A</a>                
-            </div>
-        </div>
-    </div>
-</nav>
-
-<div class="container mt-5">
-    <div class="row">
-      {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <a href="{% url 'main:product_details' product.id %}" style="text-decoration: none; color: inherit;">
-                <div class="card h-100 product-card" style="border: 1px solid lightgray; border-radius: 8px;">
-                    <div class="card-img-container" style="background-color: lightgrey; height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                        {% if product.image_url %}
-                            <img class="card-img-top" src="{{ product.image_url }}" alt="{{ product.title }}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                        {% endif %}
-                    </div>                    
-                    <div class="card-body">
-                        <p class="card-title">{{ product.title }}</p>
-                        <h5 class="card-text">Rp. {{ product.price }},-</h5>
-                        <p class="card-text">
-                            <span style="font-size: 13px; color: #444;">
-                                {{ product.category }}
-                            </span>
-                        </p>
-                        <p class="card-text"><span style="color: gold;">&#9733;</span> {{ product.rating }}</p>  <!-- Mengubah warna bintang menjadi emas -->
-                    </div>
-                </div>
-            </a>
-        </div>
-        {% if forloop.counter|divisibleby:4 %}
-        </div><div class="row">
-        {% endif %}
-      {% endfor %}        
-    </div>
+<div style="text-align: center;">
+    <br>
+    {% if is_submitted %}
+        <h2>Terima kasih, {{ name }}!</h2>
+        <br>
+        <h3>Detail pemesanan Anda:</h3>
+        <h4>Alamat Pengiriman: {{ address }}</h4>
+        <h4>Metode Pembayaran: {{ payment_method }}</h4>
+        <br>
+        <h2>Pesanan Anda sedang diproses. Silakan cek email Anda untuk informasi lebih lanjut.</h2>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+    <br>
+    <a href="{% url 'main:show_main' %}" class="back-button">
+        <button class="btn btn-logout">
+            Kembali ke Beranda
+        </button>
+    </a>
 </div>
 
-<script>
-    $(document).ready(function () {
-        $('#productSearchForm').on('submit', function (e) {
-            e.preventDefault();
-            var query = $('[name="query"]').val();
-
-            $.ajax({
-                url: '{% url "main:show_main" %}',
-                type: 'POST',
-                data: {
-                    'query': query,
-                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
-                },
-                success: function (data) {
-                    // Update halaman dengan data yang diterima
-                    // Sementara hanya log ke console
-                    console.log(data);
-                }
-            });
-        });
-    });
-</script>
 {% endblock content %}
