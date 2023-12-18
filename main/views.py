@@ -290,6 +290,7 @@ def cart_view(request):
     except:
         return render(request, 'cart.html', {'total':0, 'name': request.user.username})
 
+@csrf_exempt
 @login_required
 def add_to_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -299,6 +300,7 @@ def add_to_wishlist(request, product_id):
     wishlist_item.save()
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke wishlist'})
 
+@csrf_exempt
 @login_required
 def remove_from_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)
