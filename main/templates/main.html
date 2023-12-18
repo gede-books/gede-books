@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Retry Deploy Ulang -->
+<!-- Coba Deploy Ulang Lagi -->
 <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
@@ -104,6 +104,9 @@
         <!-- Right side items -->
         <ul class="navbar-nav">
             <div class="ms-auto d-flex align-items-center">
+                <a href="{% url 'main:purchased_books' %}" class="mr-3">
+                    <i class="fas fa-archive" style="color: black;"></i>
+                </a>
                 <a href="{% url 'main:wishlist_view' %}" class="mr-3">
                     <i class="fas fa-heart" style="color: black;"></i>
                 </a>

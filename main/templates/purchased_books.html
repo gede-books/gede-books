@@ -60,23 +60,30 @@
     <div class="container-fluid">
 
         <!-- Search Bar -->
-        <form class="form-inline my-2 my-lg-0 mr-auto position-relative">
-            <input class="form-control mr-sm-2 pl-4 pr-5" type="search" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
+        <form class="form-inline my-2 my-lg-0 mr-auto position-relative" id="productSearchForm" method="get" action="{% url 'main:show_main' %}">
+            <input class="form-control mr-sm-2 pl-4 pr-5 search-input" type="text" name="{{ search_form.query.name }}" placeholder="Cari buku apa?" aria-label="Search" style="border-radius: 20px;">
             <button class="btn btn-outline-none position-absolute" type="submit" style="right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none;">
                 <i class="fas fa-search"></i>
             </button>
         </form>
-        <a href="{% url 'main:purchased_books' %}" class="btn btn-info" style="margin-right: 5px;" >Purchased Products</a>
-        <a href="{% url 'main:cart_view' %}" class="btn btn-info" style="margin-right: 5px;" >Cart</a>
-
         <a class="navbar-brand" href="{% url 'main:show_main' %}">GEDE-Books</a>
         <div class="navbar-tagline">Great Educational, Diverse, & Entertaining Books</div>
 
         <!-- Right side items -->
-        <ul class="navbar-nav">
-            <div class="ms-auto d-flex align-items-center">
+        <ul class="navbar-nav ml-auto">
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'main:purchased_books' %}" class="mr-3">
+                    <i class="fas fa-archive" style="color: black;"></i>
+                </a>
+                <a href="{% url 'main:wishlist_view' %}" class="mr-3">
+                    <i class="fas fa-heart" style="color: black;"></i>
+                </a>
+                <a href="{% url 'main:cart_view' %}" class="mr-3">
+                    <i class="fas fa-shopping-cart" style="color: black;"></i>
+                </a>
                 <span style="margin-right: 15px;">
                     Welcome, <strong>{{ name }}</strong>!</br>
+                    <small>Last login: {{ last_login }}</small>
                 </span>
                 <a href="{% url 'main:logout' %}">
                   <button class="btn btn-outline-success btn-logout" type="submit" style="border-color: red;">Log Out</button>
@@ -88,7 +95,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto d-flex justify-content-between">
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Politics' %}active{% endif %}" 
                    href="{% if selected_category == 'Politics' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Politics{% endif %}">
@@ -98,11 +105,62 @@
             <li class="nav-item">
                 <a class="nav-link {% if selected_category == 'Children\'s Literature' %}active{% endif %}" 
                    href="{% if selected_category == 'Children\'s Literature' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Children's Literature{% endif %}">
-                   Children's Literature
+                   Children
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Adventure' %}active{% endif %}" 
+                   href="{% if selected_category == 'Adventure' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Adventure{% endif %}">
+                   Adventure
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Horror' %}active{% endif %}" 
+                   href="{% if selected_category == 'Horror' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Horror{% endif %}">
+                   Horror
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Movie Books' %}active{% endif %}" 
+                   href="{% if selected_category == 'Movie Books' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Movie Books{% endif %}">
+                   Movie
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Science Fiction' %}active{% endif %}" 
+                   href="{% if selected_category == 'Science Fiction' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Science Fiction{% endif %}">
+                   Sci-Fi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Humorous stories' %}active{% endif %}" 
+                   href="{% if selected_category == 'Humorous stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Humorous stories{% endif %}">
+                   Humorous
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if selected_category == 'Love stories' %}active{% endif %}" 
+                   href="{% if selected_category == 'Love stories' %}{% url 'main:show_main' %}{% else %}{% url 'main:show_main' %}?category=Love stories{% endif %}">
+                   Love
                 </a>
             </li>
             <!-- Other items... -->
         </ul>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-lg">
+    <div class="container-fluid">
+        <!-- Dropdown for Sorting -->
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="sortingDropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sorting Buku
+            </button>
+            <div class="dropdown-menu" aria-labelledby="sortingDropdown">
+                <a class="dropdown-item" href="?sort_by=az">Dari A-Z</a>
+                <a class="dropdown-item" href="?sort_by=za">Dari Z-A</a>                
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -116,26 +174,50 @@
         .then(response => response.json())
         .then(data => {
             const cardsContainer = document.getElementById('cards-container');
-            data.order_items.forEach((orderedItem, index) => {
-                const card = `
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <div class="card h-100" style="border: 1px solid lightgray; border-radius: 8px;">
-                            <div class="card-img-container" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-                                <img class="card-img-top" src="${orderedItem.image_url}" alt="${orderedItem.title}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+            if (data.order_items.length === 0) {
+                cardsContainer.innerHTML = '<h1 div class="text-center">Anda belum membeli buku apapun</h1>';
+            } else {
+                data.order_items.forEach((orderedItem, index) => {
+                    if (orderedItem.reviewed) {
+                        const card = `
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <div class="card h-100" style="border: 1px solid lightgray; border-radius: 8px;">
+                                    <div class="card-img-container" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                        <img class="card-img-top" src="${orderedItem.image_url}" alt="${orderedItem.title}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-title">${orderedItem.title}</p>
+                                        <h5 class="card-text">Rp. ${orderedItem.price},-</h5>
+                                        <p class="card-text">
+                                            <span style="font-size: 13px; color: #444;">${orderedItem.category}</span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <p class="card-title">${orderedItem.title}</p>
-                                <h5 class="card-text">Rp. ${orderedItem.price},-</h5>
-                                <p class="card-text">
-                                    <span style="font-size: 13px; color: #444;">${orderedItem.category}</span>
-                                </p>
-                                <a href="{% url 'main:tinggalkan_review' 9999 %}" class="btn btn-info" >Tinggalkan Review</a>
+                        `;
+                        cardsContainer.innerHTML += card;
+                    } else {
+                        const card = `
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <div class="card h-100" style="border: 1px solid lightgray; border-radius: 8px;">
+                                    <div class="card-img-container" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                        <img class="card-img-top" src="${orderedItem.image_url}" alt="${orderedItem.title}" style="max-height: 100%; width: auto; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-title">${orderedItem.title}</p>
+                                        <h5 class="card-text">Rp. ${orderedItem.price},-</h5>
+                                        <p class="card-text">
+                                            <span style="font-size: 13px; color: #444;">${orderedItem.category}</span>
+                                        </p>
+                                        <a href="{% url 'main:tinggalkan_review' 9999 %}" class="btn btn-info" >Tinggalkan Review</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                `.replace('9999', orderedItem.id);
-                cardsContainer.innerHTML += card;
-            });
+                        `.replace('9999', orderedItem.id);
+                        cardsContainer.innerHTML += card;
+                    }
+                });
+            }
         })
         .catch(error => console.error('Error:', error));
 </script>
