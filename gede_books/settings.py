@@ -32,7 +32,8 @@ PRODUCTION = env.bool('PRODUCTION', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://gedebooks-a07-tk.pbp.cs.ui.ac.id",
+ALLOWED_HOSTS = ["gedebooks-a07-tk.pbp.cs.ui.ac.id",
+                 "https://gedebooks-a07-tk.pbp.cs.ui.ac.id",
                  "http://gedebooks-a07-tk.pbp.cs.ui.ac.id",
                  "https://gede-books-a07-tk-pbp.35.209.250.177.sslip.io",
                  "localhost"]
