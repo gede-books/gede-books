@@ -266,6 +266,7 @@ def get_item_json(request):
     return redirect('/cart')
 
 @login_required
+@csrf_exempt
 def cart_view(request):
     try:
         order = Order.objects.get(user=request.user, ordered=False)
@@ -312,6 +313,7 @@ def remove_from_wishlist(request, product_id):
     return redirect('main:wishlist_view')
 
 @login_required
+@csrf_exempt
 def wishlist_view(request):
     try:
         wishlist = Wishlist.objects.get(user=request.user, wishlisted=False)
@@ -358,6 +360,7 @@ def show_json_by_id(request, id):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 @login_required
+@csrf_exempt
 def update_quantity(request):
     if request.method == 'POST':
         item_id = request.POST.get('item_id')
@@ -374,6 +377,7 @@ def update_quantity(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
 @login_required
+@csrf_exempt
 def checkout_cart(request):
     order = Order.objects.get(user=request.user, ordered=False)
     order.ordered = True
@@ -381,6 +385,7 @@ def checkout_cart(request):
     return redirect('/purchased_books')
 
 @login_required
+@csrf_exempt
 def checkout_view(request):
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
