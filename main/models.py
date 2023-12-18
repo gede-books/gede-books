@@ -1,5 +1,7 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 # Create your models here.
 
@@ -15,6 +17,15 @@ class Product(models.Model):
     stock = models.IntegerField(default=25)
     price = models.IntegerField(default=75000)
     rating = models.FloatField(default=0.0)
+
+    def update_average_rating(self):
+        avg_rating = ReviewProduct.objects.filter(product=self).aggregate(Avg('rating'))['rating__avg']
+        if avg_rating is not None:
+            self.rating = avg_rating
+            self.save()
+        else:
+            self.rating = 0.0
+            self.save()
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -43,3 +54,10 @@ class Wishlist(models.Model):
 class WishlistItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
+
+class ReviewProduct(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    rating = models.FloatField(default=0.0)
+    review = models.TextField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField()
