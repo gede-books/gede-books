@@ -34,7 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["gedebooks-a07-tk.pbp.cs.ui.ac.id",
                  "localhost",
-                 "http://gedebooks-a07-tk-pbp.35.209.250.177.sslip.io"]
+                 "http://gedebooks-a07-tk-pbp.35.209.250.177.sslip.io", "*"]
 
 
 # Application definition

@@ -9,9 +9,9 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
 
-from main.models import Product, Order, OrderItem, Wishlist, WishlistItem
+from main.models import Product, Order, OrderItem, ReviewProduct, Wishlist, WishlistItem
 from book.models import Book
-from .forms import SearchForm, CheckoutForm
+from .forms import ReviewForm, SearchForm, CheckoutForm
 
 import datetime
 import csv
@@ -187,6 +187,8 @@ def product_details(request, product_id):
     else:
         product.image_url = None
 
+    reviews=ReviewProduct.objects.filter(product=product)
+
     # Cek apakah 'last_login' ada dalam cookies
     last_login = request.COOKIES.get('last_login')
 
@@ -194,6 +196,7 @@ def product_details(request, product_id):
         'name': request.user.username if request.user.is_authenticated else None,
         'last_login': last_login,
         'product': product,
+        'reviews': reviews
     }
 
     return render(request, 'product_details.html', context)
@@ -402,7 +405,6 @@ def checkout_view(request):
             try:
                 current_order = Order.objects.get(user=request.user, ordered=False)
                 current_order_items = OrderItem.objects.filter(order=current_order)
-                current_order_items.delete()
                 current_order.ordered = True
                 current_order.save()
 
@@ -413,3 +415,76 @@ def checkout_view(request):
         form = CheckoutForm()
 
     return render(request, 'checkout.html', {'form': form})
+
+@login_required
+def purchased_books(request):
+    last_login = request.COOKIES.get('last_login', 'Not available')
+    return render(request, 'purchased_books.html', {'name': request.user.username, 'last_login': last_login})
+                    
+@login_required
+def purchased_books_ajax(request):
+    orders = Order.objects.filter(user=request.user, ordered=True)
+    purchased_books = []
+    for order in orders:
+        order_items = OrderItem.objects.filter(order=order)
+        for order_item in order_items:
+            image_map = {}
+            with open('main/bookImages.csv', 'r') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    try:
+                        image_map[int(row['bookCode'])] = row['image']
+                    except KeyError as e:
+                        print(f"KeyError: {e}. Row: {row}")
+
+            image_url=None
+            if order_item.product.bookCode in image_map:
+                image_url = image_map[order_item.product.bookCode]
+            else:
+                image_url = None
+            
+            try:
+                ReviewProduct.objects.get(user=request.user, product=order_item.product)
+                reviewed = True
+            except:
+                reviewed = False
+
+            last_login = request.COOKIES.get('last_login', 'Not available')
+
+            book_data = {
+                'id': order_item.product.id,
+                'title': order_item.product.title,
+                'price': order_item.product.price,
+                'category': order_item.product.category,
+                'rating': order_item.product.rating,
+                'image_url': image_url,
+                'reviewed': reviewed,
+                'last_login': last_login
+            }
+
+            purchased_books.append(book_data)
+            
+    return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
+
+@login_required
+def tinggalkan_review(request, id):
+    form = ReviewForm(request.POST or None)
+    product = get_object_or_404(Product, pk=id)
+    
+    if form.is_valid() and request.method == "POST":
+        review = form.save(commit=False)
+        review.product = product
+        review.user = request.user
+        review.save()
+        product.update_average_rating()
+        return HttpResponseRedirect(reverse('main:purchased_books'))
+    
+    last_login = request.COOKIES.get('last_login', 'Not available')
+
+    context = {
+        'form': form,
+        'product': product,
+        'last_login': last_login
+    }
+
+    return render(request, 'tinggalkan_review.html', context)
