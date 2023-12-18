@@ -32,7 +32,7 @@ PRODUCTION = env.bool('PRODUCTION', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["gedebooks-a07-tk.pbp.cs.ui.ac.id",
+ALLOWED_HOSTS = ["https://gedebooks-a07-tk.pbp.cs.ui.ac.id",
                  "localhost"]
 
 
