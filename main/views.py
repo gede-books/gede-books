@@ -237,6 +237,7 @@ def logout_user(request):
     return response
 
 @login_required
+@csrf_exempt
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order, created = Order.objects.get_or_create(user=request.user, ordered=False)
@@ -247,6 +248,7 @@ def add_to_cart(request, product_id):
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke keranjang'})
 
 @login_required
+@csrf_exempt
 def remove_from_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     order = Order.objects.get(user=request.user, ordered=False)
@@ -291,6 +293,7 @@ def cart_view(request):
         return render(request, 'cart.html', {'total':0, 'name': request.user.username})
 
 @login_required
+@csrf_exempt
 def add_to_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)
     wishlist, created = Wishlist.objects.get_or_create(user=request.user, wishlisted=False)
@@ -300,6 +303,7 @@ def add_to_wishlist(request, product_id):
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke wishlist'})
 
 @login_required
+@csrf_exempt
 def remove_from_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)
     wishlist = Wishlist.objects.get(user=request.user, wishlisted=False)
