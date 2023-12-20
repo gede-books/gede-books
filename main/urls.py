@@ -1,6 +1,6 @@
 from django.urls import path
 from main.views import purchased_books, purchased_books_ajax, show_main, show_guest, register, product_details, login_user, logout_user, add_to_cart, remove_from_cart, cart_view, show_xml, show_json, show_xml_by_id, show_json_by_id, tinggalkan_review
-from main.views import get_item_json, checkout_cart, checkout_view, update_quantity, add_to_wishlist, remove_from_wishlist, wishlist_view, get_cart_json
+from main.views import get_item_json, checkout_cart, checkout_view, update_quantity, add_to_wishlist, remove_from_wishlist, wishlist_view, get_cart_json, get_wishlist_json
 
 app_name = 'main'
 
@@ -31,4 +31,5 @@ urlpatterns = [
     path('purchased_books_ajax/', purchased_books_ajax, name='purchased_books_ajax'),
     path('tinggalkan_review/<int:id>', tinggalkan_review, name='tinggalkan_review'),
     path('api/get_cart_json/', get_cart_json, name='get_cart_json'),
+    path('api/get_wishlist_json/', get_wishlist_json, name='get_wishlist_json'),
 ]

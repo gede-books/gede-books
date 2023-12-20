@@ -384,6 +384,41 @@ def wishlist_view(request):
     except:
         # return render(request, 'cart.html', {'total':0, 'name': request.user.username})
         return render(request, 'wishlist.html', {'name': request.user.username})
+    
+@login_required(login_url='/login/')
+@csrf_exempt
+def get_wishlist_json(request):
+    try:
+        wishlist = Wishlist.objects.get(user=request.user, wishlisted=False)
+        wishlist_items = WishlistItem.objects.filter(wishlist=wishlist)
+
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        for wishlist_item in wishlist_items:
+            if wishlist_item.product.bookCode in image_map:
+                wishlist_item.product.image_url = image_map[wishlist_item.product.bookCode]
+            else:
+                wishlist_item.product.image_url = None
+
+        wishlists_items = []
+        for wishlist_item in wishlist_items:
+            wishlist_item = {
+                'id': wishlist_item.product.id,
+                'title': wishlist_item.product.title,
+                'image_url': wishlist_item.product.image_url, 
+            }
+            wishlists_items.append(wishlist_item)
+
+        return JsonResponse({'wishlists_items': wishlists_items})
+    except Order.DoesNotExist:
+        return JsonResponse({'wishlists_items': []})
 
 def show_xml(request):
     data = Product.objects.all()
