@@ -270,6 +270,46 @@ def get_item_json(request):
 
 @login_required
 @csrf_exempt
+def get_cart_json(request):
+    try:
+        order = Order.objects.get(user=request.user, ordered=False)
+        order_items = OrderItem.objects.filter(order=order)
+
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        for order_item in order_items:
+            if order_item.product.bookCode in image_map:
+                order_item.product.image_url = image_map[order_item.product.bookCode]
+            else:
+                order_item.product.image_url = None
+
+        cart_items = []
+        for order_item in order_items:
+            cart_item = {
+                'id': order_item.product.id,
+                'title': order_item.product.title,
+                'quantity': order_item.quantity,
+                'price': order_item.product.price,
+                'total_price': order_item.get_total_price(),
+                'image_url': order_item.product.image_url,  # Ganti dengan atribut yang sesuai
+            }
+            cart_items.append(cart_item)
+
+        total = order.get_total()
+
+        return JsonResponse({'cart_items': cart_items, 'total': total})
+    except Order.DoesNotExist:
+        return JsonResponse({'cart_items': [], 'total': 0})
+
+@login_required
+@csrf_exempt
 def cart_view(request):
     try:
         order = Order.objects.get(user=request.user, ordered=False)
