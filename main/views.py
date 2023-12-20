@@ -298,7 +298,7 @@ def get_cart_json(request):
                 'quantity': order_item.quantity,
                 'price': order_item.product.price,
                 'total_price': order_item.get_total_price(),
-                'image_url': order_item.product.image_url,  # Ganti dengan atribut yang sesuai
+                'image_url': order_item.product.image_url, 
             }
             cart_items.append(cart_item)
 
