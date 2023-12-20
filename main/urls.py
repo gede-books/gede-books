@@ -31,5 +31,5 @@ urlpatterns = [
     path('purchased_books_ajax/', purchased_books_ajax, name='purchased_books_ajax'),
     path('tinggalkan_review/<int:id>', tinggalkan_review, name='tinggalkan_review'),
     path('api/get_cart_json/', get_cart_json, name='get_cart_json'),
-    path('accounts/login/?next=t/get_cart_json/', get_cart_json, name='get_cart_json'),
+    path('accounts/login/?next=/api/get_cart_json/', get_cart_json, name='get_cart_json'),
 ]
