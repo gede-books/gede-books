@@ -268,7 +268,7 @@ def get_item_json(request):
     return HttpResponse(serializers.serialize('json', product_item))
     return redirect('/cart')
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def get_cart_json(request):
     try:
