@@ -239,7 +239,7 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -250,7 +250,7 @@ def add_to_cart(request, product_id):
     order_item.save()
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke keranjang'})
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def remove_from_cart(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -308,7 +308,7 @@ def get_cart_json(request):
     except Order.DoesNotExist:
         return JsonResponse({'cart_items': [], 'total': 0})
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def cart_view(request):
     try:
@@ -336,7 +336,7 @@ def cart_view(request):
     except:
         return render(request, 'cart.html', {'total':0, 'name': request.user.username})
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def add_to_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -346,7 +346,7 @@ def add_to_wishlist(request, product_id):
     wishlist_item.save()
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke wishlist'})
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def remove_from_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -355,7 +355,7 @@ def remove_from_wishlist(request, product_id):
     wishlist_item.delete()
     return redirect('main:wishlist_view')
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def wishlist_view(request):
     try:
@@ -402,7 +402,7 @@ def show_json_by_id(request, id):
     data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def update_quantity(request):
     if request.method == 'POST':
@@ -419,7 +419,7 @@ def update_quantity(request):
             return JsonResponse({'status': 'error'}, status=400)
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def checkout_cart(request):
     order = Order.objects.get(user=request.user, ordered=False)
@@ -427,7 +427,7 @@ def checkout_cart(request):
     order.save()
     return redirect('/purchased_books')
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def checkout_view(request):
     if request.method == 'POST':
@@ -456,12 +456,12 @@ def checkout_view(request):
 
     return render(request, 'checkout.html', {'form': form})
 
-@login_required
+@login_required(login_url='/login')
 def purchased_books(request):
     last_login = request.COOKIES.get('last_login', 'Not available')
     return render(request, 'purchased_books.html', {'name': request.user.username, 'last_login': last_login})
                     
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def purchased_books_ajax(request):
     orders = Order.objects.filter(user=request.user, ordered=True)
@@ -507,7 +507,7 @@ def purchased_books_ajax(request):
             
     return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def tinggalkan_review(request, id):
     form = ReviewForm(request.POST or None)
