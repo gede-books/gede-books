@@ -34,7 +34,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["gedebooks-a07-tk.pbp.cs.ui.ac.id",
                  "localhost",
-                 "http://gedebooks-a07-tk-pbp.35.209.250.177.sslip.io", "*"]
+                 "http://gedebooks-a07-tk-pbp.35.209.250.177.sslip.io",
+                 "https://lidwina-eurora-gedebooks.stndar.dev",
+                 "lidwina-eurora-gedebooks.stndar.dev", "*"]
 
 
 # Application definition
@@ -150,3 +152,5 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
+
+CSRF_TRUSTED_ORIGIN = ["https://*.stndar.dev"]

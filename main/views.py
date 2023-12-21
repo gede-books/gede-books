@@ -239,7 +239,7 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -250,7 +250,7 @@ def add_to_cart(request, product_id):
     order_item.save()
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke keranjang'})
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def remove_from_cart(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -268,7 +268,47 @@ def get_item_json(request):
     return HttpResponse(serializers.serialize('json', product_item))
     return redirect('/cart')
 
-@login_required
+@login_required(login_url='/login')
+@csrf_exempt
+def get_cart_json(request):
+    try:
+        order = Order.objects.get(user=request.user, ordered=False)
+        order_items = OrderItem.objects.filter(order=order)
+
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        for order_item in order_items:
+            if order_item.product.bookCode in image_map:
+                order_item.product.image_url = image_map[order_item.product.bookCode]
+            else:
+                order_item.product.image_url = None
+
+        cart_items = []
+        for order_item in order_items:
+            cart_item = {
+                'id': order_item.product.id,
+                'title': order_item.product.title,
+                'quantity': order_item.quantity,
+                'price': order_item.product.price,
+                'total_price': order_item.get_total_price(),
+                'image_url': order_item.product.image_url, 
+            }
+            cart_items.append(cart_item)
+
+        total = order.get_total()
+
+        return JsonResponse({'cart_items': cart_items, 'total': total})
+    except Order.DoesNotExist:
+        return JsonResponse({'cart_items': [], 'total': 0})
+
+@login_required(login_url='/login')
 @csrf_exempt
 def cart_view(request):
     try:
@@ -296,7 +336,7 @@ def cart_view(request):
     except:
         return render(request, 'cart.html', {'total':0, 'name': request.user.username})
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def add_to_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -306,7 +346,7 @@ def add_to_wishlist(request, product_id):
     wishlist_item.save()
     return JsonResponse({'status': 'success', 'message': 'Produk berhasil ditambahkan ke wishlist'})
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def remove_from_wishlist(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -315,7 +355,7 @@ def remove_from_wishlist(request, product_id):
     wishlist_item.delete()
     return redirect('main:wishlist_view')
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def wishlist_view(request):
     try:
@@ -344,6 +384,41 @@ def wishlist_view(request):
     except:
         # return render(request, 'cart.html', {'total':0, 'name': request.user.username})
         return render(request, 'wishlist.html', {'name': request.user.username})
+    
+@login_required(login_url='/login/')
+@csrf_exempt
+def get_wishlist_json(request):
+    try:
+        wishlist = Wishlist.objects.get(user=request.user, wishlisted=False)
+        wishlist_items = WishlistItem.objects.filter(wishlist=wishlist)
+
+        image_map = {}
+        with open('main/bookImages.csv', 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                try:
+                    image_map[int(row['bookCode'])] = row['image']
+                except KeyError as e:
+                    print(f"KeyError: {e}. Row: {row}")
+
+        for wishlist_item in wishlist_items:
+            if wishlist_item.product.bookCode in image_map:
+                wishlist_item.product.image_url = image_map[wishlist_item.product.bookCode]
+            else:
+                wishlist_item.product.image_url = None
+
+        wishlists_items = []
+        for wishlist_item in wishlist_items:
+            wishlist_item = {
+                'id': wishlist_item.product.id,
+                'title': wishlist_item.product.title,
+                'image_url': wishlist_item.product.image_url, 
+            }
+            wishlists_items.append(wishlist_item)
+
+        return JsonResponse({'wishlists_items': wishlists_items})
+    except Order.DoesNotExist:
+        return JsonResponse({'wishlists_items': []})
 
 def show_xml(request):
     data = Product.objects.all()
@@ -362,7 +437,7 @@ def show_json_by_id(request, id):
     data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def update_quantity(request):
     if request.method == 'POST':
@@ -379,7 +454,7 @@ def update_quantity(request):
             return JsonResponse({'status': 'error'}, status=400)
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def checkout_cart(request):
     order = Order.objects.get(user=request.user, ordered=False)
@@ -387,7 +462,7 @@ def checkout_cart(request):
     order.save()
     return redirect('/purchased_books')
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def checkout_view(request):
     if request.method == 'POST':
@@ -416,12 +491,13 @@ def checkout_view(request):
 
     return render(request, 'checkout.html', {'form': form})
 
-@login_required
+@login_required(login_url='/login')
 def purchased_books(request):
     last_login = request.COOKIES.get('last_login', 'Not available')
     return render(request, 'purchased_books.html', {'name': request.user.username, 'last_login': last_login})
                     
-@login_required
+@login_required(login_url='/login')
+@csrf_exempt
 def purchased_books_ajax(request):
     orders = Order.objects.filter(user=request.user, ordered=True)
     purchased_books = []
@@ -463,7 +539,8 @@ def purchased_books_ajax(request):
             
     return JsonResponse({'order_items': purchased_books, 'name': request.user.username})
 
-@login_required
+@login_required(login_url='/login')
+@csrf_exempt
 def tinggalkan_review(request, id):
     form = ReviewForm(request.POST or None)
     product = get_object_or_404(Product, pk=id)
@@ -472,6 +549,7 @@ def tinggalkan_review(request, id):
         review = form.save(commit=False)
         review.product = product
         review.user = request.user
+        review.timestamp = datetime.datetime.now()
         review.save()
         product.update_average_rating()
         return HttpResponseRedirect(reverse('main:purchased_books'))
@@ -486,7 +564,7 @@ def tinggalkan_review(request, id):
 
     return render(request, 'tinggalkan_review.html', context)
 
-@login_required
+@login_required(login_url='/login')
 @csrf_exempt
 def tinggalkan_review_flutter(request, id):
     try:
