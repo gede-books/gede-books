@@ -439,7 +439,7 @@ def purchased_books_ajax(request):
 
             image_url=None
             if order_item.product.bookCode in image_map:
-                image_url = image_map[order_item.product.bookCode]
+                image_url = image_map[order_item.product.bookCode].rstrip()
             else:
                 image_url = None
             
@@ -449,8 +449,6 @@ def purchased_books_ajax(request):
             except:
                 reviewed = False
 
-            last_login = request.COOKIES.get('last_login', 'Not available')
-
             book_data = {
                 'id': order_item.product.id,
                 'title': order_item.product.title,
@@ -459,7 +457,6 @@ def purchased_books_ajax(request):
                 'rating': order_item.product.rating,
                 'image_url': image_url,
                 'reviewed': reviewed,
-                'last_login': last_login
             }
 
             purchased_books.append(book_data)
@@ -488,3 +485,22 @@ def tinggalkan_review(request, id):
     }
 
     return render(request, 'tinggalkan_review.html', context)
+
+@login_required
+@csrf_exempt
+def tinggalkan_review_flutter(request, id):
+    try:
+        data = request.body.decode('utf-8')
+        until = len(data) - 2
+        product = get_object_or_404(Product, pk=id)
+        review = ReviewForm().save(commit=False)
+        review.rating = data[10:11]
+        review.review = data[24:until]
+        review.product = product
+        review.user = request.user
+        review.timestamp = datetime.datetime.now()
+        review.save()
+        product.update_average_rating()
+        return JsonResponse('Success', status=200, safe=False)
+    except:
+        return JsonResponse('Failed', status=404, safe=False)
